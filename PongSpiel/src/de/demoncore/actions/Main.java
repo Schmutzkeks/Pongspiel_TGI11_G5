@@ -1,7 +1,7 @@
-package actions;
+package de.demoncore.actions;
 
-import game.GameLogic;
-import gui.Gui;
+import de.demoncore.game.GameLogic;
+import de.demoncore.gui.Gui;
 
 public class Main {
 

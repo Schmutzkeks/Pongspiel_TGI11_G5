@@ -1,11 +1,11 @@
-package game;
+package de.demoncore.game;
 
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import gameObjects.BeweglichesRechteck;
-import gui.Gui;
+import de.demoncore.gameObjects.BeweglichesRechteck;
+import de.demoncore.gui.Gui;
 
 public class GameLogic {
 
