@@ -30,7 +30,7 @@ public class GameLogic {
 		keyDownarrowpressed = false;
 		
 		// Objekte im Spiel:
-		BeweglichesRechteck beispielObjekt1 = new BeweglichesRechteck(50, 100, 20, 20);		//(posX, posY, breite, hoehe) 
+		BeweglichesRechteck beispielObjekt1 = new BeweglichesRechteck(400, 240, 20, 20);		//(posX, posY, breite, hoehe) 
 		spielObjekte.add(beispielObjekt1);
 		beispielObjekt1.richtung = 0; // Startrichtung
 		BeweglichesRechteck beispielObjekt2 = new BeweglichesRechteck(700, 240, 20, 80);	//(posX, posY, breite, hoehe) 
@@ -40,7 +40,7 @@ public class GameLogic {
 			@Override
 			public void run() {
 				// Laufende Ausführungen im Spiel:
-				beispielObjekt1.automatischeKreisbewegung();
+				beispielObjekt1.bouncebewegung();
 				/*
 				if (keyLeftarrowpressed) {
 					beispielObjekt2.positionX -= 1;
