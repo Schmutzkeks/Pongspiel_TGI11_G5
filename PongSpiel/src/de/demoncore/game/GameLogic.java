@@ -56,13 +56,7 @@ public class GameLogic {
 				// Laufende Ausführungen im Spiel:
 				Ball.bouncebewegung();
 
-
-
-
-				
-				
-
-				
+	
 				/*
 				if (Detection.isColliding(beispielObjekt1, beispielObjekt2)) {
 					Detection.Collision(beispielObjekt1, beispielObjekt2);
