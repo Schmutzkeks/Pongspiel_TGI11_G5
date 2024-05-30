@@ -5,8 +5,8 @@ import de.demoncore.gameObjects.BeweglichesRechteck;
 public class Gamelogic2 {
 
 
-	int velX = BeweglichesRechteck.velX;
-	int velY = BeweglichesRechteck.velY;
+	//double velX = BeweglichesRechteck.velX;
+	//double velY = BeweglichesRechteck.velY;
 
 	public void CollisionLeftRight(BeweglichesRechteck obj1, BeweglichesRechteck obj2) {
 		BeweglichesRechteck.velX = BeweglichesRechteck.velX * (-1);
@@ -48,5 +48,20 @@ public class Gamelogic2 {
 				obj1.positionX + 20 > obj2.positionX;
 		 */
 	}
-
+	
+	
+	public void Collisionwall(BeweglichesRechteck obj1) {
+        if (obj1.positionX <= 0 || obj1.positionX >= 786 - 20) {
+            if (BeweglichesRechteck.velX>0&&BeweglichesRechteck.velY>0) BeweglichesRechteck.velX = BeweglichesRechteck.velX *(-1);
+            else if (BeweglichesRechteck.velX>0&&BeweglichesRechteck.velY<0) BeweglichesRechteck.velX = BeweglichesRechteck.velX *(-1);
+            else if (BeweglichesRechteck.velX<0&&BeweglichesRechteck.velY>0) BeweglichesRechteck.velX = BeweglichesRechteck.velX *(-1);
+            else if (BeweglichesRechteck.velX<0&&BeweglichesRechteck.velY<0) BeweglichesRechteck.velX = BeweglichesRechteck.velX *(-1);
+        }
+        if (obj1.positionY <= 0 || obj1.positionY >= 562 - 20) {
+            if (BeweglichesRechteck.velX>0&&BeweglichesRechteck.velY>0) BeweglichesRechteck.velY = BeweglichesRechteck.velY *(-1);
+            else if (BeweglichesRechteck.velX>0&&BeweglichesRechteck.velY<0) BeweglichesRechteck.velY = BeweglichesRechteck.velY *(-1);
+            else if (BeweglichesRechteck.velX<0&&BeweglichesRechteck.velY>0) BeweglichesRechteck.velY = BeweglichesRechteck.velY *(-1);
+            else if (BeweglichesRechteck.velX<0&&BeweglichesRechteck.velY<0) BeweglichesRechteck.velY = BeweglichesRechteck.velY *(-1);
+        }
+	}
 }

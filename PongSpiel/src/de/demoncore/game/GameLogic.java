@@ -37,7 +37,6 @@ public class GameLogic {
 		// Objekte im Spiel:
 		BeweglichesRechteck Ball = new BeweglichesRechteck(393, 240, 20, 20);		//(posX, posY, breite, hoehe) 
 		spielObjekte.add(Ball);
-		Ball.richtung = 0; // Startrichtung
 		BeweglichesRechteck beispielObjekt2 = new BeweglichesRechteck(716, 240, 20, 80);	//(posX, posY, breite, hoehe) 
 		spielObjekte.add(beispielObjekt2);
 
@@ -54,8 +53,9 @@ public class GameLogic {
 			@Override
 			public void run() {
 				// Laufende Ausführungen im Spiel:
-				Ball.bouncebewegung();
-
+				Ball.bouncebewegung(Ball, beispielObjekt2, beispielObjekt3);
+				
+				
 	
 				/*
 				if (Detection.isColliding(beispielObjekt1, beispielObjekt2)) {
@@ -76,20 +76,7 @@ public class GameLogic {
 					beispielObjekt2.positionY += 1;
 				}
 				
-				// Check for collisions
-				
-				if (Detection.isCollidingLeftRight(Ball, beispielObjekt2)) {
-					Detection.CollisionLeftRight(Ball, beispielObjekt2);
-				}
-				if (Detection.isCollidingLeftRight(Ball, beispielObjekt3)) {
-					Detection.CollisionLeftRight(Ball, beispielObjekt3);
-				}
-				if (Detection.isCollidingTopBottom(Ball, beispielObjekt2)) {
-					Detection.CollisionTopBottom(Ball, beispielObjekt2);
-				}
-				if (Detection.isCollidingTopBottom(Ball, beispielObjekt3)) {
-					Detection.CollisionTopBottom(Ball, beispielObjekt3);
-				}
+
 				
 
 			}

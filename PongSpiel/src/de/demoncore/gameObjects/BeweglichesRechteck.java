@@ -2,20 +2,20 @@ package de.demoncore.gameObjects;
 
 import de.demoncore.game.GameObject;
 import de.demoncore.game.Gamelogic2;
+import de.demoncore.game.Vector2;
 
 public class BeweglichesRechteck extends GameObject {
-	
+	Gamelogic2 Detection = new Gamelogic2();
 	public byte richtung;
 	public int schritteInGleicherRichtung;
 	int ingamescrwidth = 786;
 	int ingamescrheight = 593 - 31;
-	double Speed;
-	public static int velX = 1;
-	public static int velY = 1;
+	double speed;
+	public static double velX = 1;
+	public static double velY = 1;
+	Vector2 ballVector2 = new Vector2();	
 	
 	
-	
-	Gamelogic2 velLogik = new Gamelogic2();
 
 	
 
@@ -24,35 +24,13 @@ public class BeweglichesRechteck extends GameObject {
 		schritteInGleicherRichtung = 0;
 	}
 	
-	public void Vector2(int x, int y) {
+	public void Vector2(double x, double y) {
 		positionX += x;
 		positionY += y;
 	}
 	
-	/*
-	public void automatischeKreisbewegung() {
-		if(richtung == 0) {
-			positionX += 1;
-		} else if (richtung == 1) {
-			positionY += 1;
-		} else if (richtung == 2) {
-			positionX -= 1;
-		} else if (richtung == 3) {
-			positionY -= 1;
-		}
-		if (schritteInGleicherRichtung > 75) {
-			richtung += 1;
-			if (richtung > 3) {
-				richtung = 0;
-			}
-			schritteInGleicherRichtung = 0;
-		} else {
-			schritteInGleicherRichtung += 1;
-		}
-	}
-	*/
 	
-	public void bouncebewegung() {
+	public void bouncebewegung(BeweglichesRechteck obj1, BeweglichesRechteck obj2, BeweglichesRechteck obj3 ) {
 		
 		// tan for the bounce. tan = g/a = velY/velX
 		Vector2(velX, velY);
@@ -60,19 +38,24 @@ public class BeweglichesRechteck extends GameObject {
 
 
         // Check for collision with wall
-        if (positionX <= 0 || positionX >= 786 - 20) {
-            if (velX>0&&velY>0) velX = velX *(-1);
-            else if (velX>0&&velY<0) velX = velX *(-1);
-            else if (velX<0&&velY>0) velX = velX *(-1);
-            else if (velX<0&&velY<0) velX = velX *(-1);
-        }
+		Detection.Collisionwall(obj1);
 
-        if (positionY <= 0 || positionY >= 562 - 20) {
-            if (velX>0&&velY>0) velY = velY *(-1);
-            else if (velX>0&&velY<0) velY = velY *(-1);
-            else if (velX<0&&velY>0) velY = velY *(-1);
-            else if (velX<0&&velY<0) velY = velY *(-1);
-        }
+		
+		// Check for collisions
+		
+		if (Detection.isCollidingLeftRight(obj1, obj2)) {
+			Detection.CollisionLeftRight(obj1, obj2);
+		}
+		if (Detection.isCollidingLeftRight(obj1, obj3)) {
+			Detection.CollisionLeftRight(obj1, obj3);
+		}
+		if (Detection.isCollidingTopBottom(obj1, obj2)) {
+			Detection.CollisionTopBottom(obj1, obj2);
+		}
+		if (Detection.isCollidingTopBottom(obj1, obj3)) {
+			Detection.CollisionTopBottom(obj1, obj3);
+		}
+
 		
         
 	}
