@@ -28,6 +28,7 @@ public class GameLogic {
 	public GameLogic() {
 		gameTimer = new Timer();
 		spielObjekte = new ArrayList<GameObject>();
+		Vector2 ballVector2 = new Vector2();
 
 		//keyLeftarrowpressed = false;
 		//keyRightarrowpressed = false;
@@ -43,7 +44,6 @@ public class GameLogic {
 		BeweglichesRechteck beispielObjekt3 = new BeweglichesRechteck(50, 240, 20, 80);	//(posX, posY, breite, hoehe) 
 		spielObjekte.add(beispielObjekt3);
 
-		Gamelogic2 Detection = new Gamelogic2();
 
 
 		
@@ -54,6 +54,7 @@ public class GameLogic {
 			public void run() {
 				// Laufende Ausführungen im Spiel:
 				Ball.bouncebewegung(Ball, beispielObjekt2, beispielObjekt3);
+
 				
 				
 	

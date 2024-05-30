@@ -1,11 +1,13 @@
 package de.demoncore.gameObjects;
 
 import de.demoncore.game.GameObject;
-import de.demoncore.game.Gamelogic2;
+import de.demoncore.game.Collision;
 import de.demoncore.game.Vector2;
 
 public class BeweglichesRechteck extends GameObject {
-	Gamelogic2 Detection = new Gamelogic2();
+	
+
+
 	public byte richtung;
 	public int schritteInGleicherRichtung;
 	int ingamescrwidth = 786;
@@ -13,8 +15,15 @@ public class BeweglichesRechteck extends GameObject {
 	double speed;
 	public static double velX = 1;
 	public static double velY = 1;
-	Vector2 ballVector2 = new Vector2();	
+	boolean check = false;
+	boolean check1 = false;
+	boolean check2 = false;
+	boolean check3 = false;
 	
+	Vector2 ballVector2 = new Vector2();	
+	Collision Detection = new Collision();
+	
+
 	
 
 	
@@ -23,37 +32,61 @@ public class BeweglichesRechteck extends GameObject {
 		super(posX, posY, breite, hoehe);
 		schritteInGleicherRichtung = 0;
 	}
-	
+	/*
 	public void Vector2(double x, double y) {
 		positionX += x;
 		positionY += y;
 	}
 	
+*/
+	
 	
 	public void bouncebewegung(BeweglichesRechteck obj1, BeweglichesRechteck obj2, BeweglichesRechteck obj3 ) {
 		
 		// tan for the bounce. tan = g/a = velY/velX
-		Vector2(velX, velY);
+		//Vector2(velX, velY);
 
+		//ballVector2.TVector2(positionX, positionY, velX, velY);
 
 
         // Check for collision with wall
 		Detection.Collisionwall(obj1);
+		ballVector2.TVector2(obj1, velX, velY);
+		
+		
+		//ballVector2.x = velX;
 
 		
-		// Check for collisions
+		// Check for collisions with PLayer
 		
-		if (Detection.isCollidingLeftRight(obj1, obj2)) {
+		if (Detection.isCollidingLeftRight(obj1, obj2)&check==false) {
 			Detection.CollisionLeftRight(obj1, obj2);
+			check = true;
 		}
-		if (Detection.isCollidingLeftRight(obj1, obj3)) {
+		if (Detection.isCollidingLeftRight(obj1, obj3)&check1==false) {
 			Detection.CollisionLeftRight(obj1, obj3);
+			check1 = true;
 		}
-		if (Detection.isCollidingTopBottom(obj1, obj2)) {
+		if (Detection.isCollidingTopBottom(obj1, obj2)&&check2==false) {
 			Detection.CollisionTopBottom(obj1, obj2);
+			check2 = true;
 		}
-		if (Detection.isCollidingTopBottom(obj1, obj3)) {
+		if (Detection.isCollidingTopBottom(obj1, obj3)&check3==false) {
 			Detection.CollisionTopBottom(obj1, obj3);
+			check3 = true;
+		}
+		
+		if (Detection.isCollidingLeftRight(obj1, obj2) == false) {
+			check = false;
+		}
+		if (Detection.isCollidingLeftRight(obj1, obj3) == false) {
+			check1 = false;
+		}
+		if (Detection.isCollidingTopBottom(obj1, obj2) == false) {
+			check2 = false;
+		}
+		if (Detection.isCollidingTopBottom(obj1, obj3) == false) {
+			check3 = false;
 		}
 
 		

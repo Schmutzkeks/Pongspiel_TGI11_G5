@@ -2,7 +2,7 @@ package de.demoncore.game;
 
 import de.demoncore.gameObjects.BeweglichesRechteck;
 
-public class Gamelogic2 {
+public class Collision {
 
 
 	//double velX = BeweglichesRechteck.velX;
@@ -30,7 +30,7 @@ public class Gamelogic2 {
 	}
 
 	public boolean isCollidingTopBottom(BeweglichesRechteck obj1, BeweglichesRechteck obj2) {
-
+/*
 		// Check if the horizontal ranges overlap
 		boolean horizontalOverlap = (obj1.positionX < obj2.positionX + 20) && (obj1.positionX + 20 > obj2.positionX);
 
@@ -39,14 +39,14 @@ public class Gamelogic2 {
 		
 		return horizontalOverlap && verticalTouch;
 
+		*/
 		
 		
-		/*
-		return obj1.positionY < obj2.positionY + 80 &&
-				obj1.positionY + 20 > obj2.positionY &&
+		return obj1.positionY <= obj2.positionY + 80 &&
+				obj1.positionY + 20 >= obj2.positionY &&
 				obj1.positionX < obj2.positionX + 20 &&
 				obj1.positionX + 20 > obj2.positionX;
-		 */
+		 
 	}
 	
 	
