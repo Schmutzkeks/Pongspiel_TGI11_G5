@@ -1,9 +1,10 @@
 package de.demoncore.game;
 
 import de.demoncore.gameObjects.BeweglichesRechteck;
+import de.demoncore.gui.Gui;
 
 public class Collision {
-
+	public Points punkte = new Points();
 
 	//double velX = BeweglichesRechteck.velX;
 	//double velY = BeweglichesRechteck.velY;
@@ -52,10 +53,13 @@ public class Collision {
 	
 	public void Collisionwall(BeweglichesRechteck obj1) {
         if (obj1.positionX <= 0 || obj1.positionX >= 786 - 20) {
-            if (BeweglichesRechteck.velX>0&&BeweglichesRechteck.velY>0) BeweglichesRechteck.velX = BeweglichesRechteck.velX *(-1);
-            else if (BeweglichesRechteck.velX>0&&BeweglichesRechteck.velY<0) BeweglichesRechteck.velX = BeweglichesRechteck.velX *(-1);
-            else if (BeweglichesRechteck.velX<0&&BeweglichesRechteck.velY>0) BeweglichesRechteck.velX = BeweglichesRechteck.velX *(-1);
-            else if (BeweglichesRechteck.velX<0&&BeweglichesRechteck.velY<0) BeweglichesRechteck.velX = BeweglichesRechteck.velX *(-1);
+            if (BeweglichesRechteck.velX>0&&BeweglichesRechteck.velY>0) {BeweglichesRechteck.velX = BeweglichesRechteck.velX *(-1); punkte.addPunkteGegner(1);}
+            else if (BeweglichesRechteck.velX>0&&BeweglichesRechteck.velY<0) {BeweglichesRechteck.velX = BeweglichesRechteck.velX *(-1); punkte.addPunkteGegner(1);}
+            else if (BeweglichesRechteck.velX<0&&BeweglichesRechteck.velY>0) {BeweglichesRechteck.velX = BeweglichesRechteck.velX *(-1); punkte.addPunktePlayer(1);}
+            else if (BeweglichesRechteck.velX<0&&BeweglichesRechteck.velY<0) {BeweglichesRechteck.velX = BeweglichesRechteck.velX *(-1); punkte.addPunktePlayer(1);}
+            Gui.punkteGegner = punkte.getPunkteGegner();
+            Gui.punktePlayer = punkte.getPunktePlayer();
+            Gui.refreshPoints();
         }
         if (obj1.positionY <= 0 || obj1.positionY >= 562 - 20) {
             if (BeweglichesRechteck.velX>0&&BeweglichesRechteck.velY>0) BeweglichesRechteck.velY = BeweglichesRechteck.velY *(-1);

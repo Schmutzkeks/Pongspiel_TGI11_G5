@@ -44,7 +44,8 @@ public class GameLogic {
 		BeweglichesRechteck beispielObjekt3 = new BeweglichesRechteck(50, 240, 20, 80);	//(posX, posY, breite, hoehe) 
 		spielObjekte.add(beispielObjekt3);
 
-
+		BeweglichesRechteck trennung = new BeweglichesRechteck(0, 560, 800, 20);	//(posX, posY, breite, hoehe) 
+		spielObjekte.add(trennung);		//abtrennung für Bereich unten
 
 		
 
@@ -72,9 +73,13 @@ public class GameLogic {
 
 
 				if (keyUparrowpressed) {
+					if(beispielObjekt2.positionY>0) {
 					beispielObjekt2.positionY -= 1;
+					}
 				} else if (keyDownarrowpressed) {
+					if(beispielObjekt2.positionY<480) {
 					beispielObjekt2.positionY += 1;
+					}
 				}
 				
 
