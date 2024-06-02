@@ -1,13 +1,12 @@
 package de.demoncore.actions;
 
-import de.demoncore.game.GameLogic;
-import de.demoncore.gui.Gui;
+import de.demoncore.gui.StartScreen;
 
 public class Main {
 
 	public static void main(String[] args) {
-		GameLogic spiellogik = new GameLogic();
-		new Gui(spiellogik);
+		StartScreen.erstellen();
+		
 	}
 
 }

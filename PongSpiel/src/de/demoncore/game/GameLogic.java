@@ -5,7 +5,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import de.demoncore.gameObjects.BeweglichesRechteck;
-import de.demoncore.gui.Gui;
 
 public class GameLogic {
 
@@ -15,8 +14,13 @@ public class GameLogic {
 	int ingamescrwidth = 786;
 	int ingamescrheight = 593 - 31;
 	public int speed;
-	public ArrayList<GameObject> spielObjekte;
-
+	public static ArrayList<GameObject> spielObjekte;
+	
+	static BeweglichesRechteck Ball;
+	static BeweglichesRechteck beispielObjekt2;
+	static BeweglichesRechteck beispielObjekt3;
+	static BeweglichesRechteck trennung;
+	
 	//public boolean keyLeftarrowpressed;
 	//public boolean keyRightarrowpressed;
 	public boolean keyUparrowpressed;
@@ -35,30 +39,16 @@ public class GameLogic {
 		keyUparrowpressed = false;
 		keyDownarrowpressed = false;
 
-		// Objekte im Spiel:
-		BeweglichesRechteck Ball = new BeweglichesRechteck(393, 240, 20, 20);		//(posX, posY, breite, hoehe) 
-		spielObjekte.add(Ball);
-		BeweglichesRechteck beispielObjekt2 = new BeweglichesRechteck(716, 240, 20, 80);	//(posX, posY, breite, hoehe) 
-		spielObjekte.add(beispielObjekt2);
-
-		BeweglichesRechteck beispielObjekt3 = new BeweglichesRechteck(50, 240, 20, 80);	//(posX, posY, breite, hoehe) 
-		spielObjekte.add(beispielObjekt3);
-
-		BeweglichesRechteck trennung = new BeweglichesRechteck(0, 560, 800, 20);	//(posX, posY, breite, hoehe) 
-		spielObjekte.add(trennung);		//abtrennung für Bereich unten
-
-		
+		createObjects();
 
 
 		gameTimer.scheduleAtFixedRate(new TimerTask(){
 			@Override
 			public void run() {
+
 				// Laufende Ausführungen im Spiel:
 				Ball.bouncebewegung(Ball, beispielObjekt2, beispielObjekt3);
 
-				
-				
-	
 				/*
 				if (Detection.isColliding(beispielObjekt1, beispielObjekt2)) {
 					Detection.Collision(beispielObjekt1, beispielObjekt2);
@@ -87,6 +77,29 @@ public class GameLogic {
 
 			}
 		}, 0, 5);
+	}
+	
+	public static void createObjects() {
+		try {
+			spielObjekte.clear();
+		} catch (Exception e) {}
+		// Objekte im Spiel:
+		Ball = new BeweglichesRechteck(393, 240, 20, 20);		//(posX, posY, breite, hoehe) 
+		spielObjekte.add(Ball);
+
+		beispielObjekt2 = new BeweglichesRechteck(716, 240, 20, 80);	//(posX, posY, breite, hoehe) 
+		spielObjekte.add(beispielObjekt2);
+
+		beispielObjekt3 = new BeweglichesRechteck(50, 240, 20, 80);	//(posX, posY, breite, hoehe) 
+		spielObjekte.add(beispielObjekt3);
+
+		trennung = new BeweglichesRechteck(0, 560, 800, 20);	//(posX, posY, breite, hoehe) 
+		spielObjekte.add(trennung);		//abtrennung für Bereich unten
+	}
+	
+	public static void centerBall() {
+		Ball.positionX = 393;
+		Ball.positionY = 240;
 	}
 
 }
