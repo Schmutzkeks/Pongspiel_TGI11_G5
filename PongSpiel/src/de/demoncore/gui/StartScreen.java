@@ -77,7 +77,7 @@ public class StartScreen extends JFrame {
 		btnStartGame.setBounds(330, 281, 126, 23);
 		contentPane.add(btnStartGame);
 		
-		JButton btnButton1 = new JButton("Beispiel 1");
+		JButton btnButton1 = new JButton("Farbauswahl"); //ehemaliges Beispiel 1
 		btnButton1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Beispiel1.erstellen();

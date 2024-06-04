@@ -23,9 +23,12 @@ public class Beispiel1 extends JFrame {
 	static int Theme = 0;
 	private JLabel lbWhite;
 	private JLabel lbBlue;
-	private JLabel lbGreen;
+	private JLabel lbLightGreen;
 	private JLabel lbCyan;
 	private JLabel lbMagenta;
+	private JLabel lbRed;
+	private JLabel lbYellow;
+	private JLabel lbDarkGreen;
 	
 	/**
 	 * Launch the application.
@@ -64,7 +67,7 @@ public class Beispiel1 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lbTitle = new JLabel("Title");
+		JLabel lbTitle = new JLabel("Farbauswahl");
 		lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lbTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lbTitle.setForeground(new Color(255, 255, 255));
@@ -83,7 +86,7 @@ public class Beispiel1 extends JFrame {
 		lbWhite.setBackground(Color.WHITE);
 		lbWhite.setOpaque(true);
 		lbWhite.setBorder(new LineBorder(new Color(255, 255, 255), 5));
-		lbWhite.setBounds(78, 140, 50, 50);
+		lbWhite.setBounds(39, 140, 50, 50);
 		contentPane.add(lbWhite);
 		
 		lbBlue = new JLabel("");
@@ -98,23 +101,23 @@ public class Beispiel1 extends JFrame {
 		lbBlue.setOpaque(true);
 		lbBlue.setBorder(new LineBorder(new Color(255, 255, 255), 5));
 		lbBlue.setBackground(Color.BLUE);
-		lbBlue.setBounds(178, 140, 50, 50);
+		lbBlue.setBounds(131, 140, 50, 50);
 		contentPane.add(lbBlue);
 		
-		lbGreen = new JLabel("");
-		lbGreen.addMouseListener(new MouseAdapter() {
+		lbLightGreen = new JLabel("");
+		lbLightGreen.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Theme = 2;
 				clearBorder();
-				lbGreen.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+				lbLightGreen.setBorder(new LineBorder(new Color(255, 128, 0), 5));
 			}
 		});
-		lbGreen.setOpaque(true);
-		lbGreen.setBorder(new LineBorder(new Color(255, 255, 255), 5));
-		lbGreen.setBackground(Color.GREEN);
-		lbGreen.setBounds(274, 140, 50, 50);
-		contentPane.add(lbGreen);
+		lbLightGreen.setOpaque(true);
+		lbLightGreen.setBorder(new LineBorder(new Color(255, 255, 255), 5));
+		lbLightGreen.setBackground(Color.GREEN);
+		lbLightGreen.setBounds(215, 140, 50, 50);
+		contentPane.add(lbLightGreen);
 		
 		lbCyan = new JLabel("");
 		lbCyan.addMouseListener(new MouseAdapter() {
@@ -128,7 +131,7 @@ public class Beispiel1 extends JFrame {
 		lbCyan.setOpaque(true);
 		lbCyan.setBorder(new LineBorder(new Color(255, 255, 255), 5));
 		lbCyan.setBackground(Color.CYAN);
-		lbCyan.setBounds(366, 140, 50, 50);
+		lbCyan.setBounds(303, 140, 50, 50);
 		contentPane.add(lbCyan);
 		
 		lbMagenta = new JLabel("");
@@ -143,19 +146,68 @@ public class Beispiel1 extends JFrame {
 		lbMagenta.setOpaque(true);
 		lbMagenta.setBorder(new LineBorder(new Color(255, 255, 255), 5));
 		lbMagenta.setBackground(Color.MAGENTA);
-		lbMagenta.setBounds(451, 140, 50, 50);
+		lbMagenta.setBounds(393, 140, 50, 50);
 		contentPane.add(lbMagenta);
 		
-		JLabel[] borderLabels = {lbWhite,lbBlue,lbGreen,lbCyan,lbMagenta};
+		lbRed = new JLabel("");
+		lbRed.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Theme = 5;
+				clearBorder();
+				lbRed.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+			}
+		});
+		
+		lbRed.setOpaque(true);
+		lbRed.setBorder(new LineBorder(new Color(255, 255, 255), 5));
+		lbRed.setBackground(new Color(255, 0, 0));
+		lbRed.setBounds(485, 140, 50, 50);
+		contentPane.add(lbRed);
+		
+		lbYellow = new JLabel("");
+		lbYellow.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Theme = 6;
+				clearBorder();
+				lbYellow.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+			}
+		});
+		lbYellow.setOpaque(true);
+		lbYellow.setBorder(new LineBorder(new Color(255, 255, 255), 5));
+		lbYellow.setBackground(new Color(255, 255, 0));
+		lbYellow.setBounds(573, 140, 50, 50);
+		contentPane.add(lbYellow);
+		
+		lbDarkGreen = new JLabel("");
+		lbDarkGreen.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Theme = 7;
+				clearBorder();
+				lbDarkGreen.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+			}
+		});
+		lbDarkGreen.setOpaque(true);
+		lbDarkGreen.setBorder(new LineBorder(new Color(255, 255, 255), 5));
+		lbDarkGreen.setBackground(new Color(0, 128, 0));
+		lbDarkGreen.setBounds(655, 140, 50, 50);
+		contentPane.add(lbDarkGreen);
+		
+		JLabel[] borderLabels = {lbWhite,lbBlue,lbLightGreen,lbCyan,lbMagenta};
 		borderLabels[Theme].setBorder(new LineBorder(new Color(255, 128, 0), 5));
 	}
 	
 	private void clearBorder() {
 		lbWhite.setBorder(new LineBorder(new Color(255, 255, 255), 5));
 		lbBlue.setBorder(new LineBorder(new Color(255, 255, 255), 5));
-		lbGreen.setBorder(new LineBorder(new Color(255, 255, 255), 5));
+		lbLightGreen.setBorder(new LineBorder(new Color(255, 255, 255), 5));
 		lbCyan.setBorder(new LineBorder(new Color(255, 255, 255), 5));
 		lbMagenta.setBorder(new LineBorder(new Color(255, 255, 255), 5));
+		lbRed.setBorder(new LineBorder(new Color(255,255,255),5));	
+		lbYellow.setBorder(new LineBorder(new Color(255,255,255),5));	
+		lbDarkGreen.setBorder(new LineBorder(new Color(255,255,255),5));	
 	}
 	
 	public static Color getTheme() {
@@ -165,6 +217,9 @@ public class Beispiel1 extends JFrame {
 		case 2: return Color.green;
 		case 3: return Color.cyan;
 		case 4: return Color.magenta;
+		case 5: return Color.red;
+		case 6: return Color.yellow;
+		case 7: return new Color(0f,0.5f,0f,1f);
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + Theme);
 		}
