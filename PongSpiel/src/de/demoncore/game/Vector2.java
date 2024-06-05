@@ -3,14 +3,14 @@ package de.demoncore.game;
 import de.demoncore.gameObjects.BeweglichesRechteck;
 
 public class Vector2{
-	public double x;
-	public double y;
+	private double x;
+	private double y;
 	
 	
 
 	public Vector2() {
-		this.x = 0;
-		this.y = 0;
+		this.setX(0);
+		this.setY(0);
 	}
 	public Vector2(double x, double y) {
 		this.x = x;
@@ -22,6 +22,20 @@ public class Vector2{
 	}
 	
 	public Vector2 speed(double speed) {
-		return new Vector2(x * speed, y * speed);
+		return new Vector2(getX() * speed, getY() * speed);
+	}
+	
+	
+	public double getY() {
+		return y;
+	}
+	public void setY(double y) {
+		this.y = y;
+	}
+	public double getX() {
+		return x;
+	}
+	public void setX(double x) {
+		this.x = x;
 	}
 } 

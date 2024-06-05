@@ -5,6 +5,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import de.demoncore.gameObjects.BeweglichesRechteck;
+import de.demoncore.gameObjects.Player1;
 
 public class GameLogic {
 
@@ -33,6 +34,7 @@ public class GameLogic {
 		gameTimer = new Timer();
 		spielObjekte = new ArrayList<GameObject>();
 		Vector2 ballVector2 = new Vector2();
+		
 
 		//keyLeftarrowpressed = false;
 		//keyRightarrowpressed = false;
@@ -48,6 +50,7 @@ public class GameLogic {
 
 				// Laufende Ausführungen im Spiel:
 				Ball.bouncebewegung(Ball, beispielObjekt2, beispielObjekt3);
+				
 
 				/*
 				if (Detection.isColliding(beispielObjekt1, beispielObjekt2)) {
@@ -65,12 +68,14 @@ public class GameLogic {
 				if (keyUparrowpressed) {
 					if(beispielObjekt2.positionY>0) {
 					beispielObjekt2.positionY -= 1;
+					
 					}
 				} else if (keyDownarrowpressed) {
 					if(beispielObjekt2.positionY<480) {
 					beispielObjekt2.positionY += 1;
 					}
 				}
+				
 				
 
 				
