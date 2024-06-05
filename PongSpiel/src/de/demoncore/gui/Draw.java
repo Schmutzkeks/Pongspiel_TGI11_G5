@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 import de.demoncore.game.GameLogic;
 import de.demoncore.game.GameObject;
+import de.demoncore.gameObjects.Particle;
 
 @SuppressWarnings("serial")
 public class Draw extends JLabel{
@@ -14,9 +15,11 @@ public class Draw extends JLabel{
 	private int screenwidth;
 	private int screenheight;
 	ArrayList<GameObject> objekteImSpiel;
+	ArrayList<Particle> particles;
 
 	public Draw(GameLogic spiellogik, int screenBreite, int screenHoehe) {
 		objekteImSpiel = spiellogik.spielObjekte;
+		particles = spiellogik.particles;
 		screenwidth = screenBreite;
 		screenheight = screenHoehe;
 	}
@@ -37,6 +40,15 @@ public class Draw extends JLabel{
 			GameObject aktuellesObjekt = objekteImSpiel.get(i);
 			g.fillRect(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
 		}
+		
+		//zeichen von Partikeln
+		g.setColor(Shop.getTheme());
+		try {
+			for (Particle p : particles) {
+			    g.fillRect(p.getX(), p.getY(), p.getSize(), p.getSize());
+			}
+		} catch (Exception e) {}
+		
 		
 		repaint();
 	}

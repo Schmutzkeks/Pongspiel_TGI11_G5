@@ -17,8 +17,10 @@ public class Vector2{
 		this.y = y;
 	}
 	public void TVector2(BeweglichesRechteck obj1, double x, double y) {
-		obj1.positionX += x;
-		obj1.positionY += y;
+		if(GameLogic.BallContinue) {
+			obj1.positionX += x;
+			obj1.positionY += y;
+		}
 	}
 	
 	public Vector2 speed(double speed) {

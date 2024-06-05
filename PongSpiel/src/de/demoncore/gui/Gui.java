@@ -5,12 +5,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 import de.demoncore.actions.KeyHandler;
 import de.demoncore.game.GameLogic;
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.concurrent.CountDownLatch;
 
 public class Gui {
 	
@@ -22,6 +24,8 @@ public class Gui {
 	private static JFrame frame;
 	static JLabel lbPointsPlayer;
 	static JLabel lbPointsGegner;
+	static JLabel lbCountdown;
+	private static int countdown =0;
 	
 	public static void erstellen() {
 		EventQueue.invokeLater(new Runnable() {
@@ -87,8 +91,16 @@ public class Gui {
 		lbPointsPlayer.setForeground(Shop.getTheme());
 		lbPointsPlayer.setVisible(true);
 		
+		lbCountdown = new JLabel("");
+		lbCountdown.setFont(new Font("Tahoma", Font.BOLD, 50));
+		lbCountdown.setBounds(200, 600, 400, 100);
+		lbCountdown.setForeground(Shop.getTheme());
+		lbCountdown.setVisible(true);
+		lbCountdown.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		frame.add(lbPointsPlayer);
 		frame.add(lbPointsGegner);
+		frame.add(lbCountdown);
 		frame.add(lbTextPlayer);
 		frame.add(lbTextGegner);
 		frame.add(lbldraw);
@@ -100,6 +112,21 @@ public class Gui {
 	public static void refreshPoints() {
 		lbPointsGegner.setText(punkteGegner+"");
 		lbPointsPlayer.setText(punktePlayer+"");
+	}
+	
+	public static void startCountdown() {
+		if(countdown ==0) {
+		lbCountdown.setText("Achtung");
+		}else if(countdown==1) {
+		lbCountdown.setText("Fertig");
+		}else if(countdown ==2) {
+		lbCountdown.setText("Los");
+		}else {
+			lbCountdown.setText("");
+		GameLogic.BallContinue=true;
+		countdown=-1;
+		}
+		countdown++;
 	}
 	
 	
