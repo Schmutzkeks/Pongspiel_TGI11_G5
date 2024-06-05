@@ -32,7 +32,7 @@ public class Draw extends JLabel{
 		g.fillRect(0, 0, screenwidth, screenheight);
 		
 		// Zeichne alle Spielobjekte
-		g.setColor(Beispiel1.getTheme());
+		g.setColor(Shop.getTheme());
 		for (int i = 0; i < objekteImSpiel.size(); i++) {
 			GameObject aktuellesObjekt = objekteImSpiel.get(i);
 			g.fillRect(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
