@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JSeparator;
@@ -75,12 +76,23 @@ public class Shop extends JFrame {
 		contentPane.setLayout(null);
 		scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane.getHorizontalScrollBar().setUI(null);
+		scrollPane.getHorizontalScrollBar().setUnitIncrement(10);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(0, 225, 784, 20);
+		contentPane.add(separator);
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setOpaque(true);
+		separator.setBackground(new Color(255, 255, 255));
+		
 		scrollPane.setBorder(null);
 		scrollPane.setBackground(new Color(255, 255, 255));
 		scrollPane.setForeground(new Color(0, 0, 0));
-		scrollPane.setBounds(0, 125, 776, 100);
+		scrollPane.setBounds(0, 125, 784, 100);
 		scrollPane.setOpaque(false);
 		contentPane.add(scrollPane);
+		
 		panel = new JPanel();
 		panel.setPreferredSize(new Dimension(1000, 100));
 		panel.setBorder(null);
@@ -219,14 +231,6 @@ public class Shop extends JFrame {
 		lbDarkGreen.setBorder(new LineBorder(new Color(255, 255, 255), 5));
 		lbDarkGreen.setBackground(new Color(0, 128, 0));
 		panel.add(lbDarkGreen);
-		
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 259, 784, 20);
-		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setOpaque(true);
-		separator.setBackground(new Color(255, 255, 255));
-		contentPane.add(separator);
 		
 		
 		JLabel[] borderLabels = {lbWhite,lbBlue,lbLightGreen,lbCyan,lbMagenta,lbRed,lbYellow,lbDarkGreen};

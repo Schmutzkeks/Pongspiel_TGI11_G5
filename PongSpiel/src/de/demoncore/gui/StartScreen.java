@@ -78,6 +78,7 @@ public class StartScreen extends JFrame {
 		contentPane.add(btnStartGame);
 		
 		JButton btnButton1 = new JButton("Shop"); //ehemaliges Beispiel 1
+		btnButton1.setBackground(new Color(255, 255, 255));
 		btnButton1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Shop.erstellen();
@@ -93,6 +94,7 @@ public class StartScreen extends JFrame {
 		contentPane.add(btnButton1);
 		
 		JButton btnButton2 = new JButton("Beispiel 2");
+		btnButton2.setBackground(new Color(255, 255, 255));
 		btnButton2.setFocusable(false);
 		btnButton2.setFocusTraversalKeysEnabled(false);
 		btnButton2.setFocusPainted(false);
