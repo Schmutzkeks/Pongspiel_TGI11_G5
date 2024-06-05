@@ -69,6 +69,7 @@ public class Shop extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -86,6 +87,8 @@ public class Shop extends JFrame {
 		panel.setLayout(null);
 		panel.setBackground(new Color(0, 0, 0));
 		scrollPane.setViewportView(panel);
+		
+		System.out.println();
 		
 		JLabel lbTitle = new JLabel("Shop");
 		lbTitle.setBounds(0, 40, 784, 49);
@@ -239,7 +242,11 @@ public class Shop extends JFrame {
 		lbRed.setBorder(new LineBorder(new Color(255,255,255),5));	
 		lbYellow.setBorder(new LineBorder(new Color(255,255,255),5));	
 		lbDarkGreen.setBorder(new LineBorder(new Color(255,255,255),5));	
+		
+		System.out.println();
 	}
+	
+
 	
 	public static Color getTheme() {
 		switch (Theme) {
@@ -253,6 +260,7 @@ public class Shop extends JFrame {
 		case 7: return new Color(0f,0.5f,0f,1f);
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + Theme);
+			
 		}
 	}
 }
