@@ -66,25 +66,25 @@ public class Gui {
 		JLabel lbTextGegner= new JLabel("Gegner");
 		lbTextGegner.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lbTextGegner.setBounds(20, 600, 150, 30);
-		lbTextGegner.setForeground(Beispiel1.getTheme());
+		lbTextGegner.setForeground(Shop.getTheme());
 		lbTextGegner.setVisible(true);
 		
 		JLabel lbTextPlayer= new JLabel("Player");
 		lbTextPlayer.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lbTextPlayer.setBounds(700, 600, 150, 30);
-		lbTextPlayer.setForeground(Beispiel1.getTheme());
+		lbTextPlayer.setForeground(Shop.getTheme());
 		lbTextPlayer.setVisible(true);
 		
 		lbPointsGegner= new JLabel("0");
 		lbPointsGegner.setFont(new Font("Tahoma", Font.BOLD, 50));
 		lbPointsGegner.setBounds(60, 600, 70, 100);
-		lbPointsGegner.setForeground(Beispiel1.getTheme());
+		lbPointsGegner.setForeground(Shop.getTheme());
 		lbPointsGegner.setVisible(true);
 		
 		lbPointsPlayer= new JLabel("0");
 		lbPointsPlayer.setFont(new Font("Tahoma", Font.BOLD, 50));
 		lbPointsPlayer.setBounds(700, 600, 70, 100);
-		lbPointsPlayer.setForeground(Beispiel1.getTheme());
+		lbPointsPlayer.setForeground(Shop.getTheme());
 		lbPointsPlayer.setVisible(true);
 		
 		frame.add(lbPointsPlayer);
