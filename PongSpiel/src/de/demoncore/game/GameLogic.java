@@ -7,7 +7,9 @@ import java.util.TimerTask;
 import de.demoncore.gameObjects.BeweglichesRechteck;
 import de.demoncore.gameObjects.Particle;
 import de.demoncore.gameObjects.Player1;
+import de.demoncore.gameObjects.StatsData;
 import de.demoncore.gui.Gui;
+import de.demoncore.gui.Stats;
 
 public class GameLogic {
 
@@ -18,7 +20,6 @@ public class GameLogic {
 	int ingamescrheight = 593 - 31;
 	public int speed;
 	public static boolean BallContinue = false;
-	private static int counter=0;
 
 	public static ArrayList<GameObject> spielObjekte;
 	public static ArrayList<Particle> particles;
@@ -105,21 +106,8 @@ public class GameLogic {
 					}
 				} catch (Exception e) {}
 
+				
 
-
-
-
-				if(counter==1000) {	//sekunden Timer
-					if(!BallContinue) {	//wenn Ball pausiert
-						try {
-							Gui.startCountdown();
-						} catch (Exception e) {}
-					}
-
-
-					counter = 0;
-				}
-				counter+=5;
 			}
 		}, 0, 5);
 	}

@@ -1,5 +1,7 @@
 package de.demoncore.game;
 
+import de.demoncore.gameObjects.StatsData;
+
 public class Points {
 		private int punktePlayer;
 		private int punkteGegner;
@@ -19,6 +21,7 @@ public class Points {
 	}
 	public void addPunktePlayer(int points) {
 		this.punktePlayer += points;
+		StatsData.addPositivPunkte(1);
 	}
 	
 	public int getPunkteGegner() {
@@ -29,5 +32,6 @@ public class Points {
 	}
 	public void addPunkteGegner(int points) {
 		this.punkteGegner += points;
+		StatsData.addNegativPunkte(1);
 	}
 }

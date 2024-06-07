@@ -93,14 +93,20 @@ public class StartScreen extends JFrame {
 		btnButton1.setBounds(330, 329, 126, 23);
 		contentPane.add(btnButton1);
 		
-		JButton btnButton2 = new JButton("Beispiel 2");
-		btnButton2.setBackground(new Color(255, 255, 255));
-		btnButton2.setFocusable(false);
-		btnButton2.setFocusTraversalKeysEnabled(false);
-		btnButton2.setFocusPainted(false);
-		btnButton2.setBorder(null);
-		btnButton2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnButton2.setBounds(330, 375, 126, 23);
-		contentPane.add(btnButton2);
+		JButton btnStats = new JButton("Statistiken");
+		btnStats.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Stats.erstellen();
+				frame.dispose();
+			}
+		});
+		btnStats.setBackground(new Color(255, 255, 255));
+		btnStats.setFocusable(false);
+		btnStats.setFocusTraversalKeysEnabled(false);
+		btnStats.setFocusPainted(false);
+		btnStats.setBorder(null);
+		btnStats.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnStats.setBounds(330, 375, 126, 23);
+		contentPane.add(btnStats);
 	}
 }
