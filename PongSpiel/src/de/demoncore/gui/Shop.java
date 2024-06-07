@@ -259,26 +259,26 @@ public class Shop extends JFrame {
 		
 		JLabel lbldoublepoints = new JLabel("New label");
 		lbldoublepoints.setBounds(10, 0, 102, 100);
-		lbldoublepoints.setIcon(new ImageIcon(Shop.class.getResource("/de/demoncore/gui/2xPoints.jpg")));
+		lbldoublepoints.setIcon(new ImageIcon(Shop.class.getResource("/recources/2xPoints.jpg")));
 		panel_1.add(lbldoublepoints);
 		
 		lblweapon = new JLabel("");
 		lblweapon.setBounds(145, 0, 177, 100);
-		lblweapon.setIcon(new ImageIcon(Shop.class.getResource("/de/demoncore/gui/Weapon.jpg")));
+		lblweapon.setIcon(new ImageIcon(Shop.class.getResource("/recources/Weapon.jpg")));
 		panel_1.add(lblweapon);
 		
 		lblBallSpeed =  new JLabel("");
 		lblBallSpeed.setBounds(348, 0, 139, 112);
-		lblBallSpeed.setIcon(new ImageIcon(Shop.class.getResource("/de/demoncore/gui/lowerspeed.jpg")));
+		lblBallSpeed.setIcon(new ImageIcon(Shop.class.getResource("/recources/lowerspeed.jpg")));
 		panel_1.add(lblBallSpeed);
 		
 		lblPlayerSize = new JLabel("");
-		lblPlayerSize.setIcon(new ImageIcon(Shop.class.getResource("/de/demoncore/gui/PlayerSize.png")));
+		lblPlayerSize.setIcon(new ImageIcon(Shop.class.getResource("/recources/PlayerSize.png")));
 		lblPlayerSize.setBounds(523, 0, 102, 100);
 		panel_1.add(lblPlayerSize);
 		
 		lblclone = new JLabel("New label");
-		lblclone.setIcon(new ImageIcon(Shop.class.getResource("/de/demoncore/gui/Klon.jpg")));
+		lblclone.setIcon(new ImageIcon(Shop.class.getResource("/recources/Klon.jpg")));
 		lblclone.setBounds(632, 11, 139, 101);
 		panel_1.add(lblclone);
 		
