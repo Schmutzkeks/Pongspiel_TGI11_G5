@@ -19,6 +19,7 @@ import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
 import java.awt.Dimension;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.ImageIcon;
 
 public class Shop extends JFrame {
 
@@ -36,6 +37,15 @@ public class Shop extends JFrame {
 	private JLabel lbDarkGreen;
 	private JScrollPane scrollPane;
 	private JPanel panel;
+	private JLabel lblweapon;
+	private JLabel lblBallSpeed;
+	private JLabel lblPlayerSize;
+	private JLabel lblclone;
+	private JLabel lblDP;
+	private JLabel lblWaffe;
+	private JLabel lblballspeed;
+	private JLabel lblSpSize;
+	private JLabel lblKlon;
 	
 	/**
 	 * Launch the application.
@@ -102,12 +112,12 @@ public class Shop extends JFrame {
 		
 		System.out.println();
 		
-		JLabel lbTitle = new JLabel("Shop");
-		lbTitle.setBounds(0, 40, 784, 49);
-		lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lbTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lbTitle.setForeground(new Color(255, 255, 255));
-		contentPane.add(lbTitle);
+		JLabel lbTitleShop = new JLabel("Shop");
+		lbTitleShop.setBounds(0, 40, 784, 49);
+		lbTitleShop.setHorizontalAlignment(SwingConstants.CENTER);
+		lbTitleShop.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lbTitleShop.setForeground(new Color(255, 255, 255));
+		contentPane.add(lbTitleShop);
 		
 		lbWhite = new JLabel("");
 		lbWhite.setBounds(20, 10, 50, 50);
@@ -231,6 +241,76 @@ public class Shop extends JFrame {
 		lbDarkGreen.setBorder(new LineBorder(new Color(255, 255, 255), 5));
 		lbDarkGreen.setBackground(new Color(0, 128, 0));
 		panel.add(lbDarkGreen);
+		
+		JLabel lbTitlePowerUp = new JLabel("PowerUp's");
+		lbTitlePowerUp.setHorizontalAlignment(SwingConstants.CENTER);
+		lbTitlePowerUp.setForeground(Color.WHITE);
+		lbTitlePowerUp.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lbTitlePowerUp.setBounds(0, 267, 784, 49);
+		contentPane.add(lbTitlePowerUp);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setPreferredSize(new Dimension(1000, 100));
+		panel_1.setBorder(null);
+		panel_1.setBackground(Color.BLACK);
+		panel_1.setBounds(0, 346, 1000, 112);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lbldoublepoints = new JLabel("New label");
+		lbldoublepoints.setBounds(10, 0, 102, 100);
+		lbldoublepoints.setIcon(new ImageIcon(Shop.class.getResource("/de/demoncore/gui/2xPoints.jpg")));
+		panel_1.add(lbldoublepoints);
+		
+		lblweapon = new JLabel("");
+		lblweapon.setBounds(145, 0, 177, 100);
+		lblweapon.setIcon(new ImageIcon(Shop.class.getResource("/de/demoncore/gui/Weapon.jpg")));
+		panel_1.add(lblweapon);
+		
+		lblBallSpeed =  new JLabel("");
+		lblBallSpeed.setBounds(348, 0, 139, 112);
+		lblBallSpeed.setIcon(new ImageIcon(Shop.class.getResource("/de/demoncore/gui/lowerspeed.jpg")));
+		panel_1.add(lblBallSpeed);
+		
+		lblPlayerSize = new JLabel("");
+		lblPlayerSize.setIcon(new ImageIcon(Shop.class.getResource("/de/demoncore/gui/PlayerSize.png")));
+		lblPlayerSize.setBounds(523, 0, 102, 100);
+		panel_1.add(lblPlayerSize);
+		
+		lblclone = new JLabel("New label");
+		lblclone.setIcon(new ImageIcon(Shop.class.getResource("/de/demoncore/gui/Klon.jpg")));
+		lblclone.setBounds(632, 11, 139, 101);
+		panel_1.add(lblclone);
+		
+		lblDP = new JLabel("Doppelte Punkte");
+		lblDP.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblDP.setForeground(new Color(255, 255, 255));
+		lblDP.setBounds(10, 453, 164, 54);
+		contentPane.add(lblDP);
+		
+		lblWaffe = new JLabel("Waffe");
+		lblWaffe.setForeground(Color.WHITE);
+		lblWaffe.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblWaffe.setBounds(167, 453, 93, 54);
+		contentPane.add(lblWaffe);
+		
+		lblballspeed = new JLabel("Veringerte Geschwindigkeit");
+		lblballspeed.setForeground(Color.WHITE);
+		lblballspeed.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblballspeed.setBounds(285, 447, 255, 67);
+		contentPane.add(lblballspeed);
+		
+		lblSpSize = new JLabel("Spieler Größe");
+		lblSpSize.setForeground(Color.WHITE);
+		lblSpSize.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblSpSize.setBounds(511, 453, 164, 54);
+		contentPane.add(lblSpSize);
+		
+		lblKlon = new JLabel("Ball Klonen");
+		lblKlon.setForeground(Color.WHITE);
+		lblKlon.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblKlon.setBounds(655, 453, 164, 54);
+		contentPane.add(lblKlon);
 		
 		
 		JLabel[] borderLabels = {lbWhite,lbBlue,lbLightGreen,lbCyan,lbMagenta,lbRed,lbYellow,lbDarkGreen};
