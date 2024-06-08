@@ -1,4 +1,4 @@
-package de.demoncore.gameObjects;
+package de.demoncore.game;
 
 public class StatsData {
 		private static int Playtime;	//in sekunden

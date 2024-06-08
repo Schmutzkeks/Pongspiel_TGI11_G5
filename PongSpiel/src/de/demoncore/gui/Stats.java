@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import de.demoncore.gameObjects.StatsData;
+import de.demoncore.game.StatsData;
 
 import java.awt.event.WindowEvent;
 import java.awt.Color;

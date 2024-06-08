@@ -7,9 +7,7 @@ import java.util.TimerTask;
 import de.demoncore.gameObjects.BeweglichesRechteck;
 import de.demoncore.gameObjects.Particle;
 import de.demoncore.gameObjects.Player1;
-import de.demoncore.gameObjects.StatsData;
 import de.demoncore.gui.Gui;
-import de.demoncore.gui.Stats;
 
 public class GameLogic {
 
@@ -20,6 +18,7 @@ public class GameLogic {
 	int ingamescrheight = 593 - 31;
 	public int speed;
 	public static boolean BallContinue = false;
+	private static boolean PlayerContinue = true;
 
 	public static ArrayList<GameObject> spielObjekte;
 	public static ArrayList<Particle> particles;
@@ -72,13 +71,13 @@ public class GameLogic {
 					beispielObjekt3.positionY = Ball.positionY - 30;
 				}
 
-
-				if (keyUparrowpressed) {
+				
+				if (keyUparrowpressed && PlayerContinue) {
 					if(beispielObjekt2.positionY>0) {
 						beispielObjekt2.positionY -= 1;
 
 					}
-				} else if (keyDownarrowpressed) {
+				} else if (keyDownarrowpressed && PlayerContinue) {
 					if(beispielObjekt2.positionY<480) {
 						beispielObjekt2.positionY += 1;
 					}
@@ -160,6 +159,14 @@ public class GameLogic {
 		try {
 			particles.clear();
 		} catch (Exception e) {}
+	}
+
+	public static boolean isPlayerContinue() {
+		return PlayerContinue;
+	}
+
+	public static void setPlayerContinue(boolean playerContinue) {
+		PlayerContinue = playerContinue;
 	}
 
 

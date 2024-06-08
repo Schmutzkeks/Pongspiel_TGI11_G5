@@ -1,7 +1,5 @@
 package de.demoncore.game;
 
-import de.demoncore.gameObjects.StatsData;
-
 public class Points {
 		private int punktePlayer;
 		private int punkteGegner;

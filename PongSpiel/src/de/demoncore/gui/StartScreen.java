@@ -20,6 +20,8 @@ public class StartScreen extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	static StartScreen frame;
+	int ingamescrwidth = 800;
+	int ingamescrheight = 800;
 
 	/**
 	 * Launch the application.
@@ -74,7 +76,7 @@ public class StartScreen extends JFrame {
 		btnStartGame.setBorder(null);
 		btnStartGame.setBackground(new Color(255, 255, 255));
 		btnStartGame.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnStartGame.setBounds(330, 281, 126, 23);
+		btnStartGame.setBounds(ingamescrwidth/2-63, 281, 126, 23);
 		contentPane.add(btnStartGame);
 		
 		JButton btnButton1 = new JButton("Shop"); //ehemaliges Beispiel 1
@@ -90,7 +92,7 @@ public class StartScreen extends JFrame {
 		btnButton1.setFocusPainted(false);
 		btnButton1.setFocusTraversalKeysEnabled(false);
 		btnButton1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnButton1.setBounds(330, 329, 126, 23);
+		btnButton1.setBounds(ingamescrwidth/2-63, 329, 126, 23);
 		contentPane.add(btnButton1);
 		
 		JButton btnStats = new JButton("Statistiken");
@@ -106,7 +108,7 @@ public class StartScreen extends JFrame {
 		btnStats.setFocusPainted(false);
 		btnStats.setBorder(null);
 		btnStats.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnStats.setBounds(330, 375, 126, 23);
+		btnStats.setBounds(ingamescrwidth/2-63, 375, 126, 23);
 		contentPane.add(btnStats);
 	}
 }

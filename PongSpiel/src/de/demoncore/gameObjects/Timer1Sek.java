@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import de.demoncore.game.GameLogic;
+import de.demoncore.game.StatsData;
 import de.demoncore.gui.Gui;
 import de.demoncore.gui.Stats;
 
@@ -12,18 +13,20 @@ public class Timer1Sek {
 	public static void startTimer() {
 		timer.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
-				if(!GameLogic.BallContinue) {	//wenn Ball pausiert
-					try {
-						Gui.startCountdown();
-					} catch (Exception e) {}
+				if(!GameLogic.BallContinue && !Gui.Paused) {	//wenn Ball pausiert
+					if(Gui.Existing==true) {
+						try {
+							Gui.startCountdown();
+						} catch (Exception e) {}
+					}
 				}
-				
-				
+
+
 				StatsData.addPlaytime(1);
 				if(Stats.isExistig()) {
 					Stats.updateStats();
 				}
-				
+
 			}
 		}, 0, 1000);
 
