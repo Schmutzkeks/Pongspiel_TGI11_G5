@@ -41,12 +41,17 @@ public class Shop extends JFrame {
 	private JLabel lblBallSpeed;
 	private JLabel lblPlayerSize;
 	private JLabel lblclone;
-	private JLabel lblDP;
-	private JLabel lblWaffe;
-	private JLabel lblballspeed;
-	private JLabel lblSpSize;
-	private JLabel lblKlon;
-	
+	private JLabel lbText2XP;
+	private JLabel lbTextWaffe;
+	private JLabel lbTextSpeed;
+	private JLabel lbTextPlSize;
+	private JLabel lbTextKlon;
+	private JLabel lbldoublepoints;
+	boolean ballSpeed= false;
+	boolean weapon= false;
+	boolean playerSize= false;
+	boolean doublePoints= false;
+	boolean clone= false;	
 	/**
 	 * Launch the application.
 	 */
@@ -257,60 +262,121 @@ public class Shop extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lbldoublepoints = new JLabel("New label");
+		lbldoublepoints = new JLabel("");
 		lbldoublepoints.setBounds(10, 0, 102, 100);
+		lbldoublepoints.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(doublePoints== false) {
+					lbldoublepoints.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+				}
+				else {
+					lbldoublepoints.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+				}
+				doublePoints=!doublePoints;
+			}
+		});
+		
 		lbldoublepoints.setIcon(new ImageIcon(Shop.class.getResource("/recources/2xPoints.jpg")));
 		panel_1.add(lbldoublepoints);
 		
 		lblweapon = new JLabel("");
 		lblweapon.setBounds(145, 0, 177, 100);
+		lblweapon.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(weapon== false) {
+					lblweapon.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+				}
+				else {
+					lblweapon.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+				}
+				weapon=!weapon;
+			}
+		});
 		lblweapon.setIcon(new ImageIcon(Shop.class.getResource("/recources/Weapon.jpg")));
 		panel_1.add(lblweapon);
 		
 		lblBallSpeed =  new JLabel("");
 		lblBallSpeed.setBounds(348, 0, 139, 112);
+		lblBallSpeed.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(ballSpeed== false) {
+					lblBallSpeed.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+				}
+				else {
+					lblBallSpeed.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+				}
+				ballSpeed=!ballSpeed;
+			}
+		});
 		lblBallSpeed.setIcon(new ImageIcon(Shop.class.getResource("/recources/lowerspeed.jpg")));
 		panel_1.add(lblBallSpeed);
 		
 		lblPlayerSize = new JLabel("");
-		lblPlayerSize.setIcon(new ImageIcon(Shop.class.getResource("/recources/PlayerSize.png")));
 		lblPlayerSize.setBounds(523, 0, 102, 100);
+		lblPlayerSize.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(playerSize== false) {
+					lblPlayerSize.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+				}
+				else {
+					lblPlayerSize.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+				}
+				playerSize=!playerSize;
+			}
+		});
+		lblPlayerSize.setIcon(new ImageIcon(Shop.class.getResource("/recources/PlayerSize.png")));
 		panel_1.add(lblPlayerSize);
 		
-		lblclone = new JLabel("New label");
-		lblclone.setIcon(new ImageIcon(Shop.class.getResource("/recources/Klon.jpg")));
+		lblclone = new JLabel("");
 		lblclone.setBounds(632, 11, 139, 101);
+		lblclone.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(clone== false) {
+					lblclone.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+				}
+				else {
+					lblclone.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+				}
+				clone=!clone;
+			}
+		});
+		lblclone.setIcon(new ImageIcon(Shop.class.getResource("/recources/Klon.jpg")));
 		panel_1.add(lblclone);
 		
-		lblDP = new JLabel("Doppelte Punkte");
-		lblDP.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblDP.setForeground(new Color(255, 255, 255));
-		lblDP.setBounds(10, 453, 164, 54);
-		contentPane.add(lblDP);
+		lbText2XP = new JLabel("Doppelte Punkte");
+		lbText2XP.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lbText2XP.setForeground(new Color(255, 255, 255));
+		lbText2XP.setBounds(10, 453, 164, 54);
+		contentPane.add(lbText2XP);
 		
-		lblWaffe = new JLabel("Waffe");
-		lblWaffe.setForeground(Color.WHITE);
-		lblWaffe.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblWaffe.setBounds(167, 453, 93, 54);
-		contentPane.add(lblWaffe);
+		lbTextWaffe = new JLabel("Waffe");
+		lbTextWaffe.setForeground(Color.WHITE);
+		lbTextWaffe.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lbTextWaffe.setBounds(167, 453, 93, 54);
+		contentPane.add(lbTextWaffe);
 		
-		lblballspeed = new JLabel("Veringerte Geschwindigkeit");
-		lblballspeed.setForeground(Color.WHITE);
-		lblballspeed.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblballspeed.setBounds(285, 447, 255, 67);
-		contentPane.add(lblballspeed);
+		lbTextSpeed = new JLabel("Veringerte Geschwindigkeit");
+		lbTextSpeed.setForeground(Color.WHITE);
+		lbTextSpeed.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lbTextSpeed.setBounds(285, 447, 255, 67);
+		contentPane.add(lbTextSpeed);
 		
-		lblSpSize = new JLabel("Spieler Größe");
-		lblSpSize.setForeground(Color.WHITE);
-		lblSpSize.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblSpSize.setBounds(511, 453, 164, 54);
-		contentPane.add(lblSpSize);
+		lbTextPlSize = new JLabel("Spieler Größe");
+		lbTextPlSize.setForeground(Color.WHITE);
+		lbTextPlSize.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lbTextPlSize.setBounds(511, 453, 164, 54);
+		contentPane.add(lbTextPlSize);
 		
-		lblKlon = new JLabel("Ball Klonen");
-		lblKlon.setForeground(Color.WHITE);
-		lblKlon.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblKlon.setBounds(655, 453, 164, 54);
-		contentPane.add(lblKlon);
+		lbTextKlon = new JLabel("Ball Klonen");
+		lbTextKlon.setForeground(Color.WHITE);
+		lbTextKlon.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lbTextKlon.setBounds(655, 453, 164, 54);
+		contentPane.add(lbTextKlon);
 		
 		
 		JLabel[] borderLabels = {lbWhite,lbBlue,lbLightGreen,lbCyan,lbMagenta,lbRed,lbYellow,lbDarkGreen};
@@ -326,6 +392,7 @@ public class Shop extends JFrame {
 		lbRed.setBorder(new LineBorder(new Color(255,255,255),5));	
 		lbYellow.setBorder(new LineBorder(new Color(255,255,255),5));	
 		lbDarkGreen.setBorder(new LineBorder(new Color(255,255,255),5));	
+	
 		
 		System.out.println();
 	}
@@ -347,4 +414,5 @@ public class Shop extends JFrame {
 			
 		}
 	}
+	
 }
