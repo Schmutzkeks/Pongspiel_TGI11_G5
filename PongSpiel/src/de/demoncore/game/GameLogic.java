@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import de.demoncore.gameObjects.Ball;
 import de.demoncore.gameObjects.BeweglichesRechteck;
 import de.demoncore.gameObjects.Particle;
 import de.demoncore.gameObjects.Player1;
@@ -24,8 +25,8 @@ public class GameLogic {
 	public static ArrayList<Particle> particles;
 
 	static BeweglichesRechteck Ball;
-	static BeweglichesRechteck beispielObjekt2;
-	static BeweglichesRechteck beispielObjekt3;
+	static BeweglichesRechteck player01;
+	static BeweglichesRechteck player02;
 	static BeweglichesRechteck trennung;
 
 	//public boolean keyLeftarrowpressed;
@@ -40,15 +41,17 @@ public class GameLogic {
 		gameTimer = new Timer();
 		spielObjekte = new ArrayList<GameObject>();
 		particles = new ArrayList<Particle>();
-		Vector2 ballVector2 = new Vector2();
 
-
-		//keyLeftarrowpressed = false;
-		//keyRightarrowpressed = false;
 		keyUparrowpressed = false;
 		keyDownarrowpressed = false;
+		
 
+		
 		createObjects();
+		
+		Player1 player1 = new Player1(player01, 0, 0);
+		player1.setSpeed(0, 1);
+		
 
 
 		gameTimer.scheduleAtFixedRate(new TimerTask(){
@@ -56,30 +59,29 @@ public class GameLogic {
 			public void run() {
 
 				// Laufende Ausführungen im Spiel:
-				Ball.bouncebewegung(Ball, beispielObjekt2, beispielObjekt3);
+				Ball.bouncebewegung(Ball, player01, player02);
 
 
-				/*
-				if (Detection.isColliding(beispielObjekt1, beispielObjekt2)) {
-					Detection.Collision(beispielObjekt1, beispielObjekt2);
-				}
-				if (Detection.isColliding(beispielObjekt1, beispielObjekt3)) {
-					Detection.Collision(beispielObjekt1, beispielObjekt3);
-				}
-				 */
 				if (Ball.positionY < (ingamescrheight-50) && Ball.positionY > 30) {
-					beispielObjekt3.positionY = Ball.positionY - 30;
+					
+					if (Ball.positionY + 10 > player02.positionY + 40) {
+						player02.positionY += 1;
+					}
+					else if (Ball.positionY + 10 < player02.positionY + 40) {
+						player02.positionY -= 1;
+					}
+					//player02.positionY = Ball.positionY - 30;
 				}
 
 				
 				if (keyUparrowpressed && PlayerContinue) {
-					if(beispielObjekt2.positionY>0) {
-						beispielObjekt2.positionY -= 1;
+					if(player01.positionY>0) {
+						player1.TVector2(player01, 0, -1);	
 
 					}
 				} else if (keyDownarrowpressed && PlayerContinue) {
-					if(beispielObjekt2.positionY<480) {
-						beispielObjekt2.positionY += 1;
+					if(player01.positionY<480) {
+						player1.TVector2(player01, 0, 1);				
 					}
 				}
 
@@ -123,11 +125,11 @@ public class GameLogic {
 		Ball = new BeweglichesRechteck(393, 240, 20, 20);		//(posX, posY, breite, hoehe) 
 		spielObjekte.add(Ball);
 
-		beispielObjekt2 = new BeweglichesRechteck(716, 240, 20, 80);	//(posX, posY, breite, hoehe) 
-		spielObjekte.add(beispielObjekt2);
+		player01 = new BeweglichesRechteck(716, 240, 20, 80);	//(posX, posY, breite, hoehe) 
+		spielObjekte.add(player01);
 
-		beispielObjekt3 = new BeweglichesRechteck(50, 240, 20, 80);	//(posX, posY, breite, hoehe) 
-		spielObjekte.add(beispielObjekt3);
+		player02 = new BeweglichesRechteck(50, 240, 20, 80);	//(posX, posY, breite, hoehe) 
+		spielObjekte.add(player02);
 
 		trennung = new BeweglichesRechteck(0, 560, 800, 20);	//(posX, posY, breite, hoehe) 
 		spielObjekte.add(trennung);		//abtrennung für Bereich unten

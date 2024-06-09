@@ -12,7 +12,7 @@ public class BeweglichesRechteck extends GameObject {
 	public int schritteInGleicherRichtung;
 	int ingamescrwidth = 786;
 	int ingamescrheight = 593 - 31;
-	double speed;
+	double speed = 0.1;
 	public static double velX = 1;
 	public static double velY = 1;
 	boolean check = false;
@@ -20,9 +20,13 @@ public class BeweglichesRechteck extends GameObject {
 	boolean check2 = false;
 	boolean check3 = false;
 	
-	Vector2 ballVector2 = new Vector2();	
-	Collision Detection = new Collision();
 	
+	private Player1 player1;
+	private Ball ball;
+	
+
+	
+
 
 	
 
@@ -33,28 +37,27 @@ public class BeweglichesRechteck extends GameObject {
 		schritteInGleicherRichtung = 0;
 	}
 	/*
-	public void Vector2(double x, double y) {
-		positionX += x;
-		positionY += y;
+	public BeweglichesRechteck(int posX, int posY, int breite, int hoehe, Ball ball) {
+		super(posX, posY, breite, hoehe);
+		schritteInGleicherRichtung = 0;
+		this.ball = ball;
 	}
-	
-*/
+	*/
+	Vector2 ballVector2 = new Vector2();	
+	Collision Detection = new Collision();
 	
 	
 	public void bouncebewegung(BeweglichesRechteck obj1, BeweglichesRechteck obj2, BeweglichesRechteck obj3 ) {
 		
-		// tan for the bounce. tan = g/a = velY/velX
-		//Vector2(velX, velY);
 
-		//ballVector2.TVector2(positionX, positionY, velX, velY);
 
 
         // Check for collision with wall
 		Detection.Collisionwall(obj1);
 		ballVector2.TVector2(obj1, velX, velY);
+		//ball.TVector22(obj1, velX, velY);
 		
 		
-		//ballVector2.x = velX;
 
 		
 		// Check for collisions with PLayer
