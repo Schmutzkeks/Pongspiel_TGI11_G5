@@ -35,6 +35,13 @@ public class GameLogic {
 	public boolean keyDownarrowpressed;
 
 
+public static BeweglichesRechteck getPlayer1() {
+	return player01;
+}
+
+public static BeweglichesRechteck getPlayer2() {
+	return player02;
+}
 
 
 	public GameLogic() {
@@ -86,7 +93,7 @@ public class GameLogic {
 				}
 
 				//Partikel updaten
-				for (Particle p : particles) {
+				for (Particle p : new ArrayList<Particle>(particles)) {
 					p.update();
 				}
 

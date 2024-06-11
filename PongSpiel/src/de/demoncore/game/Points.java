@@ -20,6 +20,8 @@ public class Points {
 	public void addPunktePlayer(int points) {
 		this.punktePlayer += points;
 		StatsData.addPositivPunkte(1);
+
+        GameLogic.getPlayer2().istAktiviert = true;
 	}
 	
 	public int getPunkteGegner() {

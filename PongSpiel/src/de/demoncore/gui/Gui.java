@@ -3,11 +3,13 @@ package de.demoncore.gui;
 import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 import de.demoncore.actions.KeyHandler;
 import de.demoncore.game.GameLogic;
@@ -16,6 +18,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -180,7 +184,22 @@ public class Gui {
 		btnEnd.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnEnd.setBounds(screenwidth/2-63, 375, 126, 23);
 		pauseMenu.add(btnEnd);
+		
+		JLabel lblweapon = new JLabel("");
+		lblweapon.setBounds(525,600, 177, 100);
+		lblweapon.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!startedCountdown)
+					Draw.instance.laserSchuss();
+			}
+		});
+		lblweapon.setIcon(new ImageIcon(Shop.class.getResource("/resources/Weapon.png")));
 
+		if(Shop.getWeapon())
+			frame.add(lblweapon);
+
+		
 		frame.add(pauseMenu);
 		frame.add(lbPointsPlayer);
 		frame.add(lbPointsGegner);
@@ -188,7 +207,7 @@ public class Gui {
 		frame.add(lbTextPlayer);
 		frame.add(lbTextGegner);
 		frame.add(lbldraw);
-
+	
 		frame.setVisible(true);
 	}
 

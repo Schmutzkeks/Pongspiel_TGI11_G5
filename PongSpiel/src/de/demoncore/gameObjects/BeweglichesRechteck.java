@@ -5,8 +5,6 @@ import de.demoncore.game.Collision;
 import de.demoncore.game.Vector2;
 
 public class BeweglichesRechteck extends GameObject {
-	
-
 
 	public byte richtung;
 	public int schritteInGleicherRichtung;

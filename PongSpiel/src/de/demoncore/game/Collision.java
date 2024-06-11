@@ -21,6 +21,8 @@ public class Collision {
 
 
 	public boolean isCollidingLeftRight(BeweglichesRechteck obj1, BeweglichesRechteck obj2) {
+		if(!obj1.istAktiviert || !obj2.istAktiviert) return false;
+		
 		// Check if the vertical ranges overlap
 		/*
 		boolean verticalOverlap = (obj1.positionY < obj2.positionY + 80) && (obj1.positionY + 20> obj2.positionY);
@@ -68,6 +70,8 @@ public class Collision {
 	}
 
 	public boolean isCollidingTopBottom(BeweglichesRechteck obj1, BeweglichesRechteck obj2) {
+		if(!obj1.istAktiviert || !obj2.istAktiviert) return false;
+		
 		/*
 		// Check if the horizontal ranges overlap
 		boolean horizontalOverlap = (obj1.positionX < obj2.positionX + 20) && (obj1.positionX + 20 > obj2.positionX);

@@ -2,6 +2,8 @@ package de.demoncore.game;
 
 public class GameObject {
 	
+
+	public boolean istAktiviert = true;
 	
 	// position in Vector ändern
 	// eine Update Methode machen

@@ -47,11 +47,33 @@ public class Shop extends JFrame {
 	private JLabel lbTextPlSize;
 	private JLabel lbTextKlon;
 	private JLabel lbldoublepoints;
-	boolean ballSpeed= false;
-	boolean weapon= false;
-	boolean playerSize= false;
-	boolean doublePoints= false;
-	boolean clone= false;	
+	
+	static boolean ballSpeed= false;
+	static boolean weapon= false;
+	static boolean playerSize= false;
+	static boolean doublePoints= false;
+	static boolean clone= false;	
+	
+	public static boolean getBallSpeed() {
+		return ballSpeed;
+	}
+	
+	public static boolean getWeapon() {
+		return weapon;
+	}
+	
+	public static boolean getPlayerSize() {
+		return playerSize;
+	}
+	
+	public static boolean getDoublePoints() {
+		return doublePoints;
+	}
+	
+	public static boolean getClone() {
+		return clone;
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -267,17 +289,12 @@ public class Shop extends JFrame {
 		lbldoublepoints.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(doublePoints== false) {
-					lbldoublepoints.setBorder(new LineBorder(new Color(255, 128, 0), 5));
-				}
-				else {
-					lbldoublepoints.setBorder(new LineBorder(new Color(0, 0, 0), 0));
-				}
 				doublePoints=!doublePoints;
+				updateItemBorders();
 			}
 		});
 		
-		lbldoublepoints.setIcon(new ImageIcon(Shop.class.getResource("/recources/2xPoints.jpg")));
+		lbldoublepoints.setIcon(new ImageIcon(Shop.class.getResource("/resources/2xPoints.png")));
 		panel_1.add(lbldoublepoints);
 		
 		lblweapon = new JLabel("");
@@ -285,16 +302,11 @@ public class Shop extends JFrame {
 		lblweapon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(weapon== false) {
-					lblweapon.setBorder(new LineBorder(new Color(255, 128, 0), 5));
-				}
-				else {
-					lblweapon.setBorder(new LineBorder(new Color(0, 0, 0), 0));
-				}
 				weapon=!weapon;
+				updateItemBorders();
 			}
 		});
-		lblweapon.setIcon(new ImageIcon(Shop.class.getResource("/recources/Weapon.jpg")));
+		lblweapon.setIcon(new ImageIcon(Shop.class.getResource("/resources/Weapon.png")));
 		panel_1.add(lblweapon);
 		
 		lblBallSpeed =  new JLabel("");
@@ -302,16 +314,11 @@ public class Shop extends JFrame {
 		lblBallSpeed.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(ballSpeed== false) {
-					lblBallSpeed.setBorder(new LineBorder(new Color(255, 128, 0), 5));
-				}
-				else {
-					lblBallSpeed.setBorder(new LineBorder(new Color(0, 0, 0), 0));
-				}
 				ballSpeed=!ballSpeed;
+				updateItemBorders();
 			}
 		});
-		lblBallSpeed.setIcon(new ImageIcon(Shop.class.getResource("/recources/lowerspeed.jpg")));
+		lblBallSpeed.setIcon(new ImageIcon(Shop.class.getResource("/resources/lowerspeed.jpg")));
 		panel_1.add(lblBallSpeed);
 		
 		lblPlayerSize = new JLabel("");
@@ -319,16 +326,11 @@ public class Shop extends JFrame {
 		lblPlayerSize.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(playerSize== false) {
-					lblPlayerSize.setBorder(new LineBorder(new Color(255, 128, 0), 5));
-				}
-				else {
-					lblPlayerSize.setBorder(new LineBorder(new Color(0, 0, 0), 0));
-				}
 				playerSize=!playerSize;
+				updateItemBorders();
 			}
 		});
-		lblPlayerSize.setIcon(new ImageIcon(Shop.class.getResource("/recources/PlayerSize.png")));
+		lblPlayerSize.setIcon(new ImageIcon(Shop.class.getResource("/resources/PlayerSize.png")));
 		panel_1.add(lblPlayerSize);
 		
 		lblclone = new JLabel("");
@@ -336,16 +338,11 @@ public class Shop extends JFrame {
 		lblclone.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(clone== false) {
-					lblclone.setBorder(new LineBorder(new Color(255, 128, 0), 5));
-				}
-				else {
-					lblclone.setBorder(new LineBorder(new Color(0, 0, 0), 0));
-				}
 				clone=!clone;
+				updateItemBorders();
 			}
 		});
-		lblclone.setIcon(new ImageIcon(Shop.class.getResource("/recources/Klon.jpg")));
+		lblclone.setIcon(new ImageIcon(Shop.class.getResource("/resources/Klon.jpg")));
 		panel_1.add(lblclone);
 		
 		lbText2XP = new JLabel("Doppelte Punkte");
@@ -381,6 +378,41 @@ public class Shop extends JFrame {
 		
 		JLabel[] borderLabels = {lbWhite,lbBlue,lbLightGreen,lbCyan,lbMagenta,lbRed,lbYellow,lbDarkGreen};
 		borderLabels[Theme].setBorder(new LineBorder(new Color(255, 128, 0), 5));
+		
+		updateItemBorders();
+	}
+	
+	private void updateItemBorders() {
+		if(clone) {
+			lblclone.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+		}
+		else {
+			lblclone.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+		}
+		if(playerSize) {
+			lblPlayerSize.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+		}
+		else {
+			lblPlayerSize.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+		}
+		if(ballSpeed) {
+			lblBallSpeed.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+		}
+		else {
+			lblBallSpeed.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+		}
+		if(weapon) {
+			lblweapon.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+		}
+		else {
+			lblweapon.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+		}
+		if(doublePoints) {
+			lbldoublepoints.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+		}
+		else {
+			lbldoublepoints.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+		}
 	}
 	
 	private void clearBorder() {
