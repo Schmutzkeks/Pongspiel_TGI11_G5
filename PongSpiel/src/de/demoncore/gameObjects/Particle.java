@@ -5,17 +5,17 @@ public class Particle {
 	double dx, dy;
 	public int updates=0;
 	
-    public Particle(int x, int y) {
+    public Particle(double x, double y) {
         particle = new BeweglichesRechteck(x, y, 5, 5);
         this.dx = (Math.random() - 0.5) * 4;
         this.dy = (Math.random() - 0.5) * 4;
     }
 
-    public int getX() {
+    public double getX() {
         return particle.positionX;
     }
 
-    public int getY() {
+    public double getY() {
         return particle.positionY;
     }
 

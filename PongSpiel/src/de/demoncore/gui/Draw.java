@@ -38,14 +38,14 @@ public class Draw extends JLabel{
 		g.setColor(Shop.getTheme());
 		for (int i = 0; i < objekteImSpiel.size(); i++) {
 			GameObject aktuellesObjekt = objekteImSpiel.get(i);
-			g.fillRect(aktuellesObjekt.positionX, aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
+			g.fillRect((int)aktuellesObjekt.positionX, (int)aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
 		}
 		
 		//zeichen von Partikeln
 		g.setColor(Shop.getTheme());
 		try {
 			for (Particle p : particles) {
-			    g.fillRect(p.getX(), p.getY(), p.getSize(), p.getSize());
+			    g.fillRect((int)p.getX(), (int)p.getY(), p.getSize(), p.getSize());
 			}
 		} catch (Exception e) {}
 		
