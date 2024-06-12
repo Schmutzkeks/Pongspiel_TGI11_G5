@@ -1,13 +1,21 @@
 package de.demoncore.game;
 
+import de.demoncore.gui.Shop;
+
 public class Points {
 		private int punktePlayer;
 		private int punkteGegner;
+		private int punkteShop = punktePlayer - punkteGegner;
 	
 	
+		public static Points instancePoints;
+		
 	public Points() {
+		
+		instancePoints = this;
 		punktePlayer = 0;
 		punkteGegner = 0;
+		punkteShop=0;
 	}
 
 
@@ -34,4 +42,13 @@ public class Points {
 		this.punkteGegner += points;
 		StatsData.addNegativPunkte(1);
 	}
+	public int getPunkteShop() {
+		return punkteShop;
+	}
+	public void setPunkteShop(int Points) {
+		this.punkteShop += Points;
+		Shop.updateStats();
+	
+	}
+	
 }

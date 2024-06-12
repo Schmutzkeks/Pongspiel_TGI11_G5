@@ -27,6 +27,7 @@ public class Stats extends JFrame {
 	private static boolean existig = false;
 	private static JLabel lbNegativPunkte;
 	private static JLabel lbPositivPunkte;
+	
 
 	/**
 	 * Launch the application.

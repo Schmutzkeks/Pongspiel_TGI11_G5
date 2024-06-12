@@ -32,4 +32,7 @@ public class StatsData {
 			NegativPunkte += negativPunkte;
 		}
 		
+		public static int getShopPunkte() {
+			return PositivPunkte - NegativPunkte;
+		}
 }

@@ -10,8 +10,13 @@ import java.awt.event.WindowEvent;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Point;
+
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+
+import de.demoncore.game.Points;
+import de.demoncore.game.StatsData;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -53,6 +58,7 @@ public class Shop extends JFrame {
 	static boolean playerSize= false;
 	static boolean doublePoints= false;
 	static boolean clone= false;	
+	private static JLabel lblpoints;
 	
 	public static boolean getBallSpeed() {
 		return ballSpeed;
@@ -140,7 +146,7 @@ public class Shop extends JFrame {
 		System.out.println();
 		
 		JLabel lbTitleShop = new JLabel("Shop");
-		lbTitleShop.setBounds(0, 40, 784, 49);
+		lbTitleShop.setBounds(147, 40, 498, 49);
 		lbTitleShop.setHorizontalAlignment(SwingConstants.CENTER);
 		lbTitleShop.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lbTitleShop.setForeground(new Color(255, 255, 255));
@@ -375,6 +381,22 @@ public class Shop extends JFrame {
 		lbTextKlon.setBounds(655, 453, 164, 54);
 		contentPane.add(lbTextKlon);
 		
+		JPanel pnPunkte = new JPanel();
+		pnPunkte.setBackground(new Color(0, 0, 0));
+		pnPunkte.setBorder(null);
+		pnPunkte.setBounds(588, 23, 196, 91);
+		contentPane.add(pnPunkte);
+		pnPunkte.setLayout(null);
+		
+		lblpoints = new JLabel("Coins: 0");
+		lblpoints.setText("Points: " + Points.instancePoints.getPunkteShop());
+		
+		lblpoints.setBounds(49, 11, 105, 51);
+		lblpoints.setForeground(new Color(255, 255, 255));
+		lblpoints.setFont(new Font("Tahoma", Font.BOLD, 23));
+		pnPunkte.add(lblpoints);
+		updateStats();
+		
 		
 		JLabel[] borderLabels = {lbWhite,lbBlue,lbLightGreen,lbCyan,lbMagenta,lbRed,lbYellow,lbDarkGreen};
 		borderLabels[Theme].setBorder(new LineBorder(new Color(255, 128, 0), 5));
@@ -429,7 +451,9 @@ public class Shop extends JFrame {
 		System.out.println();
 	}
 	
-
+	public static void updateStats() {
+		lblpoints.setText("Points: " + StatsData.getShopPunkte());
+	}
 	
 	public static Color getTheme() {
 		switch (Theme) {
@@ -446,5 +470,4 @@ public class Shop extends JFrame {
 			
 		}
 	}
-	
 }
