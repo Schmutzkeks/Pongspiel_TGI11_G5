@@ -345,22 +345,22 @@ public class Shop extends JFrame {
 		lblclone.setIcon(new ImageIcon(Shop.class.getResource("/resources/Klon.jpg")));
 		panel_1.add(lblclone);
 		
-		lbText2XP = new JLabel("Doppelte Punkte");
+		lbText2XP = new JLabel("<html>Doppelte Punkte</html>");
 		lbText2XP.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lbText2XP.setForeground(new Color(255, 255, 255));
-		lbText2XP.setBounds(10, 453, 164, 54);
+		lbText2XP.setBounds(10, 453, 129, 54);
 		contentPane.add(lbText2XP);
 		
-		lbTextWaffe = new JLabel("Waffe");
+		lbTextWaffe = new JLabel("<html>Waffe</html>");
 		lbTextWaffe.setForeground(Color.WHITE);
 		lbTextWaffe.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbTextWaffe.setBounds(167, 453, 93, 54);
+		lbTextWaffe.setBounds(175, 453, 93, 54);
 		contentPane.add(lbTextWaffe);
 		
-		lbTextSpeed = new JLabel("Veringerte Geschwindigkeit");
+		lbTextSpeed = new JLabel("<html>Veringerte Geschwindigkeit</html>");
 		lbTextSpeed.setForeground(Color.WHITE);
 		lbTextSpeed.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lbTextSpeed.setBounds(285, 447, 255, 67);
+		lbTextSpeed.setBounds(357, 456, 142, 67);
 		contentPane.add(lbTextSpeed);
 		
 		lbTextPlSize = new JLabel("Spieler Größe");
