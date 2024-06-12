@@ -12,8 +12,8 @@ public class BeweglichesRechteck extends GameObject {
 	int ingamescrwidth = 786;
 	int ingamescrheight = 593 - 31;
 	double speed = 0.1;
-	public static double velX = 1.5;
-	public static double velY = 1.5;
+	public static double velX = 1.3;
+	public static double velY = 1.3;
 	
 	boolean check = false;
 	boolean check1 = false;
