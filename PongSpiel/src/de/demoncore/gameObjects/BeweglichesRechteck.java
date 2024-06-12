@@ -3,6 +3,7 @@ package de.demoncore.gameObjects;
 import de.demoncore.game.GameObject;
 import de.demoncore.game.Collision;
 import de.demoncore.game.Vector2;
+import de.demoncore.gameObjects.Ball;
 
 public class BeweglichesRechteck extends GameObject {
 
@@ -13,6 +14,7 @@ public class BeweglichesRechteck extends GameObject {
 	double speed = 0.1;
 	public static double velX = 1.5;
 	public static double velY = 1.5;
+	
 	boolean check = false;
 	boolean check1 = false;
 	boolean check2 = false;
@@ -20,7 +22,7 @@ public class BeweglichesRechteck extends GameObject {
 	
 	
 	private Player1 player1;
-	private Ball ball;
+	Ball gameball = new Ball(1.5, 1.5);
 	
 
 	
@@ -46,14 +48,14 @@ public class BeweglichesRechteck extends GameObject {
 	
 	
 	public void bouncebewegung(BeweglichesRechteck obj1, BeweglichesRechteck obj2, BeweglichesRechteck obj3 ) {
-		
+	
 
 
 
         // Check for collision with wall
 		Detection.Collisionwall(obj1);
 		ballVector2.TVector2(obj1, velX, velY);
-		//ball.TVector22(obj1, velX, velY);
+		//gameball.TVector22(obj1, Ball.velocity.getX(), Ball.velocity.getY());
 		
 		
 

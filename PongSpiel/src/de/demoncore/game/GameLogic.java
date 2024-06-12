@@ -77,7 +77,6 @@ public static BeweglichesRechteck getPlayer2() {
 					else if (Ball.positionY + 10 < player02.positionY + 40) {
 						player02.positionY -= 1;
 					}
-					//player02.positionY = Ball.positionY - 30;
 				}
 
 				

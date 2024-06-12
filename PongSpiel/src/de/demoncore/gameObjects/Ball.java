@@ -4,12 +4,15 @@ import de.demoncore.game.GameLogic;
 import de.demoncore.game.Vector2;
 
 public class Ball {
-	private Vector2 velocity;
+	public static Vector2 velocity;
 	private BeweglichesRechteck ballRechteck;
-	
+
+	public Ball(double spX, double spY) {
+		Ball.velocity = new Vector2(spX, spY);
+	}
 	
 	public Ball(BeweglichesRechteck obj1, double spX, double spY) {
-		this.velocity = new Vector2(spX, spY);
+		Ball.velocity = new Vector2(spX, spY);
 		this.ballRechteck = obj1;
 	}
     public void setSpeed(double spX, double spY) {
