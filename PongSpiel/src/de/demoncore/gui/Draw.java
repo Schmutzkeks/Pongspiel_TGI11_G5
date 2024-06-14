@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import de.demoncore.actions.Main;
 import de.demoncore.game.GameLogic;
 import de.demoncore.game.GameObject;
+import de.demoncore.gameObjects.Ball;
 import de.demoncore.gameObjects.Particle;
 
 @SuppressWarnings("serial")
@@ -48,7 +49,6 @@ public class Draw extends JLabel{
 	float laserExplosionGroesse = 0;
 	
 	public void laserSchuss() {
-		
 		// Laser schuss - von nick
 		
 		if(laserSichtbar || 
@@ -57,11 +57,13 @@ public class Draw extends JLabel{
 		laserColor = Color.red;
 		
 		for(int i = 0; i < 50; i++) {
+			
 			particles.add(new Particle(GameLogic.getPlayer2().positionX + 
 					GameLogic.getPlayer2().groesseX / 2,
 					GameLogic.getPlayer2().positionY +
 					GameLogic.getPlayer2().groesseY / 2));
 		}
+		
 		
         Thread sleep = new Thread("laser") {
             public void run() {

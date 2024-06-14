@@ -18,6 +18,7 @@ public class Player2 {
 	}
     public void setSpeed(double spX, double spY) {
         velocity.setX(spX);
+        velocity.setY(spY);
     }
     
 	public void TVector2(BeweglichesRechteck obj1, double x, double y) {

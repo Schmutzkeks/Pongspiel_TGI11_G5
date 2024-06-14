@@ -8,6 +8,7 @@ import de.demoncore.gameObjects.Ball;
 import de.demoncore.gameObjects.BeweglichesRechteck;
 import de.demoncore.gameObjects.Particle;
 import de.demoncore.gameObjects.Player1;
+import de.demoncore.gameObjects.Player2;
 import de.demoncore.gui.Gui;
 
 public class GameLogic {
@@ -24,7 +25,7 @@ public class GameLogic {
 	public static ArrayList<GameObject> spielObjekte;
 	public static ArrayList<Particle> particles;
 
-	static BeweglichesRechteck Ball;
+	static BeweglichesRechteck Ball01;
 	static BeweglichesRechteck player01;
 	static BeweglichesRechteck player02;
 	static BeweglichesRechteck trennung;
@@ -53,41 +54,42 @@ public static BeweglichesRechteck getPlayer2() {
 		keyDownarrowpressed = false;
 		
 
-		
 		createObjects();
 		
 		Player1 player1 = new Player1(player01, 0, 0);
-		player1.setSpeed(0, 1);
+		player1.setSpeed(0, 1.5);
+		Player2 player2 = new Player2(player02, 0, 0);
+		player2.setSpeed(0, 1.0);
 		
 
 
-		gameTimer.scheduleAtFixedRate(new TimerTask(){
+		gameTimer.scheduleAtFixedRate(new TimerTask(){ 
 			@Override
 			public void run() {
 
 				// Laufende Ausführungen im Spiel:
-				Ball.bouncebewegung(Ball, player01, player02);
+				Ball01.bouncebewegung(Ball01, player01, player02);
 
 
-				if (Ball.positionY < (ingamescrheight-50) && Ball.positionY > 30) {
-					
-					if (Ball.positionY + 10 > player02.positionY + 40) {
-						player02.positionY += 1;
+				if (Ball01.positionY < (ingamescrheight-50) && Ball01.positionY > 30 && PlayerContinue) {
+					if (Ball01.positionY + 10 > player02.positionY + 40) {
+						Player2.velocity.TVector2(player02, Player2.velocity.getX(), Player2.velocity.getY());
 					}
-					else if (Ball.positionY + 10 < player02.positionY + 40) {
-						player02.positionY -= 1;
+					else if (Ball01.positionY + 10 < player02.positionY + 40) {
+						Player2.velocity.TVector2(player02, Player2.velocity.getX(), Player2.velocity.getY() * (-1));
 					}
 				}
+				
 
 				
 				if (keyUparrowpressed && PlayerContinue) {
 					if(player01.positionY>0) {
-						player1.TVector2(player01, 0, -1);	
-
+						Player1.velocity.TVector2(player01, Player1.velocity.getX(), Player1.velocity.getY() * -1);
+						
 					}
-				} else if (keyDownarrowpressed && PlayerContinue) {
+				} else if (keyDownarrowpressed) {
 					if(player01.positionY<480) {
-						player1.TVector2(player01, 0, 1);				
+						Player1.velocity.TVector2(player01, Player1.velocity.getX(), Player1.velocity.getY());			
 					}
 				}
 
@@ -128,8 +130,8 @@ public static BeweglichesRechteck getPlayer2() {
 			particles.clear();
 		} catch (Exception e) {}
 		// Objekte im Spiel:
-		Ball = new BeweglichesRechteck(393, 240, 20, 20);		//(posX, posY, breite, hoehe) 
-		spielObjekte.add(Ball);
+		Ball01 = new BeweglichesRechteck(393, 240, 20, 20);		//(posX, posY, breite, hoehe) 
+		spielObjekte.add(Ball01);
 
 		player01 = new BeweglichesRechteck(716, 240, 20, 80);	//(posX, posY, breite, hoehe) 
 		spielObjekte.add(player01);
@@ -142,8 +144,8 @@ public static BeweglichesRechteck getPlayer2() {
 	}
 
 	public static void centerBall() {
-		Ball.positionX = 393;
-		Ball.positionY = 240;
+		Ball01.positionX = 393;
+		Ball01.positionY = 240;
 	}
 
 	public static void pauseBall() {
@@ -159,7 +161,7 @@ public static BeweglichesRechteck getPlayer2() {
 
 	public static void createParticles(int Number) {
 		for(int i = 0;i<Number;i++) {
-			particles.add(new Particle(Ball.positionX, Ball.positionY));
+			particles.add(new Particle(Ball01.positionX, Ball01.positionY));
 		}
 	}
 

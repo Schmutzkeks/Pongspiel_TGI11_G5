@@ -22,7 +22,7 @@ public class BeweglichesRechteck extends GameObject {
 	
 	
 	private Player1 player1;
-	Ball gameball = new Ball(1.5, 1.5);
+	Ball gameball = new Ball(1.3, 1.3);
 	
 
 	
@@ -36,13 +36,7 @@ public class BeweglichesRechteck extends GameObject {
 		super(posX, posY, breite, hoehe);
 		schritteInGleicherRichtung = 0;
 	}
-	/*
-	public BeweglichesRechteck(int posX, int posY, int breite, int hoehe, Ball ball) {
-		super(posX, posY, breite, hoehe);
-		schritteInGleicherRichtung = 0;
-		this.ball = ball;
-	}
-	*/
+
 	Vector2 ballVector2 = new Vector2();	
 	Collision Detection = new Collision();
 	
@@ -54,11 +48,11 @@ public class BeweglichesRechteck extends GameObject {
 
         // Check for collision with wall
 		Detection.Collisionwall(obj1);
-		ballVector2.TVector2(obj1, velX, velY);
+		//ballVector2.TVector2(obj1, velX, velY);
 		//gameball.TVector22(obj1, Ball.velocity.getX(), Ball.velocity.getY());
+		Ball.velocity.TVector2(obj1, Ball.velocity.getX(), Ball.velocity.getY());
 		
 		
-
 		
 		// Check for collisions with PLayer
 		
