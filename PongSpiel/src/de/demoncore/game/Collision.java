@@ -8,11 +8,11 @@ public class Collision {
 	public Points punkte = new Points();
 
 
-
+/*
 
 	public void CollisionLeftRight(BeweglichesRechteck obj1, BeweglichesRechteck obj2) {
 		Ball.velocity.setX(Ball.velocity.getX() * (-1));
-		Ball.velocity.speed(1.05);
+		//Ball.velocity.speed(1.05);
 	}
 
 	public void CollisionTopBottom(BeweglichesRechteck obj1, BeweglichesRechteck obj2) {
@@ -61,6 +61,7 @@ public class Collision {
 
 	
 	public void Collisionwall(BeweglichesRechteck obj1) {
+		
 	    if (obj1.positionX <= 0 || obj1.positionX >= 786 - 20) {
 	        if (Ball.velocity.getX() > 0 && Ball.velocity.getY() > 0) {
 	            Ball.velocity.setX(Ball.velocity.getX() * (-1));

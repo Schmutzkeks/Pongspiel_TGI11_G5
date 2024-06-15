@@ -1,5 +1,6 @@
 package de.demoncore.game;
 
+import de.demoncore.gameObjects.Ball;
 import de.demoncore.gameObjects.BeweglichesRechteck;
 
 public class Vector2{
@@ -13,6 +14,7 @@ public class Vector2{
 		this.setY(0);
 	}
 	public Vector2(double x, double y) {
+		System.out.println("new Vector 2");
 		this.x = x;
 		this.y = y;
 	}
@@ -24,6 +26,7 @@ public class Vector2{
 	}
 	
 	public Vector2 speed(double speed) {
+		System.out.println("Vector2 speed");
 		return new Vector2(getX() * speed, getY() * speed);
 	}
 	
@@ -32,12 +35,14 @@ public class Vector2{
 		return y;
 	}
 	public void setY(double y) {
+		System.out.println("Vector2 setY");
 		this.y = y;
 	}
 	public double getX() {
 		return x;
 	}
 	public void setX(double x) {
+		System.out.println("Vector2 setX");
 		this.x = x;
 	}
 } 

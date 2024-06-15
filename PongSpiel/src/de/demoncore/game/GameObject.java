@@ -1,5 +1,7 @@
 package de.demoncore.game;
 
+import de.demoncore.gameObjects.Ball;
+
 public class GameObject {
 	
 
@@ -19,6 +21,10 @@ public class GameObject {
 		positionY = posY;
 		groesseX = breite;
 		groesseY = hoehe;
+		//if (Ball.velocity != null) {
+		//	System.out.println("GameObject created with velocity: " + Ball.velocity.getX());
+		//}
+
 	}
 
 }

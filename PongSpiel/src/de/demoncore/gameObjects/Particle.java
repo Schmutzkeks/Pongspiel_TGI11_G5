@@ -6,9 +6,8 @@ public class Particle {
 	public int updates=0;
 	
     public Particle(double x, double y) {
-        System.out.println("Particle created with velocity: " + Ball.velocity.getX());
+        //System.out.println("Particle created with velocity: " + Ball.velocity.getX());
         particle = new BeweglichesRechteck(x, y, 5, 5);
-        System.out.println("2Particle created with velocity: " + Ball.velocity.getX());
         this.dx = (Math.random() - 0.5) * 4;
         this.dy = (Math.random() - 0.5) * 4;
 

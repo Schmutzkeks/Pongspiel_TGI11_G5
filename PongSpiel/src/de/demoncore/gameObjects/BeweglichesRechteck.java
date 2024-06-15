@@ -11,9 +11,7 @@ public class BeweglichesRechteck extends GameObject {
 	public int schritteInGleicherRichtung;
 	int ingamescrwidth = 786;
 	int ingamescrheight = 593 - 31;
-	double speed = 0.1;
-	public static double velX = 1.3;
-	public static double velY = 1.3;
+	double speed = 1.1;
 	
 	boolean check = false;
 	boolean check1 = false;
@@ -22,7 +20,7 @@ public class BeweglichesRechteck extends GameObject {
 	
 	
 	private Player1 player1;
-	Ball gameball = new Ball(1.3, 1.3);
+	Ball gameball = new Ball(-1.0, -1.0);
 	
 
 	
@@ -34,7 +32,9 @@ public class BeweglichesRechteck extends GameObject {
 
 	public BeweglichesRechteck(double posX, double posY, int breite, int hoehe) {
 		super(posX, posY, breite, hoehe);
-		schritteInGleicherRichtung = 0;
+		//System.out.println("BeweglichesRechteck created with velocity: " + Ball.velocity.getX());
+		//schritteInGleicherRichtung = 0;
+		
 	}
 
 	Vector2 ballVector2 = new Vector2();	
@@ -47,7 +47,7 @@ public class BeweglichesRechteck extends GameObject {
 
 
         // Check for collision with wall
-		Detection.Collisionwall(obj1);
+		//Detection.Collisionwall(obj1);
 		//ballVector2.TVector2(obj1, velX, velY);
 		//gameball.TVector22(obj1, Ball.velocity.getX(), Ball.velocity.getY());
 		Ball.velocity.TVector2(obj1, Ball.velocity.getX(), Ball.velocity.getY());
@@ -55,7 +55,7 @@ public class BeweglichesRechteck extends GameObject {
 		
 		
 		// Check for collisions with PLayer
-		
+		/*
 		if (Detection.isCollidingLeftRight(obj1, obj2)&check==false) {
 			Detection.CollisionLeftRight(obj1, obj2);
 			check = true;
@@ -86,7 +86,7 @@ public class BeweglichesRechteck extends GameObject {
 			check3 = false;
 		}
 
-		
+		*/
         
 	}
 	
