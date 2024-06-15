@@ -92,7 +92,7 @@ public static BeweglichesRechteck getPlayer2() {
 					}
 				}*/
 				
-				// Inside your game loop or key press handling logic
+				/*
 				if (Ball01.positionY < (ingamescrheight - 50) && Ball01.positionY > 30 && PlayerContinue) {
 				    double targetY = Ball01.positionY + 10;
 				    double currentY = player02.positionY + 40;
@@ -116,7 +116,7 @@ public static BeweglichesRechteck getPlayer2() {
 				    Player2.velocity.TVector2(player02, Player2.velocity.getXCur(), Player2.velocity.getYCur());
 				}
 				
-				
+				*/
 				
 				if (keyUparrowpressed && PlayerContinue) {
 				    if (player01.positionY > 0) {
@@ -258,6 +258,7 @@ public static BeweglichesRechteck getPlayer2() {
 
 	
 	public void updateBotMovement() {
+		
 	    if (!isReacting) {
 	        isReacting = true;
 	        reactionTimer.schedule(new TimerTask() {
@@ -280,28 +281,30 @@ public static BeweglichesRechteck getPlayer2() {
 	        Player2.velocity.setYCur(Vector2.moveTowards(Player2.velocity.getYCur(), 0, Player2.velocity.getAcc()));
 	    }
 
-	    if (player02.positionY>=480) {
-			player02.positionY = 480;
-		}
-	    if (player02.positionY<=0) {
-			player02.positionY = 0;
-		}
-	    
+
 	    // Apply speed variability
 	    Player2.velocity.setYCur(Player2.velocity.getYCur() + (random.nextDouble() - 0.5) * 0.1);
-
-	    // Cap the speed at maxSpeed
-	    if (Math.abs(Player2.velocity.getYCur()) > Player2.velocity.getYMax()) {
-	        Player2.velocity.setYCur(Player2.velocity.getYMax() * Math.signum(Player2.velocity.getYCur()));
-	    }
 
 	    // Simulate hesitation
 	    if (random.nextDouble() < 0.01) {
 	        Player2.velocity.setYCur(-Player2.velocity.getYCur());
 	    }
 
-	    Player2.velocity.setYCur(Player2.velocity.getYCur());
+	    // Cap the speed at maxSpeed
+	    if (Math.abs(Player2.velocity.getYCur()) > Player2.velocity.getYMax()) {
+	        Player2.velocity.setYCur(Player2.velocity.getYMax() * Math.signum(Player2.velocity.getYCur()));
+	    }
+
+	    // Ensure the player stays within bounds
+	    if (player02.positionY >= 480) {
+	        player02.positionY = 480;
+	    }
+	    if (player02.positionY <= 0) {
+	        player02.positionY = 0;
+	    }
+
 	    Player2.velocity.TVector2(player02, Player2.velocity.getXCur(), Player2.velocity.getYCur());
+
 	}
 
 	private double predictBallPosition() {
