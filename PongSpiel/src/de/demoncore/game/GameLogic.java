@@ -56,11 +56,8 @@ public static BeweglichesRechteck getPlayer2() {
 
 		createObjects();
 		
-		Player1 player1 = new Player1(player01, 0, 0);
-		player1.setSpeed(0, 1.5);
-		Player2 player2 = new Player2(player02, 0, 0);
-		player2.setSpeed(0, 1.0);
-		Ball gameBall = new Ball(-1.0, -1.0);
+
+		defineObjects();
 		
 
 
@@ -74,26 +71,39 @@ public static BeweglichesRechteck getPlayer2() {
 
 				if (Ball01.positionY < (ingamescrheight-50) && Ball01.positionY > 30 && PlayerContinue) {
 					if (Ball01.positionY + 10 > player02.positionY + 40) {
-						Player2.velocity.TVector2(player02, Player2.velocity.getX(), Player2.velocity.getY());
+						Player2.velocity.TVector2(player02, Player2.velocity.getXCur(), Player2.velocity.getYCur());
 					}
 					else if (Ball01.positionY + 10 < player02.positionY + 40) {
-						Player2.velocity.TVector2(player02, Player2.velocity.getX(), Player2.velocity.getY() * (-1));
+						Player2.velocity.TVector2(player02, Player2.velocity.getXCur(), Player2.velocity.getYCur() * (-1));
 					}
 				}
 				
-
 				
 				if (keyUparrowpressed && PlayerContinue) {
-					if(player01.positionY>0) {
-						Player1.velocity.TVector2(player01, Player1.velocity.getX(), Player1.velocity.getY() * -1);
-						
+				    if (player01.positionY > 0) {
+				        // Accelerate towards maxSpeed
+				        Player1.velocity.setYCur(Player1.velocity.moveTowards(Player1.velocity.getYCur(), -Player1.velocity.getYMax(), Player1.velocity.getAcc()));
+				        Player1.velocity.TVector2(player01, Player1.velocity.getXCur(), Player1.velocity.getYCur());
+				    }
+				} else if (keyDownarrowpressed && PlayerContinue) {
+				    if (player01.positionY < 480) {
+				        // Accelerate towards maxSpeed
+				        Player1.velocity.setYCur(Player1.velocity.moveTowards(Player1.velocity.getYCur(), Player1.velocity.getYMax(), Player1.velocity.getAcc()));
+				        Player1.velocity.TVector2(player01, Player1.velocity.getXCur(), Player1.velocity.getYCur());
+				    }
+				} else if (PlayerContinue) {
+				    // Decelerate towards 0
+					if (player01.positionY > 0) {
+						Player1.velocity.setYCur(0);
 					}
-				} else if (keyDownarrowpressed) {
-					if(player01.positionY<480) {
-						Player1.velocity.TVector2(player01, Player1.velocity.getX(), Player1.velocity.getY());			
+					if (player01.positionY < 480) {
+						Player1.velocity.setYCur(0);
 					}
+				    Player1.velocity.setYCur(Player1.velocity.moveTowards(Player1.velocity.getYCur(), 0, 0.05));
+				    Player1.velocity.TVector2(player01, Player1.velocity.getXCur(), Player1.velocity.getYCur());
 				}
-
+				
+				
 				//Partikel updaten
 				for (Particle p : new ArrayList<Particle>(particles)) {
 					p.update();
@@ -150,6 +160,8 @@ public static BeweglichesRechteck getPlayer2() {
 	}
 
 	public static void pauseBall() {
+		Ball.velocity.setXCur(1);
+		Ball.velocity.setYCur(1);
 		BallContinue = false;
 		centerBall();
 		Gui.startCountdown();
@@ -179,6 +191,20 @@ public static BeweglichesRechteck getPlayer2() {
 	public static void setPlayerContinue(boolean playerContinue) {
 		PlayerContinue = playerContinue;
 	}
-
+	public void defineObjects() {
+		// You
+		Player1 player1 = new Player1(player01, 0, 0);
+		player1.setSpeed(0, 1.5);
+		Player1.velocity.setAcc(0.05);
+		
+		//Bot
+		Player2 player2 = new Player2(player02, 0, 1);
+		player2.setSpeed(0, 1.5);
+		
+		//Ball
+		Ball gameBall = new Ball(-1.0, -1.0);
+		gameBall.setSpeed(2, 2);
+		
+	}
 
 }

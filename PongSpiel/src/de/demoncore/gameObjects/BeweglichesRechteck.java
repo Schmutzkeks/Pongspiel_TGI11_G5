@@ -52,7 +52,7 @@ public class BeweglichesRechteck extends GameObject {
 		Detection.Collisionwall(obj1);
 		//ballVector2.TVector2(obj1, velX, velY);
 		//gameball.TVector22(obj1, Ball.velocity.getX(), Ball.velocity.getY());
-		Ball.velocity.TVector2(obj1, Ball.velocity.getX(), Ball.velocity.getY());
+		Ball.velocity.TVector2(obj1, Ball.velocity.getXCur(), Ball.velocity.getYCur());
 		
 		
 		

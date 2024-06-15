@@ -16,14 +16,14 @@ public class Player2 {
 		this.playeRechteck = obj1;
 	}
     public void setSpeed(double spX, double spY) {
-    	Player2.velocity.setX(spX);
-    	Player2.velocity.setY(spY);
+    	Player2.velocity.setXMax(spX);
+    	Player2.velocity.setYMax(spY);
     }
     
 	public void TVector2(BeweglichesRechteck obj1, double x, double y) {
 		if(GameLogic.BallContinue) {
-			obj1.positionX += Player2.velocity.getX() * x;
-			obj1.positionY += Player2.velocity.getY() * y;
+			obj1.positionX += Player2.velocity.getXCur() * x;
+			obj1.positionY += Player2.velocity.getYCur() * y;
 		}
 	}
 	
@@ -35,18 +35,18 @@ public class Player2 {
 	}
 
 	public double getX() {
-		return Player2.velocity.getX();
+		return Player2.velocity.getXCur();
 	}
 	
 	public double getY() {
-		return Player2.velocity.getY();
+		return Player2.velocity.getYCur();
 	}
 	
 	public void setX(double spX) {
-		Player2.velocity.setX(spX);
+		Player2.velocity.setXCur(spX);
 	}
 	
 	public void setY(double spY) {
-		Player2.velocity.setY(spY);
+		Player2.velocity.setYCur(spY);
 	}
 }

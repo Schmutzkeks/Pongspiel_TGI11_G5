@@ -10,12 +10,12 @@ public class Collision {
 
 
 	public void CollisionLeftRight(BeweglichesRechteck obj1, BeweglichesRechteck obj2) {
-		Ball.velocity.setX(Ball.velocity.getX() * (-1));
-		//Ball.velocity.speed(1.05);
+		Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
+		Ball.velocity.speedAdd(0.05);
 	}
 
 	public void CollisionTopBottom(BeweglichesRechteck obj1, BeweglichesRechteck obj2) {
-		Ball.velocity.setY(Ball.velocity.getY() * (-1));
+		Ball.velocity.setYCur(Ball.velocity.getYCur() * (-1));
 	}
 
 
@@ -30,11 +30,11 @@ public class Collision {
         boolean verticalOverlap = (obj1.positionY < obj2.positionY + 80) && (obj1.positionY + 20 > obj2.positionY);
 
         // Check if the horizontal edges touch or overlap, considering the velocity
-        boolean horizontalOverlap = (obj1.positionX + 20 + Math.abs(Ball.velocity.getX()) >= obj2.positionX) &&
-                                    (obj1.positionX <= obj2.positionX + 20 + Math.abs(Ball.velocity.getX()));
+        boolean horizontalOverlap = (obj1.positionX + 20 + Math.abs(Ball.velocity.getXCur()) >= obj2.positionX) &&
+                                    (obj1.positionX <= obj2.positionX + 20 + Math.abs(Ball.velocity.getXCur()));
 
         // Ensure that obj1 is moving towards obj2
-        boolean movingTowards = (Ball.velocity.getX() > 0 && obj1.positionX < obj2.positionX) || (Ball.velocity.getX() < 0 && obj1.positionX > obj2.positionX);
+        boolean movingTowards = (Ball.velocity.getXCur() > 0 && obj1.positionX < obj2.positionX) || (Ball.velocity.getXCur() < 0 && obj1.positionX > obj2.positionX);
 
         return verticalOverlap && horizontalOverlap && movingTowards;
 	}
@@ -47,11 +47,11 @@ public class Collision {
         boolean horizontalOverlap = (obj1.positionX < obj2.positionX + 20) && (obj1.positionX + 20 > obj2.positionX);
 
         // Check if the vertical edges touch or overlap, considering the velocity
-        boolean verticalOverlap = (obj1.positionY + 20 + Math.abs(Ball.velocity.getY()) >= obj2.positionY) &&
-                                  (obj1.positionY <= obj2.positionY + 80 + Math.abs(Ball.velocity.getY()));
+        boolean verticalOverlap = (obj1.positionY + 20 + Math.abs(Ball.velocity.getYCur()) >= obj2.positionY) &&
+                                  (obj1.positionY <= obj2.positionY + 80 + Math.abs(Ball.velocity.getYCur()));
 
         // Ensure that obj1 is moving towards obj2
-        boolean movingTowards = (Ball.velocity.getY() > 0 && obj1.positionY < obj2.positionY) || (Ball.velocity.getY() < 0 && obj1.positionY > obj2.positionY);
+        boolean movingTowards = (Ball.velocity.getYCur() > 0 && obj1.positionY < obj2.positionY) || (Ball.velocity.getYCur() < 0 && obj1.positionY > obj2.positionY);
 
         return horizontalOverlap && verticalOverlap && movingTowards;
 		
@@ -62,23 +62,23 @@ public class Collision {
 	public void Collisionwall(BeweglichesRechteck obj1) {
 		
 	    if (obj1.positionX <= 0 || obj1.positionX >= 786 - 20) {
-	        if (Ball.velocity.getX() > 0 && Ball.velocity.getY() > 0) {
-	            Ball.velocity.setX(Ball.velocity.getX() * (-1));
+	        if (Ball.velocity.getXCur() > 0 && Ball.velocity.getYCur() > 0) {
+	            Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
 	            punkte.addPunkteGegner(1);
 	            GameLogic.createParticles(30);
 	            GameLogic.pauseBall();
-	        } else if (Ball.velocity.getX() > 0 && Ball.velocity.getY() < 0) {
-	            Ball.velocity.setX(Ball.velocity.getX() * (-1));
+	        } else if (Ball.velocity.getXCur() > 0 && Ball.velocity.getYCur() < 0) {
+	            Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
 	            punkte.addPunkteGegner(1);
 	            GameLogic.createParticles(30);
 	            GameLogic.pauseBall();
-	        } else if (Ball.velocity.getX() < 0 && Ball.velocity.getY() > 0) {
-	            Ball.velocity.setX(Ball.velocity.getX() * (-1));
+	        } else if (Ball.velocity.getXCur() < 0 && Ball.velocity.getYCur() > 0) {
+	            Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
 	            punkte.addPunktePlayer(1);
 	            GameLogic.createParticles(30);
 	            GameLogic.pauseBall();
-	        } else if (Ball.velocity.getX() < 0 && Ball.velocity.getY() < 0) {
-	            Ball.velocity.setX(Ball.velocity.getX() * (-1));
+	        } else if (Ball.velocity.getXCur() < 0 && Ball.velocity.getYCur() < 0) {
+	            Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
 	            punkte.addPunktePlayer(1);
 	            GameLogic.createParticles(30);
 	            GameLogic.pauseBall();
@@ -88,14 +88,14 @@ public class Collision {
 	        Gui.refreshPoints();
 	    }
 	    if (obj1.positionY <= 0 || obj1.positionY >= 562 - 20) {
-	        if (Ball.velocity.getX() > 0 && Ball.velocity.getY() > 0) {
-	            Ball.velocity.setY(Ball.velocity.getY() * (-1));
-	        } else if (Ball.velocity.getX() > 0 && Ball.velocity.getY() < 0) {
-	            Ball.velocity.setY(Ball.velocity.getY() * (-1));
-	        } else if (Ball.velocity.getX() < 0 && Ball.velocity.getY() > 0) {
-	            Ball.velocity.setY(Ball.velocity.getY() * (-1));
-	        } else if (Ball.velocity.getX() < 0 && Ball.velocity.getY() < 0) {
-	            Ball.velocity.setY(Ball.velocity.getY() * (-1));
+	        if (Ball.velocity.getXCur() > 0 && Ball.velocity.getYCur() > 0) {
+	            Ball.velocity.setYCur(Ball.velocity.getYCur() * (-1));
+	        } else if (Ball.velocity.getXCur() > 0 && Ball.velocity.getYCur() < 0) {
+	            Ball.velocity.setYCur(Ball.velocity.getYCur() * (-1));
+	        } else if (Ball.velocity.getXCur() < 0 && Ball.velocity.getYCur() > 0) {
+	            Ball.velocity.setYCur(Ball.velocity.getYCur() * (-1));
+	        } else if (Ball.velocity.getXCur() < 0 && Ball.velocity.getYCur() < 0) {
+	            Ball.velocity.setYCur(Ball.velocity.getYCur() * (-1));
 	        }
 	    }
 	}
