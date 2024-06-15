@@ -57,7 +57,7 @@ public class Vector2{
 	    }
 	}
 	
-	public double moveTowards(double current, double target, double maxDelta) {
+	public static double moveTowards(double current, double target, double maxDelta) {
 	    if (current < target) {
 	        return Math.min(current + maxDelta, target);
 	    } else if (current > target) {

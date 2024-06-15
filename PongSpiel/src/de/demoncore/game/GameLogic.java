@@ -1,6 +1,7 @@
 package de.demoncore.game;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -35,7 +36,19 @@ public class GameLogic {
 	public boolean keyUparrowpressed;
 	public boolean keyDownarrowpressed;
 
+	
+	
+	
+	private double reactionDelay = 0.5;
+	private boolean isReacting = false;
+	private Timer reactionTimer = new Timer();
+	private Random random = new Random();
 
+
+	
+	
+	
+	
 public static BeweglichesRechteck getPlayer1() {
 	return player01;
 }
@@ -68,7 +81,8 @@ public static BeweglichesRechteck getPlayer2() {
 				// Laufende Ausführungen im Spiel:
 				Ball01.bouncebewegung(Ball01, player01, player02);
 
-
+				updateBotMovement();
+/*
 				if (Ball01.positionY < (ingamescrheight-50) && Ball01.positionY > 30 && PlayerContinue) {
 					if (Ball01.positionY + 10 > player02.positionY + 40) {
 						Player2.velocity.TVector2(player02, Player2.velocity.getXCur(), Player2.velocity.getYCur());
@@ -76,33 +90,67 @@ public static BeweglichesRechteck getPlayer2() {
 					else if (Ball01.positionY + 10 < player02.positionY + 40) {
 						Player2.velocity.TVector2(player02, Player2.velocity.getXCur(), Player2.velocity.getYCur() * (-1));
 					}
+				}*/
+				
+				// Inside your game loop or key press handling logic
+				if (Ball01.positionY < (ingamescrheight - 50) && Ball01.positionY > 30 && PlayerContinue) {
+				    double targetY = Ball01.positionY + 10;
+				    double currentY = player02.positionY + 40;
+				    
+				    if (targetY > currentY) {
+				        // Accelerate towards the ball's position
+				        Player2.velocity.setYCur(Vector2.moveTowards(Player2.velocity.getYCur(), Player2.velocity.getYMax(), Player2.velocity.getAcc()));
+				    } else if (targetY < currentY) {
+				        // Accelerate towards the ball's position
+				        Player2.velocity.setYCur(Vector2.moveTowards(Player2.velocity.getYCur(), -Player2.velocity.getYMax(), Player2.velocity.getAcc()));
+				    } else {
+				        // Decelerate towards 0
+				        Player2.velocity.setYCur(Vector2.moveTowards(Player2.velocity.getYCur(), 0, Player2.velocity.getAcc()-5));
+				    }
+
+				    // Apply the velocity to move player02
+				    Player2.velocity.TVector2(player02, Player2.velocity.getXCur(), Player2.velocity.getYCur());
+				} else if (PlayerContinue) {
+				    // Decelerate towards 0 when the ball is not in the middle of the screen
+				    Player2.velocity.setYCur(Vector2.moveTowards(Player2.velocity.getYCur(), 0, Player2.velocity.getAcc()-5));
+				    Player2.velocity.TVector2(player02, Player2.velocity.getXCur(), Player2.velocity.getYCur());
 				}
+				
 				
 				
 				if (keyUparrowpressed && PlayerContinue) {
 				    if (player01.positionY > 0) {
 				        // Accelerate towards maxSpeed
-				        Player1.velocity.setYCur(Player1.velocity.moveTowards(Player1.velocity.getYCur(), -Player1.velocity.getYMax(), Player1.velocity.getAcc()));
+				        Player1.velocity.setYCur(Vector2.moveTowards(Player1.velocity.getYCur(), -Player1.velocity.getYMax(), Player1.velocity.getAcc()));
 				        Player1.velocity.TVector2(player01, Player1.velocity.getXCur(), Player1.velocity.getYCur());
 				    }
+				    else if (player01.positionY <= 0) {
+						Player1.velocity.setYCur(0);
+						player01.positionY = 0;
+					}
 				} else if (keyDownarrowpressed && PlayerContinue) {
 				    if (player01.positionY < 480) {
 				        // Accelerate towards maxSpeed
-				        Player1.velocity.setYCur(Player1.velocity.moveTowards(Player1.velocity.getYCur(), Player1.velocity.getYMax(), Player1.velocity.getAcc()));
+				        Player1.velocity.setYCur(Vector2.moveTowards(Player1.velocity.getYCur(), Player1.velocity.getYMax(), Player1.velocity.getAcc()));
 				        Player1.velocity.TVector2(player01, Player1.velocity.getXCur(), Player1.velocity.getYCur());
 				    }
+				    else if (player01.positionY >= 480) {
+						Player1.velocity.setYCur(0);
+						player01.positionY = 480;
+					}
 				} else if (PlayerContinue) {
 				    // Decelerate towards 0
-					if (player01.positionY > 0) {
+					if (player01.positionY <= 0) {
 						Player1.velocity.setYCur(0);
+						player01.positionY = 0;
 					}
-					if (player01.positionY < 480) {
+					if (player01.positionY >= 480) {
 						Player1.velocity.setYCur(0);
+						player01.positionY = 480;
 					}
-				    Player1.velocity.setYCur(Player1.velocity.moveTowards(Player1.velocity.getYCur(), 0, 0.05));
+				    Player1.velocity.setYCur(Vector2.moveTowards(Player1.velocity.getYCur(), 0, 0.05));
 				    Player1.velocity.TVector2(player01, Player1.velocity.getXCur(), Player1.velocity.getYCur());
 				}
-				
 				
 				//Partikel updaten
 				for (Particle p : new ArrayList<Particle>(particles)) {
@@ -194,12 +242,13 @@ public static BeweglichesRechteck getPlayer2() {
 	public void defineObjects() {
 		// You
 		Player1 player1 = new Player1(player01, 0, 0);
-		player1.setSpeed(0, 1.5);
-		Player1.velocity.setAcc(0.05);
+		player1.setSpeed(0, 2.0);
+		Player1.velocity.setAcc(0.10);
 		
 		//Bot
-		Player2 player2 = new Player2(player02, 0, 1);
-		player2.setSpeed(0, 1.5);
+		Player2 player2 = new Player2(player02, 0, 0);
+		player2.setSpeed(0, 2.0);
+		Player2.velocity.setAcc(0.10);
 		
 		//Ball
 		Ball gameBall = new Ball(-1.0, -1.0);
@@ -207,4 +256,72 @@ public static BeweglichesRechteck getPlayer2() {
 		
 	}
 
+	
+	public void updateBotMovement() {
+	    if (!isReacting) {
+	        isReacting = true;
+	        reactionTimer.schedule(new TimerTask() {
+	            @Override
+	            public void run() {
+	                isReacting = false;
+	            }
+	        }, (long) (reactionDelay * 1000));
+	        return;
+	    }
+
+	    double targetY = predictBallPosition();
+	    double currentY = player02.positionY + 40;
+
+	    if (targetY > currentY && player02.positionY <480) {
+	        Player2.velocity.setYCur(Vector2.moveTowards(Player2.velocity.getYCur(), Player2.velocity.getYMax(), Player2.velocity.getAcc()));
+	    } else if (targetY < currentY && player02.positionY > 0) {
+	        Player2.velocity.setYCur(Vector2.moveTowards(Player2.velocity.getYCur(), -Player2.velocity.getYMax(), Player2.velocity.getAcc()));
+	    } else {
+	        Player2.velocity.setYCur(Vector2.moveTowards(Player2.velocity.getYCur(), 0, Player2.velocity.getAcc()));
+	    }
+
+	    if (player02.positionY>=480) {
+			player02.positionY = 480;
+		}
+	    if (player02.positionY<=0) {
+			player02.positionY = 0;
+		}
+	    
+	    // Apply speed variability
+	    Player2.velocity.setYCur(Player2.velocity.getYCur() + (random.nextDouble() - 0.5) * 0.1);
+
+	    // Cap the speed at maxSpeed
+	    if (Math.abs(Player2.velocity.getYCur()) > Player2.velocity.getYMax()) {
+	        Player2.velocity.setYCur(Player2.velocity.getYMax() * Math.signum(Player2.velocity.getYCur()));
+	    }
+
+	    // Simulate hesitation
+	    if (random.nextDouble() < 0.01) {
+	        Player2.velocity.setYCur(-Player2.velocity.getYCur());
+	    }
+
+	    Player2.velocity.setYCur(Player2.velocity.getYCur());
+	    Player2.velocity.TVector2(player02, Player2.velocity.getXCur(), Player2.velocity.getYCur());
+	}
+
+	private double predictBallPosition() {
+	    double ballY = Ball01.positionY;
+	    double ballSpeedY = Ball.velocity.getYCur();
+	    double distanceToPaddle = Math.abs(Ball01.positionX - player02.positionX);
+	    double timeToReachPaddle = distanceToPaddle / Math.abs(Ball.velocity.getXCur());
+	    double predictedY = ballY + ballSpeedY * timeToReachPaddle;
+
+	    // Add a small random error to the prediction
+	    predictedY += (random.nextDouble() - 0.5) * 20;
+
+	    return predictedY;
+	}
+
+
+	
+	
+	
+	
+	
+	
 }
