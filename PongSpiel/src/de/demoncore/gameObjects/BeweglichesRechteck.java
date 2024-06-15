@@ -18,9 +18,11 @@ public class BeweglichesRechteck extends GameObject {
 	boolean check2 = false;
 	boolean check3 = false;
 	
+	boolean only1ball = false;
+	
 	
 	private Player1 player1;
-	Ball gameball = new Ball(-1.0, -1.0);
+	
 	
 
 	
@@ -47,7 +49,7 @@ public class BeweglichesRechteck extends GameObject {
 
 
         // Check for collision with wall
-		//Detection.Collisionwall(obj1);
+		Detection.Collisionwall(obj1);
 		//ballVector2.TVector2(obj1, velX, velY);
 		//gameball.TVector22(obj1, Ball.velocity.getX(), Ball.velocity.getY());
 		Ball.velocity.TVector2(obj1, Ball.velocity.getX(), Ball.velocity.getY());
@@ -55,7 +57,7 @@ public class BeweglichesRechteck extends GameObject {
 		
 		
 		// Check for collisions with PLayer
-		/*
+		
 		if (Detection.isCollidingLeftRight(obj1, obj2)&check==false) {
 			Detection.CollisionLeftRight(obj1, obj2);
 			check = true;
@@ -86,7 +88,7 @@ public class BeweglichesRechteck extends GameObject {
 			check3 = false;
 		}
 
-		*/
+		
         
 	}
 	

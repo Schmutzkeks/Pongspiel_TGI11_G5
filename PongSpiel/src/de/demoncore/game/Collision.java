@@ -8,7 +8,6 @@ public class Collision {
 	public Points punkte = new Points();
 
 
-/*
 
 	public void CollisionLeftRight(BeweglichesRechteck obj1, BeweglichesRechteck obj2) {
 		Ball.velocity.setX(Ball.velocity.getX() * (-1));

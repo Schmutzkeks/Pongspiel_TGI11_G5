@@ -7,7 +7,6 @@ public class Player2 {
 	public static Vector2 velocity;
 	private BeweglichesRechteck playeRechteck;
 	
-
 	public Player2(double spX, double spY) {
 		Player2.velocity = new Vector2(spX, spY);
 	}

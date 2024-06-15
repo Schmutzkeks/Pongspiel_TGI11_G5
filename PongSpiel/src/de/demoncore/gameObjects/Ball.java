@@ -8,7 +8,6 @@ public class Ball {
 	private BeweglichesRechteck ballRechteck;
 
 	public Ball(double spX, double spY) {
-		System.out.println("new Ball");
 		Ball.velocity = new Vector2(spX, spY);
 	}
 	
@@ -16,7 +15,6 @@ public class Ball {
 		Ball.velocity = new Vector2(spX, spY);
 		this.ballRechteck = obj1;
 	}
-	
     public void setSpeed(double spX, double spY) {
     	Ball.velocity.setX(spX);
     	Ball.velocity.setY(spY);
@@ -37,22 +35,18 @@ public class Ball {
 	}
 	
 	public double getX() {
-		System.out.println("Ball getX");
 		return Ball.velocity.getX();
 	}
 	
 	public double getY() {
-		System.out.println("Ball getY");
 		return Ball.velocity.getY();
 	}
 	
 	public void setX(double spX) {
-		System.out.println("Ball setX");
 		Ball.velocity.setX(spX);
 	}
 	
 	public void setY(double spY) {
-		System.out.println("Ball setY");
 		Ball.velocity.setY(spY);
 	}
 }

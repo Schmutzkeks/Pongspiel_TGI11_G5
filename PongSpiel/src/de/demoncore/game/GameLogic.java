@@ -60,6 +60,7 @@ public static BeweglichesRechteck getPlayer2() {
 		player1.setSpeed(0, 1.5);
 		Player2 player2 = new Player2(player02, 0, 0);
 		player2.setSpeed(0, 1.0);
+		Ball gameBall = new Ball(-1.0, -1.0);
 		
 
 
