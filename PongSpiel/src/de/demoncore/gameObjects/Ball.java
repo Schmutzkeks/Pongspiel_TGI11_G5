@@ -5,7 +5,7 @@ import de.demoncore.game.Vector2;
 
 public class Ball {
 	public static Vector2 velocity;
-	private BeweglichesRechteck ballRechteck;
+	public static BeweglichesRechteck Ball01;
 
 	public Ball(double spX, double spY) {
 		Ball.velocity = new Vector2(spX, spY);
@@ -13,7 +13,7 @@ public class Ball {
 	
 	public Ball(BeweglichesRechteck obj1, double spX, double spY) {
 		Ball.velocity = new Vector2(spX, spY);
-		this.ballRechteck = obj1;
+		Ball.Ball01 = obj1;
 	}
     public void setSpeed(double spX, double spY) {
     	Ball.velocity.setXMax(spX);
@@ -49,4 +49,9 @@ public class Ball {
 	public void setY(double spY) {
 		Ball.velocity.setYCur(spY);
 	}
+	public static BeweglichesRechteck setRechteck() {
+		Ball01 = new BeweglichesRechteck(393, 240, 20, 20);		//(posX, posY, breite, hoehe) 
+		return Ball01;
+	}
+
 }

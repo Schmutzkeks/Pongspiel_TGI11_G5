@@ -12,6 +12,7 @@ public class Collision {
 	public void CollisionLeftRight(BeweglichesRechteck obj1, BeweglichesRechteck obj2) {
 		Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
 		Ball.velocity.speedAdd(0.05);
+		
 	}
 
 	public void CollisionTopBottom(BeweglichesRechteck obj1, BeweglichesRechteck obj2) {
@@ -27,11 +28,11 @@ public class Collision {
 		
 		
         // Check if the vertical ranges overlap
-        boolean verticalOverlap = (obj1.positionY < obj2.positionY + 80) && (obj1.positionY + 20 > obj2.positionY);
+        boolean verticalOverlap = (obj1.positionY < obj2.positionY + obj2.groesseY) && (obj1.positionY + obj1.groesseY > obj2.positionY);
 
         // Check if the horizontal edges touch or overlap, considering the velocity
-        boolean horizontalOverlap = (obj1.positionX + 20 + Math.abs(Ball.velocity.getXCur()) >= obj2.positionX) &&
-                                    (obj1.positionX <= obj2.positionX + 20 + Math.abs(Ball.velocity.getXCur()));
+        boolean horizontalOverlap = (obj1.positionX + obj1.groesseX + Math.abs(Ball.velocity.getXCur()) >= obj2.positionX) &&
+                                    (obj1.positionX <= obj2.positionX + obj2.groesseX + Math.abs(Ball.velocity.getXCur()));
 
         // Ensure that obj1 is moving towards obj2
         boolean movingTowards = (Ball.velocity.getXCur() > 0 && obj1.positionX < obj2.positionX) || (Ball.velocity.getXCur() < 0 && obj1.positionX > obj2.positionX);
@@ -44,11 +45,11 @@ public class Collision {
 		
 
         // Check if the horizontal ranges overlap
-        boolean horizontalOverlap = (obj1.positionX < obj2.positionX + 20) && (obj1.positionX + 20 > obj2.positionX);
+        boolean horizontalOverlap = (obj1.positionX < obj2.positionX + obj2.groesseX) && (obj1.positionX + obj1.groesseX > obj2.positionX);
 
         // Check if the vertical edges touch or overlap, considering the velocity
-        boolean verticalOverlap = (obj1.positionY + 20 + Math.abs(Ball.velocity.getYCur()) >= obj2.positionY) &&
-                                  (obj1.positionY <= obj2.positionY + 80 + Math.abs(Ball.velocity.getYCur()));
+        boolean verticalOverlap = (obj1.positionY + obj1.groesseY + Math.abs(Ball.velocity.getYCur()) >= obj2.positionY) &&
+                                  (obj1.positionY <= obj2.positionY + obj2.groesseY + Math.abs(Ball.velocity.getYCur()));
 
         // Ensure that obj1 is moving towards obj2
         boolean movingTowards = (Ball.velocity.getYCur() > 0 && obj1.positionY < obj2.positionY) || (Ball.velocity.getYCur() < 0 && obj1.positionY > obj2.positionY);
