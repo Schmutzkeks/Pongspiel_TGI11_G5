@@ -282,20 +282,20 @@ public static BeweglichesRechteck getPlayer2() {
 	    }
 
 
-	    // Apply speed variability
+	    // speed variability
 	    Player2.velocity.setYCur(Player2.velocity.getYCur() + (random.nextDouble() - 0.5) * 0.1);
 
-	    // Simulate hesitation
+	    //  hesitation
 	    if (random.nextDouble() < 0.01) {
 	        Player2.velocity.setYCur(-Player2.velocity.getYCur());
 	    }
 
-	    // Cap the speed at maxSpeed
+	    // maxSpeed
 	    if (Math.abs(Player2.velocity.getYCur()) > Player2.velocity.getYMax()) {
 	        Player2.velocity.setYCur(Player2.velocity.getYMax() * Math.signum(Player2.velocity.getYCur()));
 	    }
 
-	    // Ensure the player stays within bounds
+	    // ensures Enemy stays within bounds
 	    if (player02.positionY >= 480) {
 	        player02.positionY = 480;
 	    }
@@ -314,7 +314,7 @@ public static BeweglichesRechteck getPlayer2() {
 	    double timeToReachPaddle = distanceToPaddle / Math.abs(Ball.velocity.getXCur());
 	    double predictedY = ballY + ballSpeedY * timeToReachPaddle;
 
-	    // Add a small random error to the prediction
+	    // small random error 
 	    predictedY += (random.nextDouble() - 0.5) * 20;
 
 	    return predictedY;
