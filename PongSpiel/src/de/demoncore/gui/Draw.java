@@ -115,6 +115,11 @@ public class Draw extends JLabel{
 		g.setColor(Shop.getTheme());
 		for (int i = 0; i < objekteImSpiel.size(); i++) {
 			GameObject aktuellesObjekt = objekteImSpiel.get(i);
+			if(aktuellesObjekt == Ball.Ball01)
+				g.setColor(Shop.getTheme(true));
+			else {
+				g.setColor(Shop.getTheme());
+			}
 			if(aktuellesObjekt.istAktiviert)
 				g.fillRect((int)aktuellesObjekt.positionX, (int)aktuellesObjekt.positionY, aktuellesObjekt.groesseX, aktuellesObjekt.groesseY);
 		}

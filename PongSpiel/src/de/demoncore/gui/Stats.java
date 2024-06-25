@@ -128,7 +128,7 @@ public class Stats extends JFrame {
 	
 	
 	public static void updateStats() {
-		String temp = "<html>Spiel Zeit: <br>" +StatsData.getPlaytime()+"</html>";
+		String temp = "<html>Spiel Zeit: <br>" +StatsData.getPlaytime(StatsData.Playtime)+"</html>";
 		lbTimePlayed.setText(temp);
 		temp ="<html><div style='text-align: center;'>Erzielte Punkte: <br>"+StatsData.getPositivPunkte()+"</div></html>";
 		lbPositivPunkte.setText(temp);

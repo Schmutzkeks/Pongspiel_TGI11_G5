@@ -26,7 +26,18 @@ public class Timer1Sek {
 				if(Stats.isExistig()) {
 					Stats.updateStats();
 				}
-
+				
+				if(GameLogic.timeLeft == 1 && GameLogic.BallContinue) {
+					GameLogic.timeLeft=0;
+					Gui.GameEnd();
+				}
+				
+				if(GameLogic.timeLeft > 1 && GameLogic.BallContinue) {
+					GameLogic.timeLeft-=1;
+					try {
+						Gui.setTime();
+					} catch (Exception e) {}
+				}
 			}
 		}, 0, 1000);
 

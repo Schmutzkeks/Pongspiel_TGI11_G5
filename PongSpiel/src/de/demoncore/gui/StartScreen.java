@@ -65,7 +65,7 @@ public class StartScreen extends JFrame {
 		JButton btnStartGame = new JButton("Main Game");
 		btnStartGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Gui.erstellen();
+				Gui.erstellen(false);
 				GameLogic.createObjects();
 				frame.dispose();
 			}
@@ -79,21 +79,21 @@ public class StartScreen extends JFrame {
 		btnStartGame.setBounds(ingamescrwidth/2-63, 281, 126, 23);
 		contentPane.add(btnStartGame);
 		
-		JButton btnButton1 = new JButton("Shop"); //ehemaliges Beispiel 1
-		btnButton1.setBackground(new Color(255, 255, 255));
-		btnButton1.addActionListener(new ActionListener() {
+		JButton btnShop = new JButton("Shop"); //ehemaliges Beispiel 1
+		btnShop.setBackground(new Color(255, 255, 255));
+		btnShop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Shop.erstellen();
 				frame.dispose();
 			}
 		});
-		btnButton1.setBorder(null);
-		btnButton1.setFocusable(false);
-		btnButton1.setFocusPainted(false);
-		btnButton1.setFocusTraversalKeysEnabled(false);
-		btnButton1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnButton1.setBounds(ingamescrwidth/2-63, 329, 126, 23);
-		contentPane.add(btnButton1);
+		btnShop.setBorder(null);
+		btnShop.setFocusable(false);
+		btnShop.setFocusPainted(false);
+		btnShop.setFocusTraversalKeysEnabled(false);
+		btnShop.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnShop.setBounds(337, 416, 126, 23);
+		contentPane.add(btnShop);
 		
 		JButton btnStats = new JButton("Statistiken");
 		btnStats.addActionListener(new ActionListener() {
@@ -110,5 +110,23 @@ public class StartScreen extends JFrame {
 		btnStats.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnStats.setBounds(ingamescrwidth/2-63, 375, 126, 23);
 		contentPane.add(btnStats);
+		
+		JButton btnZeitmodus = new JButton("Zeitmodus");
+		btnZeitmodus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Gui.erstellen(true);
+				GameLogic.createObjects();
+				GameLogic.timeLeft = 7;
+				frame.dispose();
+			}
+		});
+		btnZeitmodus.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnZeitmodus.setFocusable(false);
+		btnZeitmodus.setFocusTraversalKeysEnabled(false);
+		btnZeitmodus.setFocusPainted(false);
+		btnZeitmodus.setBorder(null);
+		btnZeitmodus.setBackground(Color.WHITE);
+		btnZeitmodus.setBounds(337, 329, 126, 23);
+		contentPane.add(btnZeitmodus);
 	}
 }

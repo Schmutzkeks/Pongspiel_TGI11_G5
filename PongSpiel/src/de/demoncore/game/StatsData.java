@@ -1,11 +1,11 @@
 package de.demoncore.game;
 
 public class StatsData {
-		private static int Playtime;	//in sekunden
+		public static int Playtime;	//in sekunden
 		private static int PositivPunkte;
 		private static int NegativPunkte;
 
-		public static String getPlaytime() {
+		public static String getPlaytime(int Playtime) {
 	        int hours = Playtime / 3600;
 	        int minutes = (Playtime % 3600) / 60;
 	        int seconds = Playtime % 60;

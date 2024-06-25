@@ -19,6 +19,7 @@ public class GameLogic {
 	public int screenheight;
 	int ingamescrwidth = 786;
 	int ingamescrheight = 593 - 31;
+	public static int timeLeft = 0;
 	public int speed;
 	public static boolean BallContinue = false;
 	private static boolean PlayerContinue = true;
@@ -149,9 +150,6 @@ public static BeweglichesRechteck getPlayer2() {
 						}
 					}
 				} catch (Exception e) {}
-
-				
-
 			}
 		}, 0, 5);
 	}

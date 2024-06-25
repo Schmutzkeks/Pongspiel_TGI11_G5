@@ -40,6 +40,7 @@ public class Shop extends JFrame {
 	private JLabel lbRed;
 	private JLabel lbYellow;
 	private JLabel lbDarkGreen;
+	private JLabel lbRGB;
 	private JScrollPane scrollPane;
 	private JPanel panel;
 	private JLabel lblweapon;
@@ -275,6 +276,21 @@ public class Shop extends JFrame {
 		lbDarkGreen.setBackground(new Color(0, 128, 0));
 		panel.add(lbDarkGreen);
 		
+		lbRGB = new JLabel("");
+		lbRGB.setBounds(580, 10, 50, 50);
+		lbRGB.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Theme = 8;
+				clearBorder();
+				lbRGB.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+			}
+		});
+		lbRGB.setOpaque(true);
+		lbRGB.setBorder(new LineBorder(new Color(255, 255, 255), 5));
+		lbRGB.setBackground(new Color(0, 128, 0));
+		panel.add(lbRGB);
+		
 		JLabel lbTitlePowerUp = new JLabel("PowerUp's");
 		lbTitlePowerUp.setHorizontalAlignment(SwingConstants.CENTER);
 		lbTitlePowerUp.setForeground(Color.WHITE);
@@ -465,6 +481,24 @@ public class Shop extends JFrame {
 		case 5: return Color.red;
 		case 6: return Color.yellow;
 		case 7: return new Color(0f,0.5f,0f,1f);
+		case 8: return Color.white;
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + Theme);
+			
+		}
+	}
+	public static Color getTheme(boolean ball) {
+		Color[] RGB = {Color.white,Color.blue,Color.green,Color.cyan,Color.magenta,Color.red,Color.yellow, new Color(0f,0.5f,0f,1f)};
+		switch (Theme) {
+		case 0: return Color.white;
+		case 1: return Color.blue;
+		case 2: return Color.green;
+		case 3: return Color.cyan;
+		case 4: return Color.magenta;
+		case 5: return Color.red;
+		case 6: return Color.yellow;
+		case 7: return new Color(0f,0.5f,0f,1f);
+		case 8:if(ball) { return RGB[(int) (Math.random()*RGB.length)];} else {return Color.white;}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + Theme);
 			

@@ -9,10 +9,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
 
 import de.demoncore.actions.KeyHandler;
 import de.demoncore.game.GameLogic;
+import de.demoncore.game.StatsData;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +33,7 @@ public class Gui {
 	private int screenheight;
 	private static JFrame frame;
 	private static JPanel pauseMenu;
+	private static JPanel gameEnd;
 	static JLabel lbPointsPlayer;
 	static JLabel lbPointsGegner;
 	static JLabel lbCountdown;
@@ -39,12 +41,14 @@ public class Gui {
 	public static boolean Paused = false;
 	private static boolean startedCountdown= false;
 	public static boolean Existing=false;
+	private static JLabel timer;
+	private static JLabel scores;
 
-	public static void erstellen() {
+	public static void erstellen(boolean timed) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new Gui(spiellogik);
+					new Gui(spiellogik, timed);
 					frame.setLocationRelativeTo(null);
 					Existing=true;
 					frame.setVisible(true);
@@ -55,7 +59,7 @@ public class Gui {
 		});
 	}
 
-	public Gui(GameLogic spiellogik) {
+	public Gui(GameLogic spiellogik, boolean timed) {
 
 		screenwidth = 800;
 		screenheight = 800;
@@ -65,6 +69,9 @@ public class Gui {
 		frame = new JFrame();
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
+				if(timed && GameLogic.timeLeft == 0) {
+					frame.dispose();
+				}
 				togglePauseMenu();
 			}
 
@@ -131,7 +138,13 @@ public class Gui {
 		pauseMenu.setBackground(new Color(0, 0, 0, 150));
 		pauseMenu.setLayout(null);
 		pauseMenu.setVisible(false);
-
+		
+		gameEnd = new JPanel();
+		gameEnd.setBounds(0, 0, screenwidth, screenheight);
+		gameEnd.setBackground(new Color(0, 0, 0));
+		gameEnd.setLayout(null);
+		gameEnd.setVisible(false);
+		
 		JLabel pauseLabel = new JLabel("Pausiert");
 		pauseLabel.setFont(new Font("Tahoma", Font.BOLD, 50));
 		pauseLabel.setForeground(Shop.getTheme());
@@ -195,18 +208,63 @@ public class Gui {
 			}
 		});
 		lblweapon.setIcon(new ImageIcon(Shop.class.getResource("/resources/Weapon.png")));
-
-		if(Shop.getWeapon())
-			frame.add(lblweapon);
-
 		
+		
+		JLabel title = new JLabel("Spiel beendet");
+		title.setFont(new Font("Tahoma", Font.BOLD, 50));
+		title.setForeground(Shop.getTheme());
+		title.setHorizontalAlignment(SwingConstants.CENTER);
+		title.setBounds(200, 100, 400, 150);
+		gameEnd.add(title);
+		
+		scores = new JLabel("Gegner: 00\tPlayer:00\nPlayer gewinnt!");
+		scores.setFont(new Font("Tahoma", Font.BOLD, 30));
+		scores.setForeground(Shop.getTheme());
+		scores.setHorizontalAlignment(SwingConstants.CENTER);
+		scores.setBounds(200, 250, 400, 150);
+		scores.setVisible(true);
+		gameEnd.add(scores);
+		
+		JButton btnTitleScreen = new JButton("zurück");
+		btnEnd.setBackground(new Color(255, 255, 255));
+		btnTitleScreen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				GameLogic.setPlayerContinue(true);
+			}
+		});
+		btnTitleScreen.setBorder(null);
+		btnTitleScreen.setFocusable(false);
+		btnTitleScreen.setFocusPainted(false);
+		btnTitleScreen.setFocusTraversalKeysEnabled(false);
+		btnTitleScreen.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnTitleScreen.setHorizontalAlignment(SwingConstants.CENTER);
+		btnTitleScreen.setBounds(300, 400, 200, 25);
+		gameEnd.add(btnTitleScreen);
+		
+		
+
+		if(Shop.getWeapon()) {
+			frame.add(lblweapon);}
+		
+		timer = new JLabel("00:00");
+		timer.setFont(new Font("Tahoma", Font.BOLD, 30));
+		timer.setForeground(Shop.getTheme());
+		timer.setHorizontalAlignment(SwingConstants.CENTER);
+		timer.setBounds(200, 50, 400, 100);
+		timer.setVisible(timed);
+		
+
+		frame.add(gameEnd);
 		frame.add(pauseMenu);
 		frame.add(lbPointsPlayer);
 		frame.add(lbPointsGegner);
 		frame.add(lbCountdown);
 		frame.add(lbTextPlayer);
 		frame.add(lbTextGegner);
+		frame.add(timer);
 		frame.add(lbldraw);
+		setTime();
 	
 		frame.setVisible(true);
 	}
@@ -214,7 +272,7 @@ public class Gui {
 	public static void togglePauseMenu() {
 		boolean isPaused = pauseMenu.isVisible();
 		pauseMenu.setVisible(!isPaused);
-		if (isPaused) {
+		if (isPaused && !gameEnd.isVisible()) {
 			GameLogic.BallContinue=!startedCountdown;
 			GameLogic.setPlayerContinue(true);
 			Paused = false;
@@ -232,7 +290,9 @@ public class Gui {
 	}
 
 	public static void startCountdown() {
-		System.out.println("ausgeführt "+ countdown);
+		if(gameEnd.isVisible()) {
+			return;
+		}
 		if(countdown ==0) {
 			startedCountdown = true;
 			lbCountdown.setText("Achtung");
@@ -249,6 +309,27 @@ public class Gui {
 		countdown++;
 	}
 
-
+	public static void setTime(){
+		String temp ="<html><div style='text-align: center;'>Verbleibende Zeit: <br>"+StatsData.getPlaytime(GameLogic.timeLeft)+"</div></html>";
+		timer.setText(temp);
+	}
+	
+	public static void GameEnd() {
+		GameLogic.BallContinue = false;
+		GameLogic.setPlayerContinue(false);
+		gameEnd.setVisible(true);
+		String winner;
+		if(punktePlayer>punkteGegner) {
+			winner = "Spieler hat gewonnen";
+		}else if( punktePlayer<punkteGegner) {
+			winner = "Gegner hat gewonnen";
+		}else {
+			winner = "Unentschieden";
+		}
+		
+		String temp ="<html><div style='text-align: center;'> Gegner:"+punkteGegner+"&nbsp &nbsp &nbsp Spieler:"+punktePlayer+"<br> <br>"+winner+"</div></html>";
+		scores.setText(temp);
+	}
+	
 
 }
