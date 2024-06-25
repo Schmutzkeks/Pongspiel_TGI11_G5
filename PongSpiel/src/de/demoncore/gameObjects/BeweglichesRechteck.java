@@ -4,6 +4,7 @@ import de.demoncore.game.GameObject;
 import de.demoncore.game.Collision;
 import de.demoncore.game.Vector2;
 import de.demoncore.gameObjects.Ball;
+import de.demoncore.gui.Shop;
 
 public class BeweglichesRechteck extends GameObject {
 
@@ -52,7 +53,8 @@ public class BeweglichesRechteck extends GameObject {
 		Detection.Collisionwall(obj1);
 		//ballVector2.TVector2(obj1, velX, velY);
 		//gameball.TVector22(obj1, Ball.velocity.getX(), Ball.velocity.getY());
-		Ball.velocity.TVector2(obj1, Ball.velocity.getXCur(), Ball.velocity.getYCur());
+		Ball.velocity.TVector2(obj1 , Shop.getBallSpeed() ? Ball.velocity.getXCur() / 2 : Ball.velocity.getXCur()
+									, Shop.getBallSpeed() ? Ball.velocity.getYCur() / 2 : Ball.velocity.getYCur());
 		
 		
 		

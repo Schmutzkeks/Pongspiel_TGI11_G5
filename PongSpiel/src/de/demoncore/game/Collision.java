@@ -3,6 +3,7 @@ package de.demoncore.game;
 import de.demoncore.gameObjects.Ball;
 import de.demoncore.gameObjects.BeweglichesRechteck;
 import de.demoncore.gui.Gui;
+import de.demoncore.gui.Shop;
 
 public class Collision {
 	public Points punkte = new Points();
@@ -75,12 +76,12 @@ public class Collision {
 	            GameLogic.pauseBall();
 	        } else if (Ball.velocity.getXCur() < 0 && Ball.velocity.getYCur() > 0) {
 	            Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
-	            punkte.addPunktePlayer(1);
+	            punkte.addPunktePlayer(Shop.getDoublePoints() ? 2 : 1);
 	            GameLogic.createParticles(30);
 	            GameLogic.pauseBall();
 	        } else if (Ball.velocity.getXCur() < 0 && Ball.velocity.getYCur() < 0) {
 	            Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
-	            punkte.addPunktePlayer(1);
+	            punkte.addPunktePlayer(Shop.getDoublePoints() ? 2 : 1);
 	            GameLogic.createParticles(30);
 	            GameLogic.pauseBall();
 	        }

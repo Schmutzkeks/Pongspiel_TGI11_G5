@@ -27,7 +27,7 @@ public class Points {
 	}
 	public void addPunktePlayer(int points) {
 		this.punktePlayer += points;
-		StatsData.addPositivPunkte(1);
+		StatsData.addPositivPunkte(Shop.getDoublePoints() ? 2 : 1);
 
         GameLogic.getPlayer2().istAktiviert = true;
 	}

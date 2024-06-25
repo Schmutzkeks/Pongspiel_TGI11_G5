@@ -11,6 +11,7 @@ import de.demoncore.gameObjects.Particle;
 import de.demoncore.gameObjects.Player1;
 import de.demoncore.gameObjects.Player2;
 import de.demoncore.gui.Gui;
+import de.demoncore.gui.Shop;
 
 public class GameLogic {
 
@@ -82,13 +83,16 @@ public static BeweglichesRechteck getPlayer2() {
 
 				updateBotMovement();
 
+				if(Shop.getPlayerSize())
+					player01.groesseY = 160;
+				else
+					player01.groesseY = 80;
 				
 				if (keyUparrowpressed && PlayerContinue) {
 				    if (player01.positionY > 0) {
 				        // Accelerate towards maxSpeed
 				        Player1.velocity.setYCur(Vector2.moveTowards(Player1.velocity.getYCur(), -Player1.velocity.getYMax(), Player1.velocity.getAcc()));
 				        Player1.velocity.TVector2(player01, Player1.velocity.getXCur(), Player1.velocity.getYCur());
-				        Player1.player01.groesseY = 200;   		//Player size
 				    }
 				    else if (player01.positionY <= 0) {
 						Player1.velocity.setYCur(0);
