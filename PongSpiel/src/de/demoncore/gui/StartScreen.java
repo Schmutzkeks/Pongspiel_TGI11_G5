@@ -67,6 +67,10 @@ public class StartScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Gui.erstellen(false);
 				GameLogic.createObjects();
+				Gui.countdown = 0;
+				GameLogic.BallContinue=false;
+				GameLogic.setPlayerContinue(true);
+				Gui.Paused = false;
 				frame.dispose();
 			}
 		});
@@ -79,7 +83,7 @@ public class StartScreen extends JFrame {
 		btnStartGame.setBounds(ingamescrwidth/2-63, 281, 126, 23);
 		contentPane.add(btnStartGame);
 		
-		JButton btnShop = new JButton("Shop"); //ehemaliges Beispiel 1
+		JButton btnShop = new JButton("Shop");
 		btnShop.setBackground(new Color(255, 255, 255));
 		btnShop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -116,7 +120,11 @@ public class StartScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Gui.erstellen(true);
 				GameLogic.createObjects();
-				GameLogic.timeLeft = 7;
+				GameLogic.timeLeft = 180;
+				GameLogic.BallContinue=false;
+				Gui.countdown = 0;
+				GameLogic.setPlayerContinue(true);
+				Gui.Paused = false;
 				frame.dispose();
 			}
 		});

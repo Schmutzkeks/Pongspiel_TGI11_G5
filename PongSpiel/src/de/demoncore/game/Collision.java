@@ -13,11 +13,13 @@ public class Collision {
 	public void CollisionLeftRight(BeweglichesRechteck obj1, BeweglichesRechteck obj2) {
 		Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
 		Ball.velocity.speedAdd(0.05);
+		MusicPlayer.playSound(2, false);
 		
 	}
 
 	public void CollisionTopBottom(BeweglichesRechteck obj1, BeweglichesRechteck obj2) {
 		Ball.velocity.setYCur(Ball.velocity.getYCur() * (-1));
+		MusicPlayer.playSound(2, false);
 	}
 
 
@@ -69,21 +71,25 @@ public class Collision {
 	            punkte.addPunkteGegner(1);
 	            GameLogic.createParticles(30);
 	            GameLogic.pauseBall();
+	            MusicPlayer.playSound(3, false);
 	        } else if (Ball.velocity.getXCur() > 0 && Ball.velocity.getYCur() < 0) {
 	            Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
 	            punkte.addPunkteGegner(1);
 	            GameLogic.createParticles(30);
 	            GameLogic.pauseBall();
+	            MusicPlayer.playSound(3, false);
 	        } else if (Ball.velocity.getXCur() < 0 && Ball.velocity.getYCur() > 0) {
 	            Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
 	            punkte.addPunktePlayer(Shop.getDoublePoints() ? 2 : 1);
 	            GameLogic.createParticles(30);
 	            GameLogic.pauseBall();
+	            MusicPlayer.playSound(3, false);
 	        } else if (Ball.velocity.getXCur() < 0 && Ball.velocity.getYCur() < 0) {
 	            Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
 	            punkte.addPunktePlayer(Shop.getDoublePoints() ? 2 : 1);
 	            GameLogic.createParticles(30);
 	            GameLogic.pauseBall();
+	            MusicPlayer.playSound(3, false);
 	        }
 	        Gui.punkteGegner = punkte.getPunkteGegner();
 	        Gui.punktePlayer = punkte.getPunktePlayer();
@@ -92,12 +98,16 @@ public class Collision {
 	    if (obj1.positionY <= 0 || obj1.positionY >= 562 - 20) {
 	        if (Ball.velocity.getXCur() > 0 && Ball.velocity.getYCur() > 0) {
 	            Ball.velocity.setYCur(Ball.velocity.getYCur() * (-1));
+	            MusicPlayer.playSound(2, false);
 	        } else if (Ball.velocity.getXCur() > 0 && Ball.velocity.getYCur() < 0) {
 	            Ball.velocity.setYCur(Ball.velocity.getYCur() * (-1));
+	            MusicPlayer.playSound(2, false);
 	        } else if (Ball.velocity.getXCur() < 0 && Ball.velocity.getYCur() > 0) {
 	            Ball.velocity.setYCur(Ball.velocity.getYCur() * (-1));
+	            MusicPlayer.playSound(2, false);
 	        } else if (Ball.velocity.getXCur() < 0 && Ball.velocity.getYCur() < 0) {
 	            Ball.velocity.setYCur(Ball.velocity.getYCur() * (-1));
+	            MusicPlayer.playSound(2, false);
 	        }
 	    }
 	}

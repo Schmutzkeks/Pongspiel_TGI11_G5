@@ -5,14 +5,17 @@ import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 
 import de.demoncore.actions.KeyHandler;
 import de.demoncore.game.GameLogic;
 import de.demoncore.game.StatsData;
+import de.demoncore.game.MusicPlayer;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -34,15 +37,21 @@ public class Gui {
 	private static JFrame frame;
 	private static JPanel pauseMenu;
 	private static JPanel gameEnd;
+	private static JPanel settings;
 	static JLabel lbPointsPlayer;
 	static JLabel lbPointsGegner;
 	static JLabel lbCountdown;
-	private static int countdown =0;
+	public static int countdown =0;
 	public static boolean Paused = false;
-	private static boolean startedCountdown= false;
+	public static boolean startedCountdown= false;
 	public static boolean Existing=false;
 	private static JLabel timer;
 	private static JLabel scores;
+	private static JButton btnTitleScreen;
+	private static JButton btnEnd;
+	private static JButton btnSettings;
+	private static JButton btnBack;
+	private static JButton btnContinue;
 
 	public static void erstellen(boolean timed) {
 		EventQueue.invokeLater(new Runnable() {
@@ -72,7 +81,11 @@ public class Gui {
 				if(timed && GameLogic.timeLeft == 0) {
 					frame.dispose();
 				}
-				togglePauseMenu();
+				if(settings.isVisible()) {
+					toggleSettings();
+				}else {
+					togglePauseMenu();
+				}
 			}
 
 			public void windowClosed(WindowEvent e) {
@@ -92,7 +105,11 @@ public class Gui {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					togglePauseMenu();
+					if(settings.isVisible()) {
+						toggleSettings();
+					}else {
+						togglePauseMenu();
+					}
 				}
 			}
 		});
@@ -138,13 +155,19 @@ public class Gui {
 		pauseMenu.setBackground(new Color(0, 0, 0, 150));
 		pauseMenu.setLayout(null);
 		pauseMenu.setVisible(false);
-		
+
 		gameEnd = new JPanel();
 		gameEnd.setBounds(0, 0, screenwidth, screenheight);
 		gameEnd.setBackground(new Color(0, 0, 0));
 		gameEnd.setLayout(null);
 		gameEnd.setVisible(false);
-		
+
+		settings = new JPanel();
+		settings.setBounds(0, 0, screenwidth, screenheight);
+		settings.setBackground(new Color(0, 0, 0));
+		settings.setLayout(null);
+		settings.setVisible(false);
+
 		JLabel pauseLabel = new JLabel("Pausiert");
 		pauseLabel.setFont(new Font("Tahoma", Font.BOLD, 50));
 		pauseLabel.setForeground(Shop.getTheme());
@@ -152,7 +175,7 @@ public class Gui {
 		pauseLabel.setBounds(200, 50, 400, 100);
 		pauseMenu.add(pauseLabel);
 
-		JButton btnContinue = new JButton("Fortsetzen"); 
+		btnContinue = new JButton("Fortsetzen"); 
 		btnContinue.setBackground(new Color(255, 255, 255));
 		btnContinue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,11 +190,11 @@ public class Gui {
 		btnContinue.setBounds(screenwidth/2-63, 281, 126, 23);
 		pauseMenu.add(btnContinue);
 
-		JButton btnBack = new JButton("Hauptmenü"); 
+		btnBack = new JButton("Hauptmenü"); 
 		btnBack.setBackground(new Color(255, 255, 255));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				togglePauseMenu();
+				//togglePauseMenu();
 				frame.dispose();
 			}
 		});
@@ -183,7 +206,22 @@ public class Gui {
 		btnBack.setBounds(screenwidth/2-63, 329, 126, 23);
 		pauseMenu.add(btnBack);
 
-		JButton btnEnd = new JButton("Spiel Beenden"); 
+		btnSettings = new JButton("Einstellungen"); 
+		btnSettings.setBackground(new Color(255, 255, 255));
+		btnSettings.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				toggleSettings();//TODO 
+			}
+		});
+		btnSettings.setBorder(null);
+		btnSettings.setFocusable(false);
+		btnSettings.setFocusPainted(false);
+		btnSettings.setFocusTraversalKeysEnabled(false);
+		btnSettings.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnSettings.setBounds(screenwidth/2-63, 375, 126, 23);
+		pauseMenu.add(btnSettings);
+
+		btnEnd = new JButton("Spiel Beenden"); 
 		btnEnd.setBackground(new Color(255, 255, 255));
 		btnEnd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -195,9 +233,9 @@ public class Gui {
 		btnEnd.setFocusPainted(false);
 		btnEnd.setFocusTraversalKeysEnabled(false);
 		btnEnd.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnEnd.setBounds(screenwidth/2-63, 375, 126, 23);
+		btnEnd.setBounds(screenwidth/2-63, 420, 126, 23);
 		pauseMenu.add(btnEnd);
-		
+
 		JLabel lblweapon = new JLabel("");
 		lblweapon.setBounds(525,600, 177, 100);
 		lblweapon.addMouseListener(new MouseAdapter() {
@@ -208,15 +246,73 @@ public class Gui {
 			}
 		});
 		lblweapon.setIcon(new ImageIcon(Shop.class.getResource("/resources/Weapon.png")));
-		
-		
+
+
 		JLabel title = new JLabel("Spiel beendet");
 		title.setFont(new Font("Tahoma", Font.BOLD, 50));
 		title.setForeground(Shop.getTheme());
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		title.setBounds(200, 100, 400, 150);
 		gameEnd.add(title);
+
+		JLabel title2 = new JLabel("Einstellungen");
+		title2.setFont(new Font("Tahoma", Font.BOLD, 50));
+		title2.setForeground(Shop.getTheme());
+		title2.setHorizontalAlignment(SwingConstants.CENTER);
+		title2.setBounds(200, 50, 400, 100);
+		settings.add(title2);
+
+		JLabel lbnewJLabel = new JLabel("Lautstärke:");
+		lbnewJLabel.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lbnewJLabel.setForeground(Shop.getTheme());
+		lbnewJLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lbnewJLabel.setBounds(37, 185, 400, 50);
+		settings.add(lbnewJLabel);
+
+		JSlider sliderVolume = new JSlider();
+		sliderVolume.setFocusTraversalKeysEnabled(false);
+		sliderVolume.setFocusable(false);
+		sliderVolume.setBackground(Color.GRAY);
+		sliderVolume.setForeground(Color.GRAY);
+		sliderVolume.setSnapToTicks(true);
+		sliderVolume.setMajorTickSpacing(2);
+		sliderVolume.setMinimum(-60);
+		sliderVolume.setMaximum(-10);
+		sliderVolume.setValue((int) MusicPlayer.totalVolume);
+		sliderVolume.addChangeListener(e -> {
+			float volume = sliderVolume.getValue();
+			MusicPlayer.setVolumeAll(volume);
+			MusicPlayer.setVolume(GameLogic.backgroundMusic, sliderVolume.getValue()-20);
+		});
+		sliderVolume.setBounds(441, 200, 160, 26);
+		settings.add(sliderVolume);
 		
+		JLabel lblNewLabel_1_1 = new JLabel("Musik Ein/Aus:");
+		lblNewLabel_1_1.setForeground(Color.WHITE);
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblNewLabel_1_1.setBounds(120, 235, 400, 50);
+		settings.add(lblNewLabel_1_1);
+		
+		JCheckBox chMusicEnabled = new JCheckBox("");
+		chMusicEnabled.setBackground(Color.GRAY);
+		chMusicEnabled.setForeground(Color.GRAY);
+		chMusicEnabled.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameLogic.MusicEnabled = chMusicEnabled.isSelected();
+				MusicPlayer.stopSound(GameLogic.backgroundMusic);
+				if(GameLogic.MusicEnabled) {
+					MusicPlayer.playSound(GameLogic.backgroundMusic, true);
+					MusicPlayer.setVolume(GameLogic.backgroundMusic, MusicPlayer.totalVolume-20);
+				}
+			}
+		});
+		chMusicEnabled.setFocusPainted(false);
+		chMusicEnabled.setFocusable(false);
+		chMusicEnabled.setRequestFocusEnabled(false);
+		chMusicEnabled.setBounds(500, 250, 21, 23);
+		chMusicEnabled.setSelected(GameLogic.MusicEnabled);
+		settings.add(chMusicEnabled);
+
 		scores = new JLabel("Gegner: 00\tPlayer:00\nPlayer gewinnt!");
 		scores.setFont(new Font("Tahoma", Font.BOLD, 30));
 		scores.setForeground(Shop.getTheme());
@@ -224,8 +320,8 @@ public class Gui {
 		scores.setBounds(200, 250, 400, 150);
 		scores.setVisible(true);
 		gameEnd.add(scores);
-		
-		JButton btnTitleScreen = new JButton("zurück");
+
+		btnTitleScreen = new JButton("zurück");
 		btnEnd.setBackground(new Color(255, 255, 255));
 		btnTitleScreen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -241,20 +337,20 @@ public class Gui {
 		btnTitleScreen.setHorizontalAlignment(SwingConstants.CENTER);
 		btnTitleScreen.setBounds(300, 400, 200, 25);
 		gameEnd.add(btnTitleScreen);
-		
-		
+
+
 
 		if(Shop.getWeapon()) {
 			frame.add(lblweapon);}
-		
+
 		timer = new JLabel("00:00");
 		timer.setFont(new Font("Tahoma", Font.BOLD, 30));
 		timer.setForeground(Shop.getTheme());
 		timer.setHorizontalAlignment(SwingConstants.CENTER);
 		timer.setBounds(200, 50, 400, 100);
 		timer.setVisible(timed);
-		
 
+		frame.add(settings);
 		frame.add(gameEnd);
 		frame.add(pauseMenu);
 		frame.add(lbPointsPlayer);
@@ -265,7 +361,7 @@ public class Gui {
 		frame.add(timer);
 		frame.add(lbldraw);
 		setTime();
-	
+
 		frame.setVisible(true);
 	}
 
@@ -313,7 +409,7 @@ public class Gui {
 		String temp ="<html><div style='text-align: center;'>Verbleibende Zeit: <br>"+StatsData.getPlaytime(GameLogic.timeLeft)+"</div></html>";
 		timer.setText(temp);
 	}
-	
+
 	public static void GameEnd() {
 		GameLogic.BallContinue = false;
 		GameLogic.setPlayerContinue(false);
@@ -326,10 +422,19 @@ public class Gui {
 		}else {
 			winner = "Unentschieden";
 		}
-		
+
 		String temp ="<html><div style='text-align: center;'> Gegner:"+punkteGegner+"&nbsp &nbsp &nbsp Spieler:"+punktePlayer+"<br> <br>"+winner+"</div></html>";
 		scores.setText(temp);
 	}
-	
+
+	public static void toggleSettings() {
+		settings.setVisible(!settings.isVisible());
+		btnBack.setEnabled(!settings.isVisible());
+		btnContinue.setEnabled(!settings.isVisible());
+		btnEnd.setEnabled(!settings.isVisible());
+		btnSettings.setEnabled(!settings.isVisible());
+		btnTitleScreen.setEnabled(!settings.isVisible());
+	}
+
 
 }

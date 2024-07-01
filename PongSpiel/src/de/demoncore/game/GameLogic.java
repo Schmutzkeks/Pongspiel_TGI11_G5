@@ -24,6 +24,8 @@ public class GameLogic {
 	public int speed;
 	public static boolean BallContinue = false;
 	private static boolean PlayerContinue = true;
+	public static boolean MusicEnabled = true;
+	public static int backgroundMusic = 1;
 
 	public static ArrayList<GameObject> spielObjekte;
 	public static ArrayList<Particle> particles;
@@ -68,10 +70,10 @@ public static BeweglichesRechteck getPlayer2() {
 		
 
 		createObjects();
-		
-
 		defineObjects();
 		
+		MusicPlayer.playSound(backgroundMusic, true);
+		MusicPlayer.setVolume(backgroundMusic, -40);
 
 
 		gameTimer.scheduleAtFixedRate(new TimerTask(){ 
