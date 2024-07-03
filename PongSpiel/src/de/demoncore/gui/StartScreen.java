@@ -136,5 +136,71 @@ public class StartScreen extends JFrame {
 		btnZeitmodus.setBackground(Color.WHITE);
 		btnZeitmodus.setBounds(337, 329, 126, 23);
 		contentPane.add(btnZeitmodus);
-	}
+	
+		
+
+        JButton btnEasy = new JButton("Easy");
+        btnEasy.setBounds(43, 623, 90, 30);
+        btnEasy.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                GameLogic.botDifficulty = GameLogic.EASY;
+            }
+        });
+        btnEasy.setFont(new Font("Tahoma", Font.BOLD, 15));
+        btnEasy.setFocusable(false);
+        btnEasy.setFocusTraversalKeysEnabled(false);
+        btnEasy.setFocusPainted(false);
+        btnEasy.setBorder(null);
+        btnEasy.setBackground(Color.WHITE);
+        contentPane.add(btnEasy);
+
+        JButton btnMedium = new JButton("Medium");
+        btnMedium.setBounds(143, 623, 90, 30);
+        btnMedium.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                GameLogic.botDifficulty = GameLogic.MEDIUM;
+            }
+        });
+        btnMedium.setFont(new Font("Tahoma", Font.BOLD, 15));
+        btnMedium.setFocusable(false);
+        btnMedium.setFocusTraversalKeysEnabled(false);
+        btnMedium.setFocusPainted(false);
+        btnMedium.setBorder(null);
+        btnMedium.setBackground(Color.WHITE);
+        contentPane.add(btnMedium);
+
+        JButton btnHard = new JButton("Hard");
+        btnHard.setBounds(243, 623, 100, 30);
+        btnHard.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                GameLogic.botDifficulty = GameLogic.HARD;
+            }
+        });
+        btnHard.setFont(new Font("Tahoma", Font.BOLD, 15));
+        btnHard.setFocusable(false);
+        btnHard.setFocusTraversalKeysEnabled(false);
+        btnHard.setFocusPainted(false);
+        btnHard.setBorder(null);
+        btnHard.setBackground(Color.WHITE);
+        contentPane.add(btnHard);
+        
+        
+        JButton btnimpossible = new JButton("Impossible");
+        btnimpossible.setBounds(353, 623, 100, 30);
+        btnimpossible.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                GameLogic.botDifficulty = GameLogic.IMPOSSIBLE;
+            }
+        });
+        btnimpossible.setFont(new Font("Tahoma", Font.BOLD, 15));
+        btnimpossible.setFocusable(false);
+        btnimpossible.setFocusTraversalKeysEnabled(false);
+        btnimpossible.setFocusPainted(false);
+        btnimpossible.setBorder(null);
+        btnimpossible.setBackground(Color.WHITE);
+        contentPane.add(btnimpossible);
+    }
+	
+	
+	
 }

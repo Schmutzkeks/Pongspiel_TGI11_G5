@@ -46,10 +46,23 @@ public class GameLogic {
 	private Timer reactionTimer = new Timer();
 	private Random random = new Random();
 
-
 	private boolean isHesitating = false;
 	private int hesitationCounter1 = 0;
+	private int hesitationCounter1_towhat = 1001;
 	private int hesitationCounter2 = 0;
+	private int hesitationCounter2_towaht = 51;
+	
+    public static final int EASY = 1;
+    public static final int MEDIUM = 2;
+    public static final int HARD = 3;
+    public static final int IMPOSSIBLE = 4;
+    public static int botDifficulty = MEDIUM; // Default
+    boolean done = false;
+    
+	double randompredictionnumber = 20;
+	double hesitationnumber = 0.002;
+	double smoothFactor = 0.8; // Smoothing factor
+	double botupdating_screenwidth = 2;
 	
 	
 	
@@ -81,12 +94,14 @@ public static BeweglichesRechteck getPlayer2() {
 		gameTimer.scheduleAtFixedRate(new TimerTask(){ 
 			@Override
 			public void run() {
-
+				
+			
+				
 				// Laufende Ausführungen im Spiel:
 				Ball01.bouncebewegung(Ball01, player01, player02);
 				
 							
-				if (Ball01.positionX<ingamescrwidth/2) {
+				if (Ball01.positionX<ingamescrwidth/botupdating_screenwidth) {
 					updateBotMovement();
 				}
 				
@@ -247,16 +262,19 @@ public static BeweglichesRechteck getPlayer2() {
 
 	
 	public void updateBotMovement() {
+		difficultynumbers();
+		
+		
 	    double targetY = predictBallPosition();
 	    double currentY = player02.positionY + 40;
-	    double smoothFactor = 0.8; // Smoothing factor
 	    
 	    
-	    if (hesitationCounter1>1000) {
+	    
+	    if (hesitationCounter1>hesitationCounter1_towhat) {
 			isHesitating = true;
 			hesitationCounter1=0;
 		}
-	    else if (hesitationCounter2>=51) {
+	    else if (hesitationCounter2>=hesitationCounter2_towaht) {
 	    	isHesitating = false;
 		}
 	    
@@ -274,8 +292,8 @@ public static BeweglichesRechteck getPlayer2() {
 	    }
 
 	    
-	    if (isHesitating && hesitationCounter2 <51 && Ball01.positionX<screenwidth/4 && Ball.velocity.getXCur()<0) {
-	    	 Player2.velocity.setYCur(-Player2.velocity.getYCur());
+	    if (isHesitating && hesitationCounter2 <hesitationCounter2_towaht && Ball01.positionX<screenwidth/4 && Ball.velocity.getXCur()<0) {
+	    	 Player2.velocity.setYCur(Vector2.moveTowards(Player2.velocity.getYCur(), 0, 0.02));
 	    	 hesitationCounter2++;
 		}
 	    else {
@@ -291,9 +309,8 @@ public static BeweglichesRechteck getPlayer2() {
 
 	    //  hesitation
 	    
-	    if (random.nextDouble() < 0.002) {
-	        Player2.velocity.setYCur(-Player2.velocity.getYCur());
-	        //hesitation = false;
+	    if (random.nextDouble() < hesitationnumber) {
+	    	 Player2.velocity.setYCur(Vector2.moveTowards(Player2.velocity.getYCur(), 0, 0.02));
 	    }
 	    
 
@@ -323,12 +340,54 @@ public static BeweglichesRechteck getPlayer2() {
 	    double predictedY = ballY + ballSpeedY * timeToReachPaddle;
 
 	    // small random error 
-	    predictedY += (random.nextDouble() - 0.5) * 20;
+	    double randomnumberforprediction = (random.nextDouble() - 0.5) * randompredictionnumber;
+	    predictedY += randomnumberforprediction;
 
 	    return predictedY;
 	}
 
 
+	private void difficultynumbers() {
+		if (done==false) {
+			switch (botDifficulty) {
+			case EASY:
+				randompredictionnumber = 150;
+				hesitationnumber = 0.003;
+				hesitationCounter1_towhat = 1001;
+				hesitationCounter2_towaht = 71;
+				smoothFactor = 0.8;
+				botupdating_screenwidth = 2;
+				break;
+			case MEDIUM:
+				randompredictionnumber = 55;
+				hesitationnumber = 0.0015;
+				hesitationCounter1_towhat = 1001;
+				hesitationCounter2_towaht = 36;
+				smoothFactor = 0.8;
+				botupdating_screenwidth = 2;
+				break;
+			case HARD:
+				randompredictionnumber = 25;
+				hesitationnumber = 0.0005;
+				hesitationCounter1_towhat = 2001;
+				hesitationCounter2_towaht = 16;
+				smoothFactor = 0.8;
+				botupdating_screenwidth = 2;
+				break;
+			case IMPOSSIBLE:
+				randompredictionnumber = 0;
+				hesitationnumber = 0.0;
+				hesitationCounter1_towhat = 2001;
+				hesitationCounter2_towaht = 0;
+				smoothFactor = 1;
+				botupdating_screenwidth = 1.25;
+				break;
+			}
+			System.out.println("Difficulty: " + botDifficulty);
+			done = true;
+		}
+
+	}
 	
 	
 	
