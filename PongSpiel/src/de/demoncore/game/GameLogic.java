@@ -47,7 +47,9 @@ public class GameLogic {
 	private Random random = new Random();
 
 
-	
+	private boolean isHesitating = false;
+	private int hesitationCounter1 = 0;
+	private int hesitationCounter2 = 0;
 	
 	
 	
@@ -82,8 +84,12 @@ public static BeweglichesRechteck getPlayer2() {
 
 				// Laufende Ausführungen im Spiel:
 				Ball01.bouncebewegung(Ball01, player01, player02);
-
-				updateBotMovement();
+				
+							
+				if (Ball01.positionX<ingamescrwidth/2) {
+					updateBotMovement();
+				}
+				
 
 				if(Shop.getPlayerSize())
 					player01.groesseY = 160;
@@ -241,7 +247,21 @@ public static BeweglichesRechteck getPlayer2() {
 
 	
 	public void updateBotMovement() {
-		
+	    double targetY = predictBallPosition();
+	    double currentY = player02.positionY + 40;
+	    double smoothFactor = 0.8; // Smoothing factor
+	    
+	    
+	    if (hesitationCounter1>1000) {
+			isHesitating = true;
+			hesitationCounter1=0;
+		}
+	    else if (hesitationCounter2>=51) {
+	    	isHesitating = false;
+		}
+	    
+	    
+	    
 	    if (!isReacting) {
 	        isReacting = true;
 	        reactionTimer.schedule(new TimerTask() {
@@ -253,25 +273,29 @@ public static BeweglichesRechteck getPlayer2() {
 	        return;
 	    }
 
-	    double targetY = predictBallPosition();
-	    double currentY = player02.positionY + 40;
-
-	    if (targetY > currentY && player02.positionY <480) {
-	        Player2.velocity.setYCur(Vector2.moveTowards(Player2.velocity.getYCur(), Player2.velocity.getYMax(), Player2.velocity.getAcc()));
-	    } else if (targetY < currentY && player02.positionY > 0) {
-	        Player2.velocity.setYCur(Vector2.moveTowards(Player2.velocity.getYCur(), -Player2.velocity.getYMax(), Player2.velocity.getAcc()));
-	    } else {
-	        Player2.velocity.setYCur(Vector2.moveTowards(Player2.velocity.getYCur(), 0, Player2.velocity.getAcc()));
-	    }
+	    
+	    if (isHesitating && hesitationCounter2 <51 && Ball01.positionX<screenwidth/4 && Ball.velocity.getXCur()<0) {
+	    	 Player2.velocity.setYCur(-Player2.velocity.getYCur());
+	    	 hesitationCounter2++;
+		}
+	    else {
+	        double newYVelocity = Vector2.moveTowards(Player2.velocity.getYCur(), targetY > currentY ? Player2.velocity.getYMax() : -Player2.velocity.getYMax(), Player2.velocity.getAcc());
+	        Player2.velocity.setYCur(Player2.velocity.getYCur() + smoothFactor * (newYVelocity - Player2.velocity.getYCur()));
+	        hesitationCounter1++;
+	        hesitationCounter2 = 0;
+		}
 
 
 	    // speed variability
 	    Player2.velocity.setYCur(Player2.velocity.getYCur() + (random.nextDouble() - 0.5) * 0.1);
 
 	    //  hesitation
-	    if (random.nextDouble() < 0.01) {
+	    
+	    if (random.nextDouble() < 0.002) {
 	        Player2.velocity.setYCur(-Player2.velocity.getYCur());
+	        //hesitation = false;
 	    }
+	    
 
 	    // maxSpeed
 	    if (Math.abs(Player2.velocity.getYCur()) > Player2.velocity.getYMax()) {
@@ -287,7 +311,8 @@ public static BeweglichesRechteck getPlayer2() {
 	    }
 
 	    Player2.velocity.TVector2(player02, Player2.velocity.getXCur(), Player2.velocity.getYCur());
-
+	    
+	    
 	}
 
 	private double predictBallPosition() {
