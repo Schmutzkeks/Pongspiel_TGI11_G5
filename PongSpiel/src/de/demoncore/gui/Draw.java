@@ -37,7 +37,6 @@ public class Draw extends JLabel{
 	
 		try {
 			laserBild = ImageIO.read(Main.class.getResourceAsStream("/resources/laser.png"));
-			System.out.println(laserBild.getHeight());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,7 +1,5 @@
 package de.demoncore.game;
 
-import de.demoncore.gameObjects.Ball;
-
 public class GameObject {
 	
 

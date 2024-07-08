@@ -35,6 +35,13 @@ public class KeyHandler implements KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			gamelogic.keyDownarrowpressed = true;
 		}
+		
+		if (e.getKeyChar() == 'w'|| e.getKeyChar() == 'W') {
+			gamelogic.keyWpressed = true;
+		
+		} else if (e.getKeyChar() == 's'|| e.getKeyChar() == 'S') {
+			gamelogic.keySpressed = true;
+		}
 	}
 
 	@Override
@@ -53,7 +60,12 @@ public class KeyHandler implements KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			gamelogic.keyDownarrowpressed = false;
 		}
+		if (e.getKeyChar() == 'w'|| e.getKeyChar() == 'W') {
+			gamelogic.keyWpressed = false;
 		
+		} else if (e.getKeyChar() == 's'|| e.getKeyChar() == 'S') {
+			gamelogic.keySpressed = false;
+		}
 		
 	}
 

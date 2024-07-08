@@ -67,6 +67,8 @@ public class StartScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Gui.erstellen(false);
 				GameLogic.createObjects();
+				GameLogic.getPlayer2().positionX = 50;
+				GameLogic.getPlayer3().positionX = -50;
 				Gui.countdown = 0;
 				GameLogic.BallContinue=false;
 				GameLogic.setPlayerContinue(true);
@@ -80,7 +82,7 @@ public class StartScreen extends JFrame {
 		btnStartGame.setBorder(null);
 		btnStartGame.setBackground(new Color(255, 255, 255));
 		btnStartGame.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnStartGame.setBounds(ingamescrwidth/2-63, 281, 126, 23);
+		btnStartGame.setBounds(338, 233, 126, 23);
 		contentPane.add(btnStartGame);
 		
 		JButton btnShop = new JButton("Shop");
@@ -96,7 +98,7 @@ public class StartScreen extends JFrame {
 		btnShop.setFocusPainted(false);
 		btnShop.setFocusTraversalKeysEnabled(false);
 		btnShop.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnShop.setBounds(337, 416, 126, 23);
+		btnShop.setBounds(338, 425, 126, 23);
 		contentPane.add(btnShop);
 		
 		JButton btnStats = new JButton("Statistiken");
@@ -112,7 +114,7 @@ public class StartScreen extends JFrame {
 		btnStats.setFocusPainted(false);
 		btnStats.setBorder(null);
 		btnStats.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnStats.setBounds(ingamescrwidth/2-63, 375, 126, 23);
+		btnStats.setBounds(338, 377, 126, 23);
 		contentPane.add(btnStats);
 		
 		JButton btnZeitmodus = new JButton("Zeitmodus");
@@ -120,6 +122,8 @@ public class StartScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Gui.erstellen(true);
 				GameLogic.createObjects();
+				GameLogic.getPlayer2().positionX = 50;
+				GameLogic.getPlayer3().positionX = -50;
 				GameLogic.timeLeft = 180;
 				GameLogic.BallContinue=false;
 				Gui.countdown = 0;
@@ -134,8 +138,33 @@ public class StartScreen extends JFrame {
 		btnZeitmodus.setFocusPainted(false);
 		btnZeitmodus.setBorder(null);
 		btnZeitmodus.setBackground(Color.WHITE);
-		btnZeitmodus.setBounds(337, 329, 126, 23);
+		btnZeitmodus.setBounds(338, 281, 126, 23);
 		contentPane.add(btnZeitmodus);
+		
+		JButton btn2Player = new JButton("2 Spieler");
+		btn2Player.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Gui.erstellen(true);
+				GameLogic.Multiplayer = true;
+				GameLogic.createObjects();
+				GameLogic.getPlayer2().positionX = -50;
+				GameLogic.getPlayer3().positionX = 50;
+				GameLogic.timeLeft = 180;
+				GameLogic.BallContinue=false;
+				Gui.countdown = 0;
+				GameLogic.setPlayerContinue(true);
+				Gui.Paused = false;
+				frame.dispose();
+			}
+		});
+		btn2Player.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btn2Player.setFocusable(false);
+		btn2Player.setFocusTraversalKeysEnabled(false);
+		btn2Player.setFocusPainted(false);
+		btn2Player.setBorder(null);
+		btn2Player.setBackground(Color.WHITE);
+		btn2Player.setBounds(338, 329, 126, 23);
+		contentPane.add(btn2Player);
 	
 		
 
