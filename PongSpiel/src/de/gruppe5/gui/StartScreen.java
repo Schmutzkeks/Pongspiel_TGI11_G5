@@ -1,11 +1,11 @@
-package de.demoncore.gui;
+package de.gruppe5.gui;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import de.demoncore.game.GameLogic;
+import de.gruppe5.game.GameLogic;
 
 import java.awt.Color;
 import javax.swing.JLabel;

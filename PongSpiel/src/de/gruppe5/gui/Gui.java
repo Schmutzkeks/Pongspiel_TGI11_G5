@@ -1,4 +1,4 @@
-package de.demoncore.gui;
+package de.gruppe5.gui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -12,10 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 
-import de.demoncore.actions.KeyHandler;
-import de.demoncore.game.GameLogic;
-import de.demoncore.game.StatsData;
-import de.demoncore.game.MusicPlayer;
+import de.gruppe5.actions.KeyHandler;
+import de.gruppe5.game.GameLogic;
+import de.gruppe5.game.StatsData;
+import de.gruppe5.game.MusicPlayer;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

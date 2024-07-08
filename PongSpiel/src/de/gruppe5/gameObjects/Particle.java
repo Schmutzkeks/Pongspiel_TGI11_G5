@@ -1,4 +1,4 @@
-package de.demoncore.gameObjects;
+package de.gruppe5.gameObjects;
 
 public class Particle {
 	private BeweglichesRechteck particle;

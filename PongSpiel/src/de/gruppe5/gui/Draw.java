@@ -1,4 +1,4 @@
-package de.demoncore.gui;
+package de.gruppe5.gui;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 
-import de.demoncore.actions.Main;
-import de.demoncore.game.GameLogic;
-import de.demoncore.game.GameObject;
-import de.demoncore.gameObjects.Ball;
-import de.demoncore.gameObjects.Particle;
+import de.gruppe5.actions.Main;
+import de.gruppe5.game.GameLogic;
+import de.gruppe5.game.GameObject;
+import de.gruppe5.gameObjects.Ball;
+import de.gruppe5.gameObjects.Particle;
 
 @SuppressWarnings("serial")
 public class Draw extends JLabel{

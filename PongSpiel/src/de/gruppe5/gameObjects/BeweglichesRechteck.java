@@ -1,10 +1,10 @@
-package de.demoncore.gameObjects;
+package de.gruppe5.gameObjects;
 
-import de.demoncore.game.GameObject;
-import de.demoncore.game.Collision;
-import de.demoncore.game.Vector2;
-import de.demoncore.gameObjects.Ball;
-import de.demoncore.gui.Shop;
+import de.gruppe5.game.GameObject;
+import de.gruppe5.game.Collision;
+import de.gruppe5.game.Vector2;
+import de.gruppe5.gameObjects.Ball;
+import de.gruppe5.gui.Shop;
 
 public class BeweglichesRechteck extends GameObject {
 

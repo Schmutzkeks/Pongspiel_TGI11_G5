@@ -1,12 +1,12 @@
-package de.demoncore.gameObjects;
+package de.gruppe5.gameObjects;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import de.demoncore.game.GameLogic;
-import de.demoncore.game.StatsData;
-import de.demoncore.gui.Gui;
-import de.demoncore.gui.Stats;
+import de.gruppe5.game.GameLogic;
+import de.gruppe5.game.StatsData;
+import de.gruppe5.gui.Gui;
+import de.gruppe5.gui.Stats;
 
 public class Timer1Sek {
 	static Timer timer = new Timer();

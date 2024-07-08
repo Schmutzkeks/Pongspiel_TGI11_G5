@@ -1,7 +1,7 @@
-package de.demoncore.game;
+package de.gruppe5.game;
 
-import de.demoncore.gameObjects.Ball;
-import de.demoncore.gameObjects.BeweglichesRechteck;
+import de.gruppe5.gameObjects.Ball;
+import de.gruppe5.gameObjects.BeweglichesRechteck;
 
 public class Vector2{
 	private double xCur;	//currentSpeed

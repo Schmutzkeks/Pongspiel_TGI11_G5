@@ -1,7 +1,7 @@
-package de.demoncore.gameObjects;
+package de.gruppe5.gameObjects;
 
-import de.demoncore.game.GameLogic;
-import de.demoncore.game.Vector2;
+import de.gruppe5.game.GameLogic;
+import de.gruppe5.game.Vector2;
 
 public class Player3 {
 	public static Vector2 velocity;

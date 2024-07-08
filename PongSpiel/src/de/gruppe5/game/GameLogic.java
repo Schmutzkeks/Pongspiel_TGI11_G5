@@ -1,18 +1,18 @@
-package de.demoncore.game;
+package de.gruppe5.game;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import de.demoncore.gameObjects.Ball;
-import de.demoncore.gameObjects.BeweglichesRechteck;
-import de.demoncore.gameObjects.Particle;
-import de.demoncore.gameObjects.Player1;
-import de.demoncore.gameObjects.Player2;
-import de.demoncore.gameObjects.Player3;
-import de.demoncore.gui.Gui;
-import de.demoncore.gui.Shop;
+import de.gruppe5.gameObjects.Ball;
+import de.gruppe5.gameObjects.BeweglichesRechteck;
+import de.gruppe5.gameObjects.Particle;
+import de.gruppe5.gameObjects.Player1;
+import de.gruppe5.gameObjects.Player2;
+import de.gruppe5.gui.Gui;
+import de.gruppe5.gui.Shop;
+import de.gruppe5.gameObjects.Player3;
 
 public class GameLogic {
 

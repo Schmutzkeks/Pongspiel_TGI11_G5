@@ -1,4 +1,4 @@
-package de.demoncore.gui;
+package de.gruppe5.gui;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;

@@ -1,4 +1,5 @@
-package de.demoncore.gui;
+package de.gruppe5.gui;
+
 
 import java.awt.EventQueue;
 
@@ -15,8 +16,8 @@ import java.awt.Point;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import de.demoncore.game.Points;
-import de.demoncore.game.StatsData;
+import de.gruppe5.game.Points;
+import de.gruppe5.game.StatsData;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -107,6 +108,7 @@ public class Shop extends JFrame {
 	}
 
 	public Shop() {
+		setResizable(false);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent e) {
@@ -152,7 +154,7 @@ public class Shop extends JFrame {
 		System.out.println();
 		
 		JLabel lbTitleShop = new JLabel("Shop");
-		lbTitleShop.setBounds(147, 40, 498, 49);
+		lbTitleShop.setBounds(128, 53, 498, 49);
 		lbTitleShop.setHorizontalAlignment(SwingConstants.CENTER);
 		lbTitleShop.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lbTitleShop.setForeground(new Color(255, 255, 255));
@@ -183,6 +185,8 @@ public class Shop extends JFrame {
 				Theme = 1;
 				clearBorder();
 				lbBlue.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+				
+				updateItemBorders();
 			}
 		});
 		lbBlue.setOpaque(true);
@@ -315,7 +319,7 @@ public class Shop extends JFrame {
 		lbldoublepoints.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(lbldoublepoints.isItemLocked) return;
+				if(lbldoublepoints.isItemLocked.getValue()) return;
 				doublePoints=!doublePoints;
 				updateItemBorders();
 			}
@@ -326,7 +330,7 @@ public class Shop extends JFrame {
 		lblweapon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(lblweapon.isItemLocked) return;
+				if(lblweapon.isItemLocked.getValue()) return;
 				weapon=!weapon;
 				updateItemBorders();
 			}
@@ -337,7 +341,7 @@ public class Shop extends JFrame {
 		lblBallSpeed.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(lblBallSpeed.isItemLocked) return;
+				if(lblBallSpeed.isItemLocked.getValue()) return;
 				ballSpeed=!ballSpeed;
 				updateItemBorders();
 			}
@@ -349,7 +353,7 @@ public class Shop extends JFrame {
 		lblPlayerSize.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(lblPlayerSize.isItemLocked) return;
+				if(lblPlayerSize.isItemLocked.getValue()) return;
 				playerSize=!playerSize;
 				updateItemBorders();
 			}
@@ -361,7 +365,7 @@ public class Shop extends JFrame {
 		lblclone.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(lblclone.isItemLocked) return;
+				if(lblclone.isItemLocked.getValue()) return;
 				clone=!clone;
 				updateItemBorders();
 			}
@@ -409,10 +413,19 @@ public class Shop extends JFrame {
 		lblpoints = new JLabel("Coins: 0");
 		lblpoints.setText("Points: " + Points.instancePoints.getPunkteShop());
 		
-		lblpoints.setBounds(35, 11, 119, 51);
+		lblpoints.setBounds(35, 34, 151, 46);
 		lblpoints.setForeground(new Color(255, 255, 255));
 		lblpoints.setFont(new Font("Tahoma", Font.BOLD, 23));
 		pnPunkte.add(lblpoints);
+		
+		JButton btnNewButton = new JButton("Reset Points");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				resetPoints();
+			}
+		});
+		btnNewButton.setBounds(-10, 0, 196, 23);
+		pnPunkte.add(btnNewButton);
 		
 		doublePointsUnlock = new JButton("Freischalten");
 		doublePointsUnlock.addActionListener(new ActionListener() {
@@ -486,19 +499,28 @@ public class Shop extends JFrame {
 		updateFreischaltButtons();
 	}
 	
+	protected void resetPoints() {
+		StatsData.reset();
+
+		Points.instancePoints.setPunkteGegner(0);
+		Points.instancePoints.setPunktePlayer(0);
+
+		lblpoints.setText("Points: " + Points.instancePoints.getPunkteShop());
+	}
+
 	private void updateFreischaltButtons() {
-		ballCloneUnlock.setEnabled(lblclone.isItemLocked);
-		ballSpeedUnlock.setEnabled(lblBallSpeed.isItemLocked);
-		doublePointsUnlock.setEnabled(lbldoublepoints.isItemLocked);
-		weaponUnlock.setEnabled(lblweapon.isItemLocked);
-		playerSizeUnlock.setEnabled(lblPlayerSize.isItemLocked);
+		ballCloneUnlock.setEnabled(lblclone.isItemLocked.getValue());
+		ballSpeedUnlock.setEnabled(lblBallSpeed.isItemLocked.getValue());
+		doublePointsUnlock.setEnabled(lbldoublepoints.isItemLocked.getValue());
+		weaponUnlock.setEnabled(lblweapon.isItemLocked.getValue());
+		playerSizeUnlock.setEnabled(lblPlayerSize.isItemLocked.getValue());
 		
 
-		ballCloneUnlock.setVisible(lblclone.isItemLocked);
-		ballSpeedUnlock.setVisible(lblBallSpeed.isItemLocked);
-		doublePointsUnlock.setVisible(lbldoublepoints.isItemLocked);
-		weaponUnlock.setVisible(lblweapon.isItemLocked);
-		playerSizeUnlock.setVisible(lblPlayerSize.isItemLocked);
+		ballCloneUnlock.setVisible(lblclone.isItemLocked.getValue());
+		ballSpeedUnlock.setVisible(lblBallSpeed.isItemLocked.getValue());
+		doublePointsUnlock.setVisible(lbldoublepoints.isItemLocked.getValue());
+		weaponUnlock.setVisible(lblweapon.isItemLocked.getValue());
+		playerSizeUnlock.setVisible(lblPlayerSize.isItemLocked.getValue());
 	}
 	
 	private void updateItemBorders() {

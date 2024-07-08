@@ -1,4 +1,4 @@
-package de.demoncore.game;
+package de.gruppe5.game;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,13 +1,16 @@
-package de.demoncore.gui;
+package de.gruppe5.gui;
 
 import java.awt.EventQueue;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import de.demoncore.game.StatsData;
+import de.gruppe5.game.Points;
+import de.gruppe5.game.StatsData;
 
 import java.awt.event.WindowEvent;
 import java.awt.Color;
@@ -124,15 +127,37 @@ public class Stats extends JFrame {
 		lbNegativPunkte.setBounds(20, 174, 320, 50);
 		panel.add(lbNegativPunkte);
 		updateStats();
+		
+		addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_PERIOD) {
+					Points.instancePoints.addPunktePlayer(1);
+				}
+			}
+		});
 	}
 	
 	
 	public static void updateStats() {
-		String temp = "<html>Spiel Zeit: <br>" +StatsData.getPlaytime(StatsData.Playtime)+"</html>";
+		String temp = "<html>Spiel Zeit: <br>" +StatsData.getPlaytime(StatsData.Playtime.getValue())+"</html>";
 		lbTimePlayed.setText(temp);
-		temp ="<html><div style='text-align: center;'>Erzielte Punkte: <br>"+StatsData.getPositivPunkte()+"</div></html>";
+		temp ="<html><div style='text-align: center;'>Erzielte Punkte: <br>"+StatsData.getPositivPunkteAllTime()+"</div></html>";
 		lbPositivPunkte.setText(temp);
-		temp ="<html><div style='text-align: center;'>Erlittenen Schaden: <br>" + StatsData.getNegativPunkte() + "</div></html>";
+		temp ="<html><div style='text-align: center;'>Erlittenen Schaden: <br>" + StatsData.getNegativPunkteAllTime() + "</div></html>";
 		lbNegativPunkte.setText(temp);
 		
 

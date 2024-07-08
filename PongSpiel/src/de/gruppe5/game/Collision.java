@@ -1,9 +1,9 @@
-package de.demoncore.game;
+package de.gruppe5.game;
 
-import de.demoncore.gameObjects.Ball;
-import de.demoncore.gameObjects.BeweglichesRechteck;
-import de.demoncore.gui.Gui;
-import de.demoncore.gui.Shop;
+import de.gruppe5.gameObjects.Ball;
+import de.gruppe5.gameObjects.BeweglichesRechteck;
+import de.gruppe5.gui.Gui;
+import de.gruppe5.gui.Shop;
 
 public class Collision {
 	public Points punkte = new Points();
