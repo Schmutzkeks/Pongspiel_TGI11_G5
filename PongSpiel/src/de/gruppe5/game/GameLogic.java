@@ -305,13 +305,9 @@ public class GameLogic {
 		}
 
 		
-		if (currentY <=targetY+20 && currentY >= targetY ) {
-			System.out.println("stay");
-		}
-		else {
+		if (currentY > targetY+10 || currentY < targetY-10 ) {
 			Player2.velocity.TVector2(player02, Player2.velocity.getXCur(), Player2.velocity.getYCur());
 		}
-		
 		
 
 		
