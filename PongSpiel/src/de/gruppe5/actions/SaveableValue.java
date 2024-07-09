@@ -9,6 +9,8 @@ import java.util.Base64;
 import java.util.prefs.Preferences;
 
 
+// Savegame location HKEY_CURRENT_USER\Software\JavaSoft\Prefs
+
 
 public class SaveableValue<Type> {
 
