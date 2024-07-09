@@ -11,9 +11,11 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import de.gruppe5.actions.SaveableValue;
+
 public class MusicPlayer {
 	private static Clip clip;
-	public static float totalVolume = -20F;
+	public static SaveableValue<Float> totalVolume = new SaveableValue<Float>(-20F, "settings.totalVolume");
 	static String[] fileLocations = {"/resources/music/bg1.wav","/resources/music/bg2.wav","/resources/music/pong.wav","/resources/music/pop.wav"};
 
 	static ArrayList<Clip> clipsType1 = new ArrayList<Clip>();
@@ -42,6 +44,8 @@ public class MusicPlayer {
 		volumeControlsLists.add(volumeType2);
 		volumeControlsLists.add(volumeType3);
 		volumeControlsLists.add(volumeType4);
+		
+		setVolumeAll(totalVolume.getValue());
 	}
 
 
@@ -63,7 +67,7 @@ public class MusicPlayer {
 			Lists.get(fileNR).add(clip);
 			volumeControlsLists.get(fileNR).add(volumeControl);
 
-			setVolume(fileNR, totalVolume);
+			setVolume(fileNR, totalVolume.getValue());
 		}	 
 		catch (UnsupportedAudioFileException | IOException | LineUnavailableException e)
 		{
@@ -140,7 +144,7 @@ public class MusicPlayer {
 	}
 
 	public static void setVolumeAll(float volume) {		//Allgemeine Lautstärke für alle SOunds setzen
-		totalVolume = volume;
+		totalVolume.setValue(volume);;
 		for(int i = volumeControlsLists.size()-1; i>=0;i--) {
 			ArrayList<FloatControl> volumeControlsList = volumeControlsLists.get(i);
 			for (FloatControl volumeControl : volumeControlsList) {

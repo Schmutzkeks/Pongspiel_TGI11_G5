@@ -96,7 +96,7 @@ public class GameLogic {
 		defineObjects();
 
 		MusicPlayer.playSound(backgroundMusic, true);
-		MusicPlayer.setVolume(backgroundMusic, -40);
+		//MusicPlayer.setVolume(backgroundMusic, -40); // Macht alles kaputt inklusive meine Nerven. Bitte nicht aktivieren ~ Flo
 
 
 		gameTimer.scheduleAtFixedRate(new TimerTask(){ 

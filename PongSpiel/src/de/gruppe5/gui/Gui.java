@@ -278,7 +278,7 @@ public class Gui {
 		sliderVolume.setMajorTickSpacing(2);
 		sliderVolume.setMinimum(-60);
 		sliderVolume.setMaximum(-10);
-		sliderVolume.setValue((int) MusicPlayer.totalVolume);
+		sliderVolume.setValue((int)(float)MusicPlayer.totalVolume.getValue());
 		sliderVolume.addChangeListener(e -> {
 			float volume = sliderVolume.getValue();
 			MusicPlayer.setVolumeAll(volume);
@@ -302,7 +302,7 @@ public class Gui {
 				MusicPlayer.stopSound(GameLogic.backgroundMusic);
 				if(GameLogic.MusicEnabled) {
 					MusicPlayer.playSound(GameLogic.backgroundMusic, true);
-					MusicPlayer.setVolume(GameLogic.backgroundMusic, MusicPlayer.totalVolume-20);
+					MusicPlayer.setVolume(GameLogic.backgroundMusic, MusicPlayer.totalVolume.getValue() - 20);
 				}
 			}
 		});

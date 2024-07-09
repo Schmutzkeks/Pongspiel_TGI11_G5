@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.Preferences;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -16,6 +18,7 @@ import java.awt.Point;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import de.gruppe5.actions.Main;
 import de.gruppe5.game.Points;
 import de.gruppe5.game.StatsData;
 
@@ -36,15 +39,15 @@ public class Shop extends JFrame {
 	private JPanel contentPane;
 	
 	static int Theme = 0;
-	private JLabel lbWhite;
-	private JLabel lbBlue;
-	private JLabel lbLightGreen;
-	private JLabel lbCyan;
-	private JLabel lbMagenta;
-	private JLabel lbRed;
-	private JLabel lbYellow;
-	private JLabel lbDarkGreen;
-	private JLabel lbRGB;
+	private ColorSwatch lbWhite;
+	private ColorSwatch lbBlue;
+	private ColorSwatch lbLightGreen;
+	private ColorSwatch lbCyan;
+	private ColorSwatch lbMagenta;
+	private ColorSwatch lbRed;
+	private ColorSwatch lbYellow;
+	private ColorSwatch lbDarkGreen;
+	private ColorSwatch lbRGB;
 	private JScrollPane scrollPane;
 	private JPanel panel;
 	
@@ -160,11 +163,12 @@ public class Shop extends JFrame {
 		lbTitleShop.setForeground(new Color(255, 255, 255));
 		contentPane.add(lbTitleShop);
 		
-		lbWhite = new JLabel("");
+		lbWhite = new ColorSwatch(0, 0);
 		lbWhite.setBounds(20, 10, 50, 50);
 		lbWhite.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(lbWhite.isColorLocked()) return;
 				Theme = 0;
 				clearBorder();
 				lbWhite.setBorder(new LineBorder(new Color(255, 128, 0), 5));
@@ -172,16 +176,16 @@ public class Shop extends JFrame {
 		});
 		panel.setLayout(null);
 		panel.setLayout(null);
-		lbWhite.setBackground(Color.WHITE);
 		lbWhite.setOpaque(true);
 		lbWhite.setBorder(new LineBorder(new Color(255, 255, 255), 5));
 		panel.add(lbWhite);
 		
-		lbBlue = new JLabel("");
+		lbBlue = new ColorSwatch(1, 1);
 		lbBlue.setBounds(90, 10, 50, 50);
 		lbBlue.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(lbBlue.isColorLocked()) return;
 				Theme = 1;
 				clearBorder();
 				lbBlue.setBorder(new LineBorder(new Color(255, 128, 0), 5));
@@ -191,14 +195,14 @@ public class Shop extends JFrame {
 		});
 		lbBlue.setOpaque(true);
 		lbBlue.setBorder(new LineBorder(new Color(255, 255, 255), 5));
-		lbBlue.setBackground(Color.BLUE);
 		panel.add(lbBlue);
 		
-		lbLightGreen = new JLabel("");
+		lbLightGreen = new ColorSwatch(2, 2);
 		lbLightGreen.setBounds(160, 10, 50, 50);
 		lbLightGreen.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(lbLightGreen.isColorLocked()) return;
 				Theme = 2;
 				clearBorder();
 				lbLightGreen.setBorder(new LineBorder(new Color(255, 128, 0), 5));
@@ -206,14 +210,14 @@ public class Shop extends JFrame {
 		});
 		lbLightGreen.setOpaque(true);
 		lbLightGreen.setBorder(new LineBorder(new Color(255, 255, 255), 5));
-		lbLightGreen.setBackground(Color.GREEN);
 		panel.add(lbLightGreen);
 		
-		lbCyan = new JLabel("");
+		lbCyan = new ColorSwatch(3, 3);
 		lbCyan.setBounds(230, 10, 50, 50);
 		lbCyan.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(lbCyan.isColorLocked()) return;
 				Theme = 3;
 				clearBorder();
 				lbCyan.setBorder(new LineBorder(new Color(255, 128, 0), 5));
@@ -221,14 +225,14 @@ public class Shop extends JFrame {
 		});
 		lbCyan.setOpaque(true);
 		lbCyan.setBorder(new LineBorder(new Color(255, 255, 255), 5));
-		lbCyan.setBackground(Color.CYAN);
 		panel.add(lbCyan);
 		
-		lbMagenta = new JLabel("");
+		lbMagenta = new ColorSwatch(4, 4);
 		lbMagenta.setBounds(300, 10, 50, 50);
 		lbMagenta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(lbMagenta.isColorLocked()) return;
 				Theme = 4;
 				clearBorder();
 				lbMagenta.setBorder(new LineBorder(new Color(255, 128, 0), 5));
@@ -236,14 +240,14 @@ public class Shop extends JFrame {
 		});
 		lbMagenta.setOpaque(true);
 		lbMagenta.setBorder(new LineBorder(new Color(255, 255, 255), 5));
-		lbMagenta.setBackground(Color.MAGENTA);
 		panel.add(lbMagenta);
 		
-		lbRed = new JLabel("");
+		lbRed = new ColorSwatch(5, 5);
 		lbRed.setBounds(370, 10, 50, 50);
 		lbRed.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(lbRed.isColorLocked()) return;
 				Theme = 5;
 				clearBorder();
 				lbRed.setBorder(new LineBorder(new Color(255, 128, 0), 5));
@@ -252,14 +256,14 @@ public class Shop extends JFrame {
 		
 		lbRed.setOpaque(true);
 		lbRed.setBorder(new LineBorder(new Color(255, 255, 255), 5));
-		lbRed.setBackground(new Color(255, 0, 0));
 		panel.add(lbRed);
 		
-		lbYellow = new JLabel("");
+		lbYellow = new ColorSwatch(6, 6);
 		lbYellow.setBounds(440, 10, 50, 50);
 		lbYellow.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(lbYellow.isColorLocked()) return;
 				Theme = 6;
 				clearBorder();
 				lbYellow.setBorder(new LineBorder(new Color(255, 128, 0), 5));
@@ -267,14 +271,14 @@ public class Shop extends JFrame {
 		});
 		lbYellow.setOpaque(true);
 		lbYellow.setBorder(new LineBorder(new Color(255, 255, 255), 5));
-		lbYellow.setBackground(new Color(255, 255, 0));
 		panel.add(lbYellow);
 		
-		lbDarkGreen = new JLabel("");
+		lbDarkGreen = new ColorSwatch(7, 7);
 		lbDarkGreen.setBounds(510, 10, 50, 50);
 		lbDarkGreen.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(lbDarkGreen.isColorLocked()) return;
 				Theme = 7;
 				clearBorder();
 				lbDarkGreen.setBorder(new LineBorder(new Color(255, 128, 0), 5));
@@ -282,14 +286,14 @@ public class Shop extends JFrame {
 		});
 		lbDarkGreen.setOpaque(true);
 		lbDarkGreen.setBorder(new LineBorder(new Color(255, 255, 255), 5));
-		lbDarkGreen.setBackground(new Color(0, 128, 0));
 		panel.add(lbDarkGreen);
 		
-		lbRGB = new JLabel("");
+		lbRGB = new ColorSwatch(8, 8);
 		lbRGB.setBounds(580, 10, 50, 50);
 		lbRGB.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(lbRGB.isColorLocked()) return;
 				Theme = 8;
 				clearBorder();
 				lbRGB.setBorder(new LineBorder(new Color(255, 128, 0), 5));
@@ -297,7 +301,6 @@ public class Shop extends JFrame {
 		});
 		lbRGB.setOpaque(true);
 		lbRGB.setBorder(new LineBorder(new Color(255, 255, 255), 5));
-		lbRGB.setBackground(new Color(0, 128, 0));
 		panel.add(lbRGB);
 		
 		JLabel lbTitlePowerUp = new JLabel("PowerUp's");
@@ -316,6 +319,8 @@ public class Shop extends JFrame {
 		panel_1.setLayout(null);
 		
 		lbldoublepoints = new ShopItem(Shop.class.getResourceAsStream("/resources/2xPoints.png"), 10, 0, 102, 101);
+		lbldoublepoints.setSize(91, 87);
+		lbldoublepoints.setLocation(20, 4);
 		lbldoublepoints.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -327,6 +332,8 @@ public class Shop extends JFrame {
 		panel_1.add(lbldoublepoints);
 		
 		lblweapon = new ShopItem(Shop.class.getResourceAsStream("/resources/Weapon.png"), 145, 0, 177, 100);
+		lblweapon.setSize(165, 87);
+		lblweapon.setLocation(155, 4);
 		lblweapon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -338,6 +345,8 @@ public class Shop extends JFrame {
 		panel_1.add(lblweapon);
 		
 		lblBallSpeed = new ShopItem(Shop.class.getResourceAsStream("/resources/lowerspeed.jpg"), 348, 0, 139, 112);
+		lblBallSpeed.setSize(130, 93);
+		lblBallSpeed.setLocation(352, 2);
 		lblBallSpeed.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -350,6 +359,8 @@ public class Shop extends JFrame {
 		
 
 		lblPlayerSize = new ShopItem(Shop.class.getResourceAsStream("/resources/PlayerSize.png"), 523, 0, 102, 100);
+		lblPlayerSize.setSize(91, 87);
+		lblPlayerSize.setLocation(519, 4);
 		lblPlayerSize.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -362,6 +373,8 @@ public class Shop extends JFrame {
 		
 
 		lblclone = new ShopItem(Shop.class.getResourceAsStream("/resources/Klon.jpg"), 632, 11, 139, 101);
+		lblclone.setSize(130, 87);
+		lblclone.setLocation(642, 4);
 		lblclone.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -418,77 +431,68 @@ public class Shop extends JFrame {
 		lblpoints.setFont(new Font("Tahoma", Font.BOLD, 23));
 		pnPunkte.add(lblpoints);
 		
-		JButton btnNewButton = new JButton("Reset Points");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				resetPoints();
-			}
-		});
-		btnNewButton.setBounds(-10, 0, 196, 23);
-		pnPunkte.add(btnNewButton);
-		
-		doublePointsUnlock = new JButton("Freischalten");
+		doublePointsUnlock = new JButton("<html>Freischalten: 15 Points</html>");
 		doublePointsUnlock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(StatsData.getShopPunkte() < 1) return;
+				if(StatsData.getShopPunkte() < 15) return;
 				
 				lbldoublepoints.setItemLocked(false);
 				updateFreischaltButtons();
 			}
 		});
 		doublePointsUnlock.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		doublePointsUnlock.setBounds(20, 518, 93, 23);
+		doublePointsUnlock.setBounds(20, 518, 93, 47);
 		contentPane.add(doublePointsUnlock);
 		
-		weaponUnlock = new JButton("Freischalten");
+		weaponUnlock = new JButton("<html>Freischalten: 35 Points</html>");
 		weaponUnlock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(StatsData.getShopPunkte() < 1) return;
+				if(StatsData.getShopPunkte() < 35) return;
 				
 				lblweapon.setItemLocked(false);
 				updateFreischaltButtons();
 			}
 		});
 		weaponUnlock.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		weaponUnlock.setBounds(160, 518, 93, 23);
+		weaponUnlock.setBounds(160, 518, 93, 47);
 		contentPane.add(weaponUnlock);
 		
-		ballSpeedUnlock = new JButton("Freischalten");
+		ballSpeedUnlock = new JButton("<html>Freischalten: 10 Points</html>");
 		ballSpeedUnlock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(StatsData.getShopPunkte() < 1) return;	
+				if(StatsData.getShopPunkte() < 10) return;	
 				
 				lblBallSpeed.setItemLocked(false);
 				updateFreischaltButtons();
 			}
 		});
 		ballSpeedUnlock.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		ballSpeedUnlock.setBounds(367, 518, 93, 23);
+		ballSpeedUnlock.setBounds(367, 518, 93, 47);
 		contentPane.add(ballSpeedUnlock);
 		
-		playerSizeUnlock = new JButton("Freischalten");
+		playerSizeUnlock = new JButton("<html>Freischalten: 25 Points</html>");
 		playerSizeUnlock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(StatsData.getShopPunkte() < 1) return;		
+				if(StatsData.getShopPunkte() < 25) return;		
 				
 				lblPlayerSize.setItemLocked(false);
 				updateFreischaltButtons();
 			}
 		});
 		playerSizeUnlock.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		playerSizeUnlock.setBounds(521, 518, 93, 23);
+		playerSizeUnlock.setBounds(521, 518, 93, 47);
 		contentPane.add(playerSizeUnlock);
 		
-		ballCloneUnlock = new JButton("Freischalten");
+		ballCloneUnlock = new JButton("<html>Freischalten: 30 Points</html>");
 		ballCloneUnlock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(StatsData.getShopPunkte() < 1) return;			
+				if(StatsData.getShopPunkte() < 30) return;
 				lblclone.setItemLocked(false);
 				updateFreischaltButtons();
 			}
 		});
 		ballCloneUnlock.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		ballCloneUnlock.setBounds(665, 518, 93, 23);
+		ballCloneUnlock.setBounds(665, 518, 93, 47);
 		contentPane.add(ballCloneUnlock);
 		updateStats();
 		
@@ -497,15 +501,6 @@ public class Shop extends JFrame {
 		
 		updateItemBorders();
 		updateFreischaltButtons();
-	}
-	
-	protected void resetPoints() {
-		StatsData.reset();
-
-		Points.instancePoints.setPunkteGegner(0);
-		Points.instancePoints.setPunktePlayer(0);
-
-		lblpoints.setText("Points: " + Points.instancePoints.getPunkteShop());
 	}
 
 	private void updateFreischaltButtons() {
@@ -525,34 +520,34 @@ public class Shop extends JFrame {
 	
 	private void updateItemBorders() {
 		if(clone) {
-			lblclone.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+			lblclone.isSelected = true;
 		}
 		else {
-			lblclone.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+			lblclone.isSelected = false;
 		}
 		if(playerSize) {
-			lblPlayerSize.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+			lblPlayerSize.isSelected = true;
 		}
 		else {
-			lblPlayerSize.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+			lblPlayerSize.isSelected = false;
 		}
 		if(ballSpeed) {
-			lblBallSpeed.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+			lblBallSpeed.isSelected = true;
 		}
 		else {
-			lblBallSpeed.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+			lblBallSpeed.isSelected = false;
 		}
 		if(weapon) {
-			lblweapon.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+			lblweapon.isSelected = true;
 		}
 		else {
-			lblweapon.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+			lblweapon.isSelected = false;
 		}
 		if(doublePoints) {
-			lbldoublepoints.setBorder(new LineBorder(new Color(255, 128, 0), 5));
+			lbldoublepoints.isSelected = true;
 		}
 		else {
-			lbldoublepoints.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+			lbldoublepoints.isSelected = false;
 		}
 	}
 	
@@ -575,20 +570,7 @@ public class Shop extends JFrame {
 	}
 	
 	public static Color getTheme() {
-		switch (Theme) {
-		case 0: return Color.white;
-		case 1: return Color.blue;
-		case 2: return Color.green;
-		case 3: return Color.cyan;
-		case 4: return Color.magenta;
-		case 5: return Color.red;
-		case 6: return Color.yellow;
-		case 7: return new Color(0f,0.5f,0f,1f);
-		case 8: return Color.white;
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + Theme);
-			
-		}
+		return getTheme(false);
 	}
 	public static Color getTheme(boolean ball) {
 		Color[] RGB = {Color.white,Color.blue,Color.green,Color.cyan,Color.magenta,Color.red,Color.yellow, new Color(0f,0.5f,0f,1f)};
@@ -602,6 +584,26 @@ public class Shop extends JFrame {
 		case 6: return Color.yellow;
 		case 7: return new Color(0f,0.5f,0f,1f);
 		case 8:if(ball) { return RGB[(int) (Math.random()*RGB.length)];} else {return Color.white;}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + Theme);
+			
+		}
+	}
+	
+	public static Color getTheme(int colorId) {
+
+		Color[] RGB = {Color.white,Color.blue,Color.green,Color.cyan,Color.magenta,Color.red,Color.yellow, new Color(0f,0.5f,0f,1f)};
+		
+		switch (colorId) {
+		case 0: return Color.white;
+		case 1: return Color.blue;
+		case 2: return Color.green;
+		case 3: return Color.cyan;
+		case 4: return Color.magenta;
+		case 5: return Color.red;
+		case 6: return Color.yellow;
+		case 7: return new Color(0f,0.5f,0f,1f);
+		case 8: return RGB[(int) (Math.random()*RGB.length)];
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + Theme);
 			

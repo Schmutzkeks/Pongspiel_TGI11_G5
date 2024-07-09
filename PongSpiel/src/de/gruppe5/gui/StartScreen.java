@@ -5,7 +5,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import de.gruppe5.actions.Main;
+import de.gruppe5.actions.SaveableValue;
 import de.gruppe5.game.GameLogic;
+import de.gruppe5.game.Points;
+import de.gruppe5.game.StatsData;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -13,6 +17,8 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.Preferences;
 import java.awt.event.ActionEvent;
 
 public class StartScreen extends JFrame {
@@ -228,8 +234,20 @@ public class StartScreen extends JFrame {
         btnimpossible.setBorder(null);
         btnimpossible.setBackground(Color.WHITE);
         contentPane.add(btnimpossible);
+        
+        JButton btnNewButton = new JButton("Reset");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		reset();
+        		
+        	}
+        });
+        btnNewButton.setBounds(665, 629, 89, 23);
+        contentPane.add(btnNewButton);
     }
 	
-	
-	
+	protected void reset() {
+		SaveableValue.resetAllValues();
+		System.exit(0);
+	}
 }
