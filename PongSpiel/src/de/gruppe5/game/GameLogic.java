@@ -103,7 +103,6 @@ public class GameLogic {
 			@Override
 			public void run() {
 
-
 				// Laufende Ausführungen im Spiel:
 				
 				if(!Multiplayer) {
@@ -242,11 +241,11 @@ public class GameLogic {
 
 
 
-		if (hesitationCounter1>hesitationCounter1_towhat) {
+		if (hesitationCounter1>hesitationCounter1_towhat && botDifficulty != IMPOSSIBLE) {
 			isHesitating = true;
 			hesitationCounter1=0;
 		}
-		else if (hesitationCounter2>=hesitationCounter2_towaht) {
+		else if (hesitationCounter2>=hesitationCounter2_towaht && botDifficulty != IMPOSSIBLE) {
 			isHesitating = false;
 		}
 
@@ -263,16 +262,22 @@ public class GameLogic {
 			return;
 		}
 
+		
+		if (botDifficulty == IMPOSSIBLE) {
+			isHesitating = false;
+		}
 
-		if (isHesitating && hesitationCounter2 <hesitationCounter2_towaht && Ball01.positionX<screenwidth/4 && Ball.velocity.getXCur()<0) {
+		if (isHesitating && hesitationCounter2 <hesitationCounter2_towaht && Ball01.positionX<screenwidth/4 && Ball.velocity.getXCur()<0  && botDifficulty != IMPOSSIBLE) {
 			Player2.velocity.setYCur(Vector2.moveTowards(Player2.velocity.getYCur(), 0, 0.02));
 			hesitationCounter2++;
 		}
 		else {
-			double newYVelocity = Vector2.moveTowards(Player2.velocity.getYCur(), targetY > currentY ? Player2.velocity.getYMax() : -Player2.velocity.getYMax(), Player2.velocity.getAcc());
+			double newYVelocity = Vector2.moveTowards(Player2.velocity.getYCur(), targetY+10 > currentY ? Player2.velocity.getYMax() : -Player2.velocity.getYMax(), Player2.velocity.getAcc());
 			Player2.velocity.setYCur(Player2.velocity.getYCur() + smoothFactor * (newYVelocity - Player2.velocity.getYCur()));
-			hesitationCounter1++;
-			hesitationCounter2 = 0;
+			if(botDifficulty != IMPOSSIBLE) {
+				hesitationCounter1++;
+				hesitationCounter2 = 0;
+			}
 		}
 
 
@@ -299,7 +304,17 @@ public class GameLogic {
 			player02.positionY = 0;
 		}
 
-		Player2.velocity.TVector2(player02, Player2.velocity.getXCur(), Player2.velocity.getYCur());
+		
+		if (currentY <=targetY+20 && currentY >= targetY ) {
+			System.out.println("stay");
+		}
+		else {
+			Player2.velocity.TVector2(player02, Player2.velocity.getXCur(), Player2.velocity.getYCur());
+		}
+		
+		
+
+		
 
 
 	}
