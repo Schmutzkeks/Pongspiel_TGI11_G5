@@ -433,9 +433,7 @@ public class GameLogic {
 
 		// small random error 
 		botinsecurespeed = Math.abs(Ball.velocity.getYCur());
-		System.out.println(botinsecurespeed);
 		double randomnumberforprediction = (random.nextDouble() - 0.5) * (randompredictionnumber * (botinsecurespeed + 1));
-		System.out.println(randomnumberforprediction);
 		predictedY += randomnumberforprediction;
 
 		return predictedY;

@@ -347,7 +347,8 @@ public class Gui {
 		gameEnd.add(title);
 
 		JLabel title2 = new JLabel("Einstellungen");
-		title2.setFont(new Font("Tahoma", Font.BOLD, 50));
+		//title2.setFont(new Font("Tahoma", Font.BOLD, 50));
+		title2.setFont(StartScreen.customFont.deriveFont(80f));
 		title2.setForeground(Shop.getTheme());
 		title2.setHorizontalAlignment(SwingConstants.CENTER);
 		title2.setBounds(200, 50, 400, 100);

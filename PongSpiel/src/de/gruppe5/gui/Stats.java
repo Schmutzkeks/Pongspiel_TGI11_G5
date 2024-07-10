@@ -74,8 +74,9 @@ public class Stats extends JFrame {
 		JLabel lblNewLabel = new JLabel("Statistiken");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblNewLabel.setBounds(0, 40, 784, 56);
+		//lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblNewLabel.setFont(StartScreen.customFont.deriveFont(80f));
+		lblNewLabel.setBounds(0, 40, 784, 66);
 		contentPane.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();

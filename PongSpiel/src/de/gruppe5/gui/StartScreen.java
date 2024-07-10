@@ -24,6 +24,11 @@ import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+
 public class StartScreen extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -40,6 +45,7 @@ public class StartScreen extends JFrame {
 	private static JButton btn2Player;
 	private static JLabel lbstats;
 	private static JLabel lbshop;
+	public static Font customFont;
 
 	/**
 	 * Launch the application.
@@ -63,6 +69,22 @@ public class StartScreen extends JFrame {
 	 * Create the frame.
 	 */
 	public StartScreen() {
+		
+        try {
+            // Load the custom font from the file
+            customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/resources/font/Doom2016Text-GOlBq.ttf"));//.deriveFont(80f);
+            // Register the font
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(customFont);
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+            // If the custom font fails to load, fall back to a default font
+            customFont = new Font("Tahoma", Font.BOLD, 30);
+        }
+		
+		
+		
+		
 		setResizable(false);
 		setTitle("Pong");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,7 +153,8 @@ public class StartScreen extends JFrame {
 		settings.add(lbSettings1);
 
 		JLabel title2 = new JLabel("Einstellungen");
-		title2.setFont(new Font("Tahoma", Font.BOLD, 50));
+		//title2.setFont(new Font("Tahoma", Font.BOLD, 50));
+		title2.setFont(customFont.deriveFont(80f));
 		title2.setForeground(Shop.getTheme());
 		title2.setHorizontalAlignment(SwingConstants.CENTER);
 		title2.setBounds(200, 50, 400, 100);
@@ -189,11 +212,19 @@ public class StartScreen extends JFrame {
 		settings.add(chMusicEnabled);
 
 		lbTitle = new JLabel("Pong");
-		lbTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
+        lbTitle.setFont(customFont.deriveFont(120f));
+		//lbTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lbTitle.setForeground(new Color(255, 255, 255));
-		lbTitle.setBounds(0, 40, 784, 54);
+		lbTitle.setBounds(0, 35, 784, 100);
 		contentPane.add(lbTitle);
+		
+		
+		
+
+		
+		
+		
 
 		btnStartGame = new JButton("Main Game");
 		btnStartGame.addActionListener(new ActionListener() {
