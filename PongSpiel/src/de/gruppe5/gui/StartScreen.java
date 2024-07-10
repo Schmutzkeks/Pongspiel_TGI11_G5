@@ -46,6 +46,9 @@ public class StartScreen extends JFrame {
 	private static JLabel lbstats;
 	private static JLabel lbshop;
 	public static Font customFont;
+    private static JLabel hoverImageLabel;
+    private static JLabel hoverImageLabel2;
+    private static JLabel hoverImageLabel3;
 
 	/**
 	 * Launch the application.
@@ -69,7 +72,7 @@ public class StartScreen extends JFrame {
 	 * Create the frame.
 	 */
 	public StartScreen() {
-		
+		//Load DOOM Font
         try {
             // Load the custom font from the file
             customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/resources/font/Doom2016Text-GOlBq.ttf"));//.deriveFont(80f);
@@ -82,6 +85,7 @@ public class StartScreen extends JFrame {
             customFont = new Font("Tahoma", Font.BOLD, 30);
         }
 		
+
 		
 		
 		
@@ -222,7 +226,12 @@ public class StartScreen extends JFrame {
 		
 		
 
-		
+        //Load Image
+        ImageIcon hoverImageIcon = new ImageIcon(StartScreen.class.getResource("/resources/Pong.png"));  
+        hoverImageLabel = new JLabel(hoverImageIcon);  
+        hoverImageLabel.setBounds(161, 380, hoverImageIcon.getIconWidth(), hoverImageIcon.getIconHeight());
+        hoverImageLabel.setVisible(false); // Initially hidden
+        contentPane.add(hoverImageLabel);
 		
 		
 
@@ -248,6 +257,20 @@ public class StartScreen extends JFrame {
 		btnStartGame.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnStartGame.setBounds(338, 233, 126, 23);
 		contentPane.add(btnStartGame);
+		
+		 // Add mouse listener to the button
+        btnStartGame.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                hoverImageLabel.setVisible(true);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                hoverImageLabel.setVisible(false);
+            }
+        });
+        
 
 		/*
 		btnShop = new JButton("Shop");
@@ -282,6 +305,17 @@ public class StartScreen extends JFrame {
 		btnStats.setBounds(338, 377, 126, 23);
 		contentPane.add(btnStats);*/
 
+        
+        
+        //Load Image
+        ImageIcon hoverImageIcon2 = new ImageIcon(StartScreen.class.getResource("/resources/Hourglass_copy.png"));  
+        hoverImageLabel2 = new JLabel(hoverImageIcon2);  
+        hoverImageLabel2.setBounds(236, 380, hoverImageIcon2.getIconWidth(), hoverImageIcon2.getIconHeight());
+        hoverImageLabel2.setVisible(false); // Initially hidden
+        contentPane.add(hoverImageLabel2);
+        
+        
+        
 		btnZeitmodus = new JButton("Zeitmodus");
 		btnZeitmodus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -305,6 +339,29 @@ public class StartScreen extends JFrame {
 		btnZeitmodus.setBackground(Color.WHITE);
 		btnZeitmodus.setBounds(338, 281, 126, 23);
 		contentPane.add(btnZeitmodus);
+		
+		 // Add mouse listener to the button
+		btnZeitmodus.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                hoverImageLabel2.setVisible(true);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                hoverImageLabel2.setVisible(false);
+            }
+        });
+		
+		
+		
+        //Load Image
+        ImageIcon hoverImageIcon3 = new ImageIcon(StartScreen.class.getResource("/resources/2Playernewresize.png"));  
+        hoverImageLabel3 = new JLabel(hoverImageIcon3);  
+        hoverImageLabel3.setBounds(209, 380, hoverImageIcon3.getIconWidth(), hoverImageIcon3.getIconHeight());
+        hoverImageLabel3.setVisible(false); // Initially hidden
+        contentPane.add(hoverImageLabel3);
+		
 
 		btn2Player = new JButton("2 Spieler");
 		btn2Player.addActionListener(new ActionListener() {
@@ -330,6 +387,19 @@ public class StartScreen extends JFrame {
 		btn2Player.setBackground(Color.WHITE);
 		btn2Player.setBounds(338, 329, 126, 23);
 		contentPane.add(btn2Player);
+		
+		 // Add mouse listener to the button
+		btn2Player.addMouseListener(new MouseAdapter() {
+           @Override
+           public void mouseEntered(MouseEvent e) {
+               hoverImageLabel3.setVisible(true);
+           }
+
+           @Override
+           public void mouseExited(MouseEvent e) {
+               hoverImageLabel3.setVisible(false);
+           }
+       });
 
 
 

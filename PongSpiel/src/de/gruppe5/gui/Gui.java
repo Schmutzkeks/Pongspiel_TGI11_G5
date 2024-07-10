@@ -170,7 +170,8 @@ public class Gui {
 		settings.setVisible(false);
 
 		JLabel pauseLabel = new JLabel("Pausiert");
-		pauseLabel.setFont(new Font("Tahoma", Font.BOLD, 50));
+		//pauseLabel.setFont(new Font("Tahoma", Font.BOLD, 50));
+		pauseLabel.setFont(StartScreen.customFont.deriveFont(80f));
 		pauseLabel.setForeground(Shop.getTheme());
 		pauseLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		pauseLabel.setBounds(200, 50, 400, 100);
