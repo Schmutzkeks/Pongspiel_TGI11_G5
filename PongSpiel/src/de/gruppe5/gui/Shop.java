@@ -496,7 +496,7 @@ public class Shop extends JFrame {
 		contentPane.add(ballCloneUnlock);
 		updateStats();
 		
-		JLabel[] borderLabels = {lbWhite,lbBlue,lbLightGreen,lbCyan,lbMagenta,lbRed,lbYellow,lbDarkGreen};
+		JLabel[] borderLabels = {lbWhite,lbBlue,lbLightGreen,lbCyan,lbMagenta,lbRed,lbYellow,lbDarkGreen,lbRGB};
 		borderLabels[Theme].setBorder(new LineBorder(new Color(255, 128, 0), 5));
 		
 		updateItemBorders();

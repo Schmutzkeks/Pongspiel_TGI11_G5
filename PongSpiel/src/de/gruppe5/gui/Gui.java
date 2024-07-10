@@ -13,6 +13,7 @@ import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 
 import de.gruppe5.actions.KeyHandler;
+import de.gruppe5.actions.SaveableValue;
 import de.gruppe5.game.GameLogic;
 import de.gruppe5.game.StatsData;
 import de.gruppe5.game.MusicPlayer;
@@ -235,6 +236,96 @@ public class Gui {
 		btnEnd.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnEnd.setBounds(screenwidth/2-63, 420, 126, 23);
 		pauseMenu.add(btnEnd);
+		
+		JButton btnEasy = new JButton("Easy");
+		btnEasy.setBounds(27, 563, 100, 30);
+		btnEasy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameLogic.botDifficulty = GameLogic.EASY;
+			}
+		});
+		btnEasy.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnEasy.setFocusable(false);
+		btnEasy.setFocusTraversalKeysEnabled(false);
+		btnEasy.setFocusPainted(false);
+		btnEasy.setBorder(null);
+		btnEasy.setBackground(Color.WHITE);
+		settings.add(btnEasy);
+
+		JButton btnMedium = new JButton("Medium");
+		btnMedium.setBounds(137, 563, 100, 30);
+		btnMedium.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameLogic.botDifficulty = GameLogic.MEDIUM;
+			}
+		});
+		btnMedium.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnMedium.setFocusable(false);
+		btnMedium.setFocusTraversalKeysEnabled(false);
+		btnMedium.setFocusPainted(false);
+		btnMedium.setBorder(null);
+		btnMedium.setBackground(Color.WHITE);
+		settings.add(btnMedium);
+
+		JButton btnHard = new JButton("Hard");
+		btnHard.setBounds(27, 604, 100, 30);
+		btnHard.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameLogic.botDifficulty = GameLogic.HARD;
+			}
+		});
+		btnHard.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnHard.setFocusable(false);
+		btnHard.setFocusTraversalKeysEnabled(false);
+		btnHard.setFocusPainted(false);
+		btnHard.setBorder(null);
+		btnHard.setBackground(Color.WHITE);
+		settings.add(btnHard);
+
+
+		JButton btnImpossible = new JButton("Impossible");
+		btnImpossible.setBounds(137, 604, 100, 30);
+		btnImpossible.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameLogic.botDifficulty = GameLogic.IMPOSSIBLE;
+			}
+		});
+		btnImpossible.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnImpossible.setFocusable(false);
+		btnImpossible.setFocusTraversalKeysEnabled(false);
+		btnImpossible.setFocusPainted(false);
+		btnImpossible.setBorder(null);
+		btnImpossible.setBackground(Color.WHITE);
+		settings.add(btnImpossible);
+
+		JButton btnNewButton = new JButton("Reset");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				reset();
+
+			}
+		});
+		btnNewButton.setBounds(632, 604, 100, 30);
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnNewButton.setFocusable(false);
+		btnNewButton.setFocusTraversalKeysEnabled(false);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setBorder(null);
+		btnNewButton.setBackground(Color.WHITE);
+		settings.add(btnNewButton);	
+		
+		JLabel lblNewLabel = new JLabel("Bot difficulty:");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel.setBounds(37, 522, 186, 30);
+		settings.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1_1_1 = new JLabel("<html>Statistiken Zurücksetzen:</html>");
+		lblNewLabel_1_1_1.setForeground(Color.WHITE);
+		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1_1_1.setBounds(630, 542, 160, 50);
+		settings.add(lblNewLabel_1_1_1);
 
 		JLabel lblweapon = new JLabel("");
 		lblweapon.setBounds(525,600, 177, 100);
@@ -435,6 +526,10 @@ public class Gui {
 		btnSettings.setEnabled(!settings.isVisible());
 		btnTitleScreen.setEnabled(!settings.isVisible());
 	}
-
+	
+	protected void reset() {
+		SaveableValue.resetAllValues();
+		System.exit(0);
+	}
 
 }
