@@ -62,6 +62,7 @@ public class GameLogic {
 	public static final int IMPOSSIBLE = 4;
 	public static int botDifficulty = MEDIUM; // Default
 	boolean done = false;
+	double botinsecurespeed = 1;
 
 	double randompredictionnumber = 20;
 	double hesitationnumber = 0.002;
@@ -431,7 +432,10 @@ public class GameLogic {
 		double predictedY = ballY + ballSpeedY * timeToReachPaddle;
 
 		// small random error 
-		double randomnumberforprediction = (random.nextDouble() - 0.5) * randompredictionnumber;
+		botinsecurespeed = Math.abs(Ball.velocity.getYCur());
+		System.out.println(botinsecurespeed);
+		double randomnumberforprediction = (random.nextDouble() - 0.5) * (randompredictionnumber * (botinsecurespeed + 1));
+		System.out.println(randomnumberforprediction);
 		predictedY += randomnumberforprediction;
 
 		return predictedY;
