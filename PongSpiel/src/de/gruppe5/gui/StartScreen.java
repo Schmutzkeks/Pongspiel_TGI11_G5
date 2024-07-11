@@ -46,9 +46,9 @@ public class StartScreen extends JFrame {
 	private static JLabel lbstats;
 	private static JLabel lbshop;
 	public static Font customFont;
-    private static JLabel hoverImageLabel;
-    private static JLabel hoverImageLabel2;
-    private static JLabel hoverImageLabel3;
+	private static JLabel hoverImageLabel;
+	private static JLabel hoverImageLabel2;
+	private static JLabel hoverImageLabel3;
 
 	/**
 	 * Launch the application.
@@ -73,22 +73,22 @@ public class StartScreen extends JFrame {
 	 */
 	public StartScreen() {
 		//Load DOOM Font
-        try {
-            // Load the custom font from the file
-            customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/resources/font/Doom2016Text-GOlBq.ttf"));//.deriveFont(80f);
-            // Register the font
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(customFont);
-        } catch (FontFormatException | IOException e) {
-            e.printStackTrace();
-            // If the custom font fails to load, fall back to a default font
-            customFont = new Font("Tahoma", Font.BOLD, 30);
-        }
-		
+		try {
+			// Load the custom font from the file
+			customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/resources/font/Doom2016Text-GOlBq.ttf"));//.deriveFont(80f);
+			// Register the font
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(customFont);
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+			// If the custom font fails to load, fall back to a default font
+			customFont = new Font("Tahoma", Font.BOLD, 30);
+		}
 
-		
-		
-		
+
+
+
+
 		setResizable(false);
 		setTitle("Pong");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -216,29 +216,29 @@ public class StartScreen extends JFrame {
 		settings.add(chMusicEnabled);
 
 		lbTitle = new JLabel("Pong");
-        lbTitle.setFont(customFont.deriveFont(120f));
+		lbTitle.setFont(customFont.deriveFont(120f));
 		//lbTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lbTitle.setForeground(new Color(255, 255, 255));
 		lbTitle.setBounds(0, 35, 784, 100);
 		contentPane.add(lbTitle);
-		
-		
-		
 
-        //Load Image
-        ImageIcon hoverImageIcon = new ImageIcon(StartScreen.class.getResource("/resources/Pong.png"));  
-        hoverImageLabel = new JLabel(hoverImageIcon);  
-        hoverImageLabel.setBounds(161, 380, hoverImageIcon.getIconWidth(), hoverImageIcon.getIconHeight());
-        hoverImageLabel.setVisible(false); // Initially hidden
-        contentPane.add(hoverImageLabel);
-		
-		
+
+
+
+		//Load Image
+		ImageIcon hoverImageIcon = new ImageIcon(StartScreen.class.getResource("/resources/Pong.png"));  
+		hoverImageLabel = new JLabel(hoverImageIcon);  
+		hoverImageLabel.setBounds(161, 380, hoverImageIcon.getIconWidth(), hoverImageIcon.getIconHeight());
+		hoverImageLabel.setVisible(false); // Initially hidden
+		contentPane.add(hoverImageLabel);
+
+
 
 		btnStartGame = new JButton("Main Game");
 		btnStartGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Gui.erstellen(false);
+				Gui.erstellen(false, false);
 				GameLogic.createObjects();
 				GameLogic.getPlayer2().positionX = 50;
 				GameLogic.getPlayer3().positionX = -50;
@@ -257,20 +257,20 @@ public class StartScreen extends JFrame {
 		btnStartGame.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnStartGame.setBounds(338, 233, 126, 23);
 		contentPane.add(btnStartGame);
-		
-		 // Add mouse listener to the button
-        btnStartGame.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                hoverImageLabel.setVisible(true);
-            }
 
-            @Override
-            public void mouseExited(MouseEvent e) {
-                hoverImageLabel.setVisible(false);
-            }
-        });
-        
+		// Add mouse listener to the button
+		btnStartGame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				hoverImageLabel.setVisible(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				hoverImageLabel.setVisible(false);
+			}
+		});
+
 
 		/*
 		btnShop = new JButton("Shop");
@@ -305,21 +305,21 @@ public class StartScreen extends JFrame {
 		btnStats.setBounds(338, 377, 126, 23);
 		contentPane.add(btnStats);*/
 
-        
-        
-        //Load Image
-        ImageIcon hoverImageIcon2 = new ImageIcon(StartScreen.class.getResource("/resources/Hourglass_copy.png"));  
-        hoverImageLabel2 = new JLabel(hoverImageIcon2);  
-        hoverImageLabel2.setBounds(236, 380, hoverImageIcon2.getIconWidth(), hoverImageIcon2.getIconHeight());
-        hoverImageLabel2.setVisible(false); // Initially hidden
-        contentPane.add(hoverImageLabel2);
-        
-        
-        
+
+
+		//Load Image
+		ImageIcon hoverImageIcon2 = new ImageIcon(StartScreen.class.getResource("/resources/Hourglass_copy.png"));  
+		hoverImageLabel2 = new JLabel(hoverImageIcon2);  
+		hoverImageLabel2.setBounds(236, 380, hoverImageIcon2.getIconWidth(), hoverImageIcon2.getIconHeight());
+		hoverImageLabel2.setVisible(false); // Initially hidden
+		contentPane.add(hoverImageLabel2);
+
+
+
 		btnZeitmodus = new JButton("Zeitmodus");
 		btnZeitmodus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Gui.erstellen(true);
+				Gui.erstellen(true, false);
 				GameLogic.createObjects();
 				GameLogic.getPlayer2().positionX = 50;
 				GameLogic.getPlayer3().positionX = -50;
@@ -339,44 +339,69 @@ public class StartScreen extends JFrame {
 		btnZeitmodus.setBackground(Color.WHITE);
 		btnZeitmodus.setBounds(338, 281, 126, 23);
 		contentPane.add(btnZeitmodus);
-		
-		 // Add mouse listener to the button
-		btnZeitmodus.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                hoverImageLabel2.setVisible(true);
-            }
 
-            @Override
-            public void mouseExited(MouseEvent e) {
-                hoverImageLabel2.setVisible(false);
-            }
-        });
-		
-		
-		
-        //Load Image
-        ImageIcon hoverImageIcon3 = new ImageIcon(StartScreen.class.getResource("/resources/2Playernewresize.png"));  
-        hoverImageLabel3 = new JLabel(hoverImageIcon3);  
-        hoverImageLabel3.setBounds(209, 380, hoverImageIcon3.getIconWidth(), hoverImageIcon3.getIconHeight());
-        hoverImageLabel3.setVisible(false); // Initially hidden
-        contentPane.add(hoverImageLabel3);
-		
+		// Add mouse listener to the button
+		btnZeitmodus.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				hoverImageLabel2.setVisible(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				hoverImageLabel2.setVisible(false);
+			}
+		});
+
+
+
+		//Load Image
+		ImageIcon hoverImageIcon3 = new ImageIcon(StartScreen.class.getResource("/resources/2Playernewresize.png"));  
+		hoverImageLabel3 = new JLabel(hoverImageIcon3);  
+		hoverImageLabel3.setBounds(209, 380, hoverImageIcon3.getIconWidth(), hoverImageIcon3.getIconHeight());
+		hoverImageLabel3.setVisible(false); // Initially hidden
+		contentPane.add(hoverImageLabel3);
+
 
 		btn2Player = new JButton("2 Spieler");
 		btn2Player.addActionListener(new ActionListener() {
+			private Thread questionThread;
+
 			public void actionPerformed(ActionEvent e) {
-				Gui.erstellen(true);
-				GameLogic.Multiplayer = true;
-				GameLogic.createObjects();
-				GameLogic.getPlayer2().positionX = -50;
-				GameLogic.getPlayer3().positionX = 50;
-				GameLogic.timeLeft = 180;
-				GameLogic.BallContinue=false;
-				Gui.countdown = 0;
-				GameLogic.setPlayerContinue(true);
-				Gui.Paused = false;
-				frame.dispose();
+
+				if(questionThread != null) return;
+				questionThread = new Thread() {
+					public void run() {
+						NukeDialog dialog = new NukeDialog();
+						dialog.setVisible(true);
+						
+						frame.dispose();
+						
+						if(dialog != null) {
+							while(dialog.response == -1) {
+								try {
+									Thread.currentThread().sleep(1);
+								} catch (InterruptedException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+							}
+						}
+
+						Gui.erstellen(true, true);
+						GameLogic.Multiplayer = true;
+						GameLogic.nukeAllowed = dialog.response == 1;
+						GameLogic.createObjects();
+						GameLogic.getPlayer2().positionX = -50;
+						GameLogic.getPlayer3().positionX = 50;
+						GameLogic.timeLeft = 180;
+						GameLogic.BallContinue=false;
+						Gui.countdown = 0;
+						GameLogic.setPlayerContinue(true);
+						Gui.Paused = false;
+					};
+				};
+				questionThread.start();
 			}
 		});
 		btn2Player.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -387,19 +412,19 @@ public class StartScreen extends JFrame {
 		btn2Player.setBackground(Color.WHITE);
 		btn2Player.setBounds(338, 329, 126, 23);
 		contentPane.add(btn2Player);
-		
-		 // Add mouse listener to the button
-		btn2Player.addMouseListener(new MouseAdapter() {
-           @Override
-           public void mouseEntered(MouseEvent e) {
-               hoverImageLabel3.setVisible(true);
-           }
 
-           @Override
-           public void mouseExited(MouseEvent e) {
-               hoverImageLabel3.setVisible(false);
-           }
-       });
+		// Add mouse listener to the button
+		btn2Player.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				hoverImageLabel3.setVisible(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				hoverImageLabel3.setVisible(false);
+			}
+		});
 
 
 

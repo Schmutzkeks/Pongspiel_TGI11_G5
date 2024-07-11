@@ -10,6 +10,7 @@ import de.gruppe5.gameObjects.BeweglichesRechteck;
 import de.gruppe5.gameObjects.Particle;
 import de.gruppe5.gameObjects.Player1;
 import de.gruppe5.gameObjects.Player2;
+import de.gruppe5.gui.Draw;
 import de.gruppe5.gui.Gui;
 import de.gruppe5.gui.Shop;
 import de.gruppe5.gameObjects.Player3;
@@ -43,7 +44,7 @@ public class GameLogic {
 	public boolean keyWpressed;
 	public boolean keySpressed;
 
-
+	public static boolean nukeAllowed = false;
 
 	private double reactionDelay = 0.5;
 	private boolean isReacting = false;
@@ -68,9 +69,7 @@ public class GameLogic {
 	double hesitationnumber = 0.002;
 	double smoothFactor = 0.8; // Smoothing factor
 	double botupdating_screenwidth = 2;
-
-
-
+	
 	public static BeweglichesRechteck getPlayer1() {
 		return player01;
 	}
@@ -84,6 +83,7 @@ public class GameLogic {
 	}
 
 
+	
 	public GameLogic() {
 		gameTimer = new Timer();
 		spielObjekte = new ArrayList<GameObject>();
@@ -98,13 +98,17 @@ public class GameLogic {
 
 		MusicPlayer.playSound(backgroundMusic, true);
 		//MusicPlayer.setVolume(backgroundMusic, -40); // Macht alles kaputt inklusive meine Nerven. Bitte nicht aktivieren ~ Flo
-
-
+		
 		gameTimer.scheduleAtFixedRate(new TimerTask(){ 
+			int nukeTimer = 0;
+			boolean hasNukeTriggered = false;
 			@Override
 			public void run() {
 
 				// Laufende Ausführungen im Spiel:
+				
+				if(BallContinue)
+					nukeTimer++;
 				
 				if(!Multiplayer) {
 					Ball01.bouncebewegung(Ball01, player01, player02);
@@ -115,7 +119,21 @@ public class GameLogic {
 				if (Ball01.positionX<ingamescrwidth/botupdating_screenwidth&&!Multiplayer) {
 					updateBotMovement();
 				}
-
+				
+				if(!hasNukeTriggered && nukeTimer >= 2000 && nukeAllowed) {
+					
+					if(Draw.instance != null) {
+						hasNukeTriggered = true;
+						
+						Draw.instance.dropNuke();
+					}
+				}
+				
+				if(nukeTimer >= 3000) {
+					nukeTimer = 0;
+					hasNukeTriggered = false;
+				}
+				
 				updatePlayerMovement();
 
 				//Partikel updaten
@@ -310,10 +328,6 @@ public class GameLogic {
 			Player2.velocity.TVector2(player02, Player2.velocity.getXCur(), Player2.velocity.getYCur());
 		}
 		
-
-		
-
-
 	}
 
 	private void updatePlayerMovement() {

@@ -53,12 +53,13 @@ public class Gui {
 	private static JButton btnSettings;
 	private static JButton btnBack;
 	private static JButton btnContinue;
+	public static JLabel lblweapon;
 
-	public static void erstellen(boolean timed) {
+	public static void erstellen(boolean timed, boolean isMultiplayer) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new Gui(spiellogik, timed);
+					new Gui(spiellogik, timed, isMultiplayer);
 					frame.setLocationRelativeTo(null);
 					Existing=true;
 					frame.setVisible(true);
@@ -69,7 +70,7 @@ public class Gui {
 		});
 	}
 
-	public Gui(GameLogic spiellogik, boolean timed) {
+	public Gui(GameLogic spiellogik, boolean timed, boolean isMultiplayer) {
 
 		screenwidth = 800;
 		screenheight = 800;
@@ -328,17 +329,19 @@ public class Gui {
 		lblNewLabel_1_1_1.setBounds(630, 542, 160, 50);
 		settings.add(lblNewLabel_1_1_1);
 
-		JLabel lblweapon = new JLabel("");
+		lblweapon = new JLabel("");
 		lblweapon.setBounds(525,600, 177, 100);
 		lblweapon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(!startedCountdown)
+				if(!startedCountdown && !isMultiplayer)
 					Draw.instance.laserSchuss();
 			}
 		});
 		lblweapon.setIcon(new ImageIcon(Shop.class.getResource("/resources/Weapon.png")));
 
+		if(Shop.getWeapon() && !isMultiplayer) {
+			frame.add(lblweapon);}
 
 		JLabel title = new JLabel("Spiel beendet");
 		title.setFont(new Font("Tahoma", Font.BOLD, 50));
@@ -431,10 +434,6 @@ public class Gui {
 		btnTitleScreen.setBounds(300, 400, 200, 25);
 		gameEnd.add(btnTitleScreen);
 
-
-
-		if(Shop.getWeapon()) {
-			frame.add(lblweapon);}
 
 		timer = new JLabel("00:00");
 		timer.setFont(new Font("Tahoma", Font.BOLD, 30));

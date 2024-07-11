@@ -63,7 +63,6 @@ public class Shop extends JFrame {
 	private JLabel lbTextWaffe;
 	private JLabel lbTextSpeed;
 	private JLabel lbTextPlSize;
-	private JLabel lbTextKlon;
 	
 	static boolean ballSpeed= false;
 	static boolean weapon= false;
@@ -73,7 +72,6 @@ public class Shop extends JFrame {
 	private JButton doublePointsUnlock;
 	private JButton ballSpeedUnlock;
 	private JButton playerSizeUnlock;
-	private JButton ballCloneUnlock;
 	private JButton weaponUnlock;
 	
 	public static boolean getBallSpeed() {
@@ -320,7 +318,7 @@ public class Shop extends JFrame {
 		
 		lbldoublepoints = new ShopItem(Shop.class.getResourceAsStream("/resources/2xPoints.png"), 10, 0, 102, 101);
 		lbldoublepoints.setSize(91, 87);
-		lbldoublepoints.setLocation(20, 4);
+		lbldoublepoints.setLocation(102, 13);
 		lbldoublepoints.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -333,7 +331,7 @@ public class Shop extends JFrame {
 		
 		lblweapon = new ShopItem(Shop.class.getResourceAsStream("/resources/Weapon.png"), 145, 0, 177, 100);
 		lblweapon.setSize(165, 87);
-		lblweapon.setLocation(155, 4);
+		lblweapon.setLocation(237, 13);
 		lblweapon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -346,7 +344,7 @@ public class Shop extends JFrame {
 		
 		lblBallSpeed = new ShopItem(Shop.class.getResourceAsStream("/resources/lowerspeed.jpg"), 348, 0, 139, 112);
 		lblBallSpeed.setSize(130, 93);
-		lblBallSpeed.setLocation(352, 2);
+		lblBallSpeed.setLocation(434, 10);
 		lblBallSpeed.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -360,7 +358,7 @@ public class Shop extends JFrame {
 
 		lblPlayerSize = new ShopItem(Shop.class.getResourceAsStream("/resources/PlayerSize.png"), 523, 0, 102, 100);
 		lblPlayerSize.setSize(91, 87);
-		lblPlayerSize.setLocation(519, 4);
+		lblPlayerSize.setLocation(601, 13);
 		lblPlayerSize.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -371,50 +369,31 @@ public class Shop extends JFrame {
 		});
 		panel_1.add(lblPlayerSize);
 		
-
-		lblclone = new ShopItem(Shop.class.getResourceAsStream("/resources/Klon.jpg"), 632, 11, 139, 101);
-		lblclone.setSize(130, 87);
-		lblclone.setLocation(642, 4);
-		lblclone.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(lblclone.isItemLocked.getValue()) return;
-				clone=!clone;
-				updateItemBorders();
-			}
-		});
-		panel_1.add(lblclone);
 		
 		
 		lbText2XP = new JLabel("<html>Doppelte Punkte</html>");
 		lbText2XP.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lbText2XP.setForeground(new Color(255, 255, 255));
-		lbText2XP.setBounds(10, 453, 129, 54);
+		lbText2XP.setBounds(89, 453, 129, 54);
 		contentPane.add(lbText2XP);
 		
 		lbTextWaffe = new JLabel("<html>Waffe</html>");
 		lbTextWaffe.setForeground(Color.WHITE);
 		lbTextWaffe.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbTextWaffe.setBounds(175, 453, 93, 54);
+		lbTextWaffe.setBounds(254, 453, 93, 54);
 		contentPane.add(lbTextWaffe);
 		
 		lbTextSpeed = new JLabel("<html>Veringerte Geschwindigkeit</html>");
 		lbTextSpeed.setForeground(Color.WHITE);
 		lbTextSpeed.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lbTextSpeed.setBounds(357, 456, 142, 67);
+		lbTextSpeed.setBounds(436, 456, 142, 67);
 		contentPane.add(lbTextSpeed);
 		
 		lbTextPlSize = new JLabel("Spieler Größe");
 		lbTextPlSize.setForeground(Color.WHITE);
 		lbTextPlSize.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbTextPlSize.setBounds(511, 453, 164, 54);
+		lbTextPlSize.setBounds(590, 453, 164, 54);
 		contentPane.add(lbTextPlSize);
-		
-		lbTextKlon = new JLabel("Ball Klonen");
-		lbTextKlon.setForeground(Color.WHITE);
-		lbTextKlon.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbTextKlon.setBounds(655, 453, 164, 54);
-		contentPane.add(lbTextKlon);
 		
 		JPanel pnPunkte = new JPanel();
 		pnPunkte.setBackground(new Color(0, 0, 0));
@@ -441,7 +420,7 @@ public class Shop extends JFrame {
 			}
 		});
 		doublePointsUnlock.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		doublePointsUnlock.setBounds(20, 518, 93, 47);
+		doublePointsUnlock.setBounds(99, 518, 93, 47);
 		contentPane.add(doublePointsUnlock);
 		
 		weaponUnlock = new JButton("<html>Freischalten: 35 Points</html>");
@@ -454,7 +433,7 @@ public class Shop extends JFrame {
 			}
 		});
 		weaponUnlock.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		weaponUnlock.setBounds(160, 518, 93, 47);
+		weaponUnlock.setBounds(239, 518, 93, 47);
 		contentPane.add(weaponUnlock);
 		
 		ballSpeedUnlock = new JButton("<html>Freischalten: 10 Points</html>");
@@ -467,7 +446,7 @@ public class Shop extends JFrame {
 			}
 		});
 		ballSpeedUnlock.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		ballSpeedUnlock.setBounds(367, 518, 93, 47);
+		ballSpeedUnlock.setBounds(446, 518, 93, 47);
 		contentPane.add(ballSpeedUnlock);
 		
 		playerSizeUnlock = new JButton("<html>Freischalten: 25 Points</html>");
@@ -480,20 +459,8 @@ public class Shop extends JFrame {
 			}
 		});
 		playerSizeUnlock.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		playerSizeUnlock.setBounds(521, 518, 93, 47);
+		playerSizeUnlock.setBounds(600, 518, 93, 47);
 		contentPane.add(playerSizeUnlock);
-		
-		ballCloneUnlock = new JButton("<html>Freischalten: 30 Points</html>");
-		ballCloneUnlock.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(StatsData.getShopPunkte() < 30) return;
-				lblclone.setItemLocked(false);
-				updateFreischaltButtons();
-			}
-		});
-		ballCloneUnlock.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		ballCloneUnlock.setBounds(665, 518, 93, 47);
-		contentPane.add(ballCloneUnlock);
 		updateStats();
 		
 		JLabel[] borderLabels = {lbWhite,lbBlue,lbLightGreen,lbCyan,lbMagenta,lbRed,lbYellow,lbDarkGreen,lbRGB};
@@ -504,14 +471,10 @@ public class Shop extends JFrame {
 	}
 
 	private void updateFreischaltButtons() {
-		ballCloneUnlock.setEnabled(lblclone.isItemLocked.getValue());
 		ballSpeedUnlock.setEnabled(lblBallSpeed.isItemLocked.getValue());
 		doublePointsUnlock.setEnabled(lbldoublepoints.isItemLocked.getValue());
 		weaponUnlock.setEnabled(lblweapon.isItemLocked.getValue());
 		playerSizeUnlock.setEnabled(lblPlayerSize.isItemLocked.getValue());
-		
-
-		ballCloneUnlock.setVisible(lblclone.isItemLocked.getValue());
 		ballSpeedUnlock.setVisible(lblBallSpeed.isItemLocked.getValue());
 		doublePointsUnlock.setVisible(lbldoublepoints.isItemLocked.getValue());
 		weaponUnlock.setVisible(lblweapon.isItemLocked.getValue());
