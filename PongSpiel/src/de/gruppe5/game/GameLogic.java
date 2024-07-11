@@ -452,7 +452,7 @@ public class GameLogic {
 				botupdating_screenwidth = 2;
 				break;
 			case MEDIUM:
-				randompredictionnumber = 55;
+				randompredictionnumber = 100;
 				hesitationnumber = 0.0015;
 				hesitationCounter1_towhat = 1001;
 				hesitationCounter2_towaht = 36;
@@ -460,7 +460,7 @@ public class GameLogic {
 				botupdating_screenwidth = 2;
 				break;
 			case HARD:
-				randompredictionnumber = 25;
+				randompredictionnumber = 65;
 				hesitationnumber = 0.0005;
 				hesitationCounter1_towhat = 2001;
 				hesitationCounter2_towaht = 16;
