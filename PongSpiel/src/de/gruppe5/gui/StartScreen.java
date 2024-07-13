@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 
 import de.gruppe5.actions.SaveableValue;
+import de.gruppe5.game.Collision;
 import de.gruppe5.game.GameLogic;
 import de.gruppe5.game.MusicPlayer;
 
@@ -240,6 +241,8 @@ public class StartScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Gui.erstellen(false, false);
 				GameLogic.createObjects();
+				Collision.playerPoints=0;
+				Collision.enemyPoints=0;
 				GameLogic.getPlayer2().positionX = 50;
 				GameLogic.getPlayer3().positionX = -50;
 				Gui.countdown = 0;
@@ -320,6 +323,8 @@ public class StartScreen extends JFrame {
 		btnZeitmodus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Gui.erstellen(true, false);
+				Collision.playerPoints=0;
+				Collision.enemyPoints=0;
 				GameLogic.createObjects();
 				GameLogic.getPlayer2().positionX = 50;
 				GameLogic.getPlayer3().positionX = -50;
@@ -391,6 +396,8 @@ public class StartScreen extends JFrame {
 						Gui.erstellen(true, true);
 						GameLogic.Multiplayer = true;
 						GameLogic.nukeAllowed = dialog.response == 1;
+						Collision.playerPoints=0;
+						Collision.enemyPoints=0;
 						GameLogic.createObjects();
 						GameLogic.getPlayer2().positionX = -50;
 						GameLogic.getPlayer3().positionX = 50;

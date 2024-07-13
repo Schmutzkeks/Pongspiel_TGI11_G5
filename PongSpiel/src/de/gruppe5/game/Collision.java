@@ -6,9 +6,10 @@ import de.gruppe5.gui.Gui;
 import de.gruppe5.gui.Shop;
 
 public class Collision {
-	public Points punkte = new Points();
+	public Points punkte = new Points();	
 
-
+public static int enemyPoints;
+public static int playerPoints;
 
 	public void CollisionLeftRight(BeweglichesRechteck obj1, BeweglichesRechteck obj2) {
 		Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
@@ -69,24 +70,28 @@ public class Collision {
 	        if (Ball.velocity.getXCur() > 0 && Ball.velocity.getYCur() > 0) {
 	            Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
 	            punkte.addPunkteGegner(1);
+	            enemyPoints++;
 	            GameLogic.createParticles(30);
 	            GameLogic.pauseBall();
 	            MusicPlayer.playSound(3, false);
 	        } else if (Ball.velocity.getXCur() > 0 && Ball.velocity.getYCur() < 0) {
 	            Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
 	            punkte.addPunkteGegner(1);
+	            enemyPoints++;
 	            GameLogic.createParticles(30);
 	            GameLogic.pauseBall();
 	            MusicPlayer.playSound(3, false);
 	        } else if (Ball.velocity.getXCur() < 0 && Ball.velocity.getYCur() > 0) {
 	            Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
 	            punkte.addPunktePlayer(Shop.getDoublePoints() ? 2 : 1);
+	            playerPoints++;
 	            GameLogic.createParticles(30);
 	            GameLogic.pauseBall();
 	            MusicPlayer.playSound(3, false);
 	        } else if (Ball.velocity.getXCur() < 0 && Ball.velocity.getYCur() < 0) {
 	            Ball.velocity.setXCur(Ball.velocity.getXCur() * (-1));
 	            punkte.addPunktePlayer(Shop.getDoublePoints() ? 2 : 1);
+	            playerPoints++;
 	            GameLogic.createParticles(30);
 	            GameLogic.pauseBall();
 	            MusicPlayer.playSound(3, false);

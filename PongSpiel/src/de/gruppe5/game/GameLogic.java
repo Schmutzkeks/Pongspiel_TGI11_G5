@@ -120,13 +120,15 @@ public class GameLogic {
 					updateBotMovement();
 				}
 				
-				if(!hasNukeTriggered && nukeTimer >= 2000 && nukeAllowed) {
+				if(!hasNukeTriggered && nukeTimer >= 2000 && nukeAllowed&& Multiplayer) {
 					
 					if(Draw.instance != null) {
 						hasNukeTriggered = true;
 						
 						Draw.instance.dropNuke();
+						
 					}
+					
 				}
 				
 				if(nukeTimer >= 3000) {

@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 
 import de.gruppe5.actions.KeyHandler;
 import de.gruppe5.actions.SaveableValue;
+import de.gruppe5.game.Collision;
 import de.gruppe5.game.GameLogic;
 import de.gruppe5.game.StatsData;
 import de.gruppe5.game.MusicPlayer;
@@ -473,8 +474,8 @@ public class Gui {
 	}
 
 	public static void refreshPoints() {
-		lbPointsGegner.setText(punkteGegner+"");
-		lbPointsPlayer.setText(punktePlayer+"");
+		lbPointsGegner.setText(Collision.enemyPoints+"");
+		lbPointsPlayer.setText(Collision.playerPoints+"");
 	}
 
 	public static void startCountdown() {

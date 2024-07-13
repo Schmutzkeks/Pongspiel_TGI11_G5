@@ -57,7 +57,6 @@ public class Shop extends JFrame {
 	private ShopItem lblweapon;
 	private ShopItem lblBallSpeed;
 	private ShopItem lblPlayerSize;
-	private ShopItem lblclone;
 	
 	private JLabel lbText2XP;
 	private JLabel lbTextWaffe;
@@ -67,8 +66,7 @@ public class Shop extends JFrame {
 	static boolean ballSpeed= false;
 	static boolean weapon= false;
 	static boolean playerSize= false;
-	static boolean doublePoints= false;
-	static boolean clone= false;	
+	static boolean doublePoints= false;	
 	private JButton doublePointsUnlock;
 	private JButton ballSpeedUnlock;
 	private JButton playerSizeUnlock;
@@ -90,9 +88,6 @@ public class Shop extends JFrame {
 		return doublePoints;
 	}
 	
-	public static boolean getClone() {
-		return clone;
-	}
 	
 	public static void erstellen() {
 		EventQueue.invokeLater(new Runnable() {
@@ -482,12 +477,6 @@ public class Shop extends JFrame {
 	}
 	
 	private void updateItemBorders() {
-		if(clone) {
-			lblclone.isSelected = true;
-		}
-		else {
-			lblclone.isSelected = false;
-		}
 		if(playerSize) {
 			lblPlayerSize.isSelected = true;
 		}
