@@ -56,7 +56,11 @@ public class Gui {
 	private static JButton btnContinue;
 	public static JLabel lblweapon;
 
+	public static boolean isMultiplayer = false;
+
 	public static void erstellen(boolean timed, boolean isMultiplayer) {
+		Gui.isMultiplayer = isMultiplayer;
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
