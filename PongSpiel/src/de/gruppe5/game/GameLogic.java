@@ -55,18 +55,19 @@ public class GameLogic {
 	private int hesitationCounter1 = 0;
 	private int hesitationCounter1_towhat = 1001;
 	private int hesitationCounter2 = 0;
-	private int hesitationCounter2_towaht = 51;
+	private int hesitationCounter2_towaht = 36;
 
 	public static final int EASY = 1;
 	public static final int MEDIUM = 2;
 	public static final int HARD = 3;
 	public static final int IMPOSSIBLE = 4;
 	public static int botDifficulty = MEDIUM; // Default
+	public static int previousbotDifficulty = MEDIUM; 
 	boolean done = false;
 	double botinsecurespeed = 1;
 
-	double randompredictionnumber = 20;
-	double hesitationnumber = 0.002;
+	double randompredictionnumber = 100;
+	double hesitationnumber = 0.0015;
 	double smoothFactor = 0.8; // Smoothing factor
 	double botupdating_screenwidth = 2;
 	
@@ -254,7 +255,12 @@ public class GameLogic {
 
 
 	public void updateBotMovement() {
-		difficultynumbers();
+		
+		
+        if (botDifficulty != previousbotDifficulty) {
+            difficultynumbers();
+            previousbotDifficulty = botDifficulty; 
+        }
 
 
 		double targetY = predictBallPosition();
@@ -457,7 +463,7 @@ public class GameLogic {
 
 
 	private void difficultynumbers() {
-		if (done==false) {
+		//if (done==false) {
 			switch (botDifficulty) {
 			case EASY:
 				randompredictionnumber = 150;
@@ -493,8 +499,8 @@ public class GameLogic {
 				break;
 			}
 			System.out.println("Difficulty: " + botDifficulty);
-			done = true;
-		}
+			//done = true;
+		//}
 
 	}
 
