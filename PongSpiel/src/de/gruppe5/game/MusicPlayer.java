@@ -16,17 +16,19 @@ import de.gruppe5.actions.SaveableValue;
 public class MusicPlayer {
 	private static Clip clip;
 	public static SaveableValue<Float> totalVolume = new SaveableValue<Float>(-20F, "settings.totalVolume");
-	static String[] fileLocations = {"/resources/music/bg1.wav","/resources/music/bg2.wav","/resources/music/pong.wav","/resources/music/pop.wav"};
+	static String[] fileLocations = {"/resources/music/bg1.wav","/resources/music/bg2.wav","/resources/music/pong.wav","/resources/music/pop.wav","/resources/music/Explosion.wav"};
 
 	static ArrayList<Clip> clipsType1 = new ArrayList<Clip>();
 	static ArrayList<Clip> clipsType2 = new ArrayList<Clip>();
 	static ArrayList<Clip> clipsType3 = new ArrayList<Clip>();
 	static ArrayList<Clip> clipsType4 = new ArrayList<Clip>();
+	static ArrayList<Clip> clipsType5 = new ArrayList<Clip>();
 
 	static ArrayList<FloatControl> volumeType1 = new ArrayList<FloatControl>();
 	static ArrayList<FloatControl> volumeType2 = new ArrayList<FloatControl>();
 	static ArrayList<FloatControl> volumeType3 = new ArrayList<FloatControl>();
 	static ArrayList<FloatControl> volumeType4 = new ArrayList<FloatControl>();
+	static ArrayList<FloatControl> volumeType5 = new ArrayList<FloatControl>();
 	
 	static ArrayList<ArrayList<Clip>> Lists = new ArrayList<ArrayList<Clip>>();
 	static ArrayList<ArrayList<FloatControl>> volumeControlsLists = new ArrayList<ArrayList<FloatControl>>();
@@ -38,12 +40,14 @@ public class MusicPlayer {
 		Lists.add(clipsType2);
 		Lists.add(clipsType3);
 		Lists.add(clipsType4);
+		Lists.add(clipsType5);
 
 		//Lautstärke für clips
 		volumeControlsLists.add(volumeType1);
 		volumeControlsLists.add(volumeType2);
 		volumeControlsLists.add(volumeType3);
 		volumeControlsLists.add(volumeType4);
+		volumeControlsLists.add(volumeType5);
 		
 		setVolumeAll(totalVolume.getValue());
 	}
