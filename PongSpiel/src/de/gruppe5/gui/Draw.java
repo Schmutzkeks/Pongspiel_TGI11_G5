@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import de.gruppe5.actions.Main;
 import de.gruppe5.game.GameLogic;
 import de.gruppe5.game.GameObject;
+import de.gruppe5.game.MusicPlayer;
 import de.gruppe5.gameObjects.Ball;
 import de.gruppe5.gameObjects.Particle;
 
@@ -26,7 +27,7 @@ public class Draw extends JLabel{
 	ArrayList<Particle> particles;
 
 	BufferedImage laserBild;
-	public Color laserColor;
+	public Color laserColor = Color.white;
 
 	public Image nukeImage;
 	public Image explosionImage;
@@ -241,6 +242,8 @@ public class Draw extends JLabel{
 				isExplosion=true;
 				laserExplosionGroesse = 0;
 
+				MusicPlayer.playSound(4, false);
+				
 				GameLogic.getPlayer3().istAktiviert = false;
 				GameLogic.getPlayer2().istAktiviert = false;
 				GameLogic.getPlayer1().istAktiviert = false;

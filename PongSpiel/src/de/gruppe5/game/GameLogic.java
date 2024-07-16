@@ -127,9 +127,7 @@ public class GameLogic {
 						hasNukeTriggered = true;
 						
 						Draw.instance.dropNuke();
-						
 					}
-					
 				}
 				
 				if(nukeTimer >= 3000) {
